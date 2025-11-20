@@ -1,0 +1,491 @@
+<main>
+  <div class="search-card__wrapper">
+    <form class="search-card" aria-label="Buscador de experiencias">
+      <label class="search-card__field">
+        <span class="search-card__label">Descubre</span>
+        <input type="text" placeholder="DESCUBRE" name="query" />
+      </label>
+
+      <label class="search-card__field">
+        <span class="search-card__label">Venue</span>
+        <select name="venue">
+          <option value="">Venue</option>
+          <option value="centro">Centro de eventos</option>
+          <option value="hotel">Hoteles</option>
+        </select>
+      </label>
+
+      <button class="search-card__submit" type="submit">
+        <span class="sr-only">Buscar experiencia</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <section
+    class="news-card"
+    style="--news-card-image: url('/{{ directory }}/images/parque_novios.jpg')"
+  >
+    <div class="news-card__bg" aria-hidden="true">
+      <div class="news-card__bg-image"></div>
+    </div>
+    <div class="news-card__content">
+      <span class="news-card__tag">Noticias</span>
+      <div class="news-card__text">
+        <h2>¡Bienvenidos a Bogotá!</h2>
+        <p>
+          Somos el motor económico, administrativo y político del país, un
+          conglomerado de conocimiento e innovación, lleno de gente amable y
+          preparada para recibirlos a todos, a visitantes que llegan por
+          negocios o turistas por placer.
+        </p>
+        <button class="news-card__cta" type="button">
+          ver más
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M4.5 12a.75.75 0 0 1 .75-.75h12.19l-3.72-3.72a.75.75 0 0 1 1.06-1.06l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 0 1-1.06-1.06l3.72-3.72H5.25A.75.75 0 0 1 4.5 12Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio" id="portafolio">
+    <div class="portfolio__header">
+      <h2>Portafolio</h2>
+    </div>
+
+    <div class="portfolio__grid">
+      <article class="portfolio-card">
+        <div class="portfolio-card__media">
+          <div class="portfolio-card__image" data-image="venues">
+            <img
+              src="/{{ directory }}/images/agora_convenciones.jpg"
+              alt="Imagen agencias"
+            />
+          </div>
+        </div>
+        <div class="portfolio-card__body">
+          <div class="portfolio-card__text">
+            <h3>Venues</h3>
+            <p>Espacios ideales para tu evento.</p>
+          </div>
+          <a class="portfolio-card__cta" type="button" href="/venues"
+            >ver más +</a
+          >
+        </div>
+      </article>
+
+      <article class="portfolio-card">
+        <div class="portfolio-card__media">
+          <div class="portfolio-card__image" data-image="proveedores">
+            <img
+              src="/{{ directory }}/images/grupo.jpg"
+              alt="Imagen proveedores"
+            />
+          </div>
+        </div>
+        <div class="portfolio-card__body">
+          <div class="portfolio-card__text">
+            <h3>Proveedores</h3>
+            <p>Servicios confiables para eventos.</p>
+          </div>
+          <a class="portfolio-card__cta" type="button" href="/proveedores"
+            >ver más +</a
+          >
+        </div>
+      </article>
+
+      <article class="portfolio-card">
+        <div class="portfolio-card__media">
+          <div class="portfolio-card__image" data-image="agencias">
+            <img
+              src="/{{ directory }}/images/grupo.jpg"
+              alt="Imagen agencias"
+            />
+          </div>
+        </div>
+        <div class="portfolio-card__body">
+          <div class="portfolio-card__text">
+            <h3>Agencias</h3>
+            <p>Servicios confiables para eventos.</p>
+          </div>
+          <a class="portfolio-card__cta" type="button" href="/agencias">ver más +</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="why-bogota" id="porque">
+    <header class="why-bogota__header">
+      <h2>¿Por qué Bogotá?</h2>
+    </header>
+    <div class="why-bogota__grid">
+      <article class="why-card">
+        <div class="why-card__thumb" aria-hidden="true">
+          <img
+            src="/{{ directory }}/images/festival_cordillera.jpg"
+            alt="Festval cordillera"
+          />
+        </div>
+        <div class="why-card__info">
+          <h3>Datos generales</h3>
+        </div>
+      </article>
+      <article class="why-card">
+        <div class="why-card__thumb" aria-hidden="true">
+          <img
+            src="/{{ directory }}/images/festival_cordillera.jpg"
+            alt="Festval cordillera"
+          />
+        </div>
+        <div class="why-card__info">
+          <h3>Datos culturales</h3>
+        </div>
+      </article>
+      <article class="why-card">
+        <div class="why-card__thumb" aria-hidden="true">
+          <img
+            src="/{{ directory }}/images/festival_cordillera.jpg"
+            alt="Festval cordillera"
+          />
+        </div>
+        <div class="why-card__info">
+          <h3>Datos educación</h3>
+        </div>
+      </article>
+      <article class="why-card">
+        <div class="why-card__thumb" aria-hidden="true">
+          <img
+            src="/{{ directory }}/images/festival_cordillera.jpg"
+            alt="Festval cordillera"
+          />
+        </div>
+        <div class="why-card__info">
+          <h3>Datos movilidad</h3>
+        </div>
+      </article>
+      <article class="why-card">
+        <div class="why-card__thumb" aria-hidden="true">
+          <img
+            src="/{{ directory }}/images/festival_cordillera.jpg"
+            alt="Festval cordillera"
+          />
+        </div>
+        <div class="why-card__info">
+          <h3>Derrame económico</h3>
+        </div>
+      </article>
+      <article class="why-card">
+        <div class="why-card__thumb" aria-hidden="true">
+          <img
+            src="/{{ directory }}/images/festival_cordillera.jpg"
+            alt="Festval cordillera"
+          />
+        </div>
+        <div class="why-card__info">
+          <h3>Reconocimientos</h3>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="events">
+    <div class="events__intro">
+      <h2>Estos son los eventos que puedes hacer en Bogotá</h2>
+      <p>¡Desliza y conoce más!</p>
+    </div>
+
+    <div class="events__panel">
+      <div class="events__carousel" data-carousel>
+        <button
+          class="events__nav events__nav--prev"
+          type="button"
+          data-carousel-prev
+          aria-label="Evento anterior"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M15.75 19.5a.75.75 0 0 1-1.28.53l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L8.56 12l7.25 7.25c.14.14.22.33.22.53Z"
+            />
+          </svg>
+        </button>
+        <div class="events__viewport" data-carousel-viewport>
+          <div class="events__track" data-carousel-track>
+            {% for item in eventos|reverse|slice(0, 5) %}
+            <a
+              class="event-card"
+              data-carousel-item
+              data-event="bog25"
+              href="eventos.html"
+            >
+              <div
+                class="event-card__media"
+                aria-hidden="true"
+                style="background-image: url({{item.fields.field_mainimg.0.url}});"
+              ></div>
+              <div class="event-card__content">
+                <span class="event-card__tag">{{
+                  item.fields.field_categoria_de_evento.name
+                }}</span>
+                <h3>{{ item.title }}</h3>
+                <div class="event-card__meta">
+                  <span class="event-card__meta-item">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M6.75 3a.75.75 0 0 0 0 1.5H7.5V6h-3A2.25 2.25 0 0 0 2.25 8.25v10.5A2.25 2.25 0 0 0 4.5 21h15a2.25 2.25 0 0 0 2.25-2.25V8.25A2.25 2.25 0 0 0 19.5 6h-3V4.5h.75a.75.75 0 0 0 0-1.5h-3a.75.75 0 0 0 0 1.5h.75V6h-6V4.5h.75a.75.75 0 0 0 0-1.5h-3Zm-1.5 6.75A.75.75 0 0 1 6 9h12a.75.75 0 0 1 .75.75v8.25c0 .414-.336.75-.75.75H6a.75.75 0 0 1-.75-.75Z"
+                      />
+                    </svg>
+                    {% set meses = { 'Jan': 'Ene', 'Feb': 'Feb', 'Mar': 'Mar',
+                    'Apr': 'Abr', 'May': 'May', 'Jun': 'Jun', 'Jul': 'Jul',
+                    'Aug': 'Ago', 'Sep': 'Sept', 'Oct': 'Oct', 'Nov': 'Nov',
+                    'Dec': 'Dic' } %} {% set raw_inicio =
+                    item.fields.field_fecha_de_inicio.0.value %} {% set raw_fin
+                    = item.fields.field_fecha_de_finalizacion.0.value %} {% set
+                    mes_en = raw_inicio|date('M') %} {% set mes_es =
+                    meses[mes_en] %} {% set dia_inicio = raw_inicio|date('j') %}
+                    {% set dia_fin = raw_fin|date('j') %}
+
+                    <span>{{ mes_es }} {{ dia_inicio }} - {{ dia_fin }}</span>
+                  </span>
+                  <span class="event-card__meta-item">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="size-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                      />
+                    </svg>
+                    <span>{{item.fields.field_lugar_del_evento.0.value}}</span>
+                  </span>
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        <button
+          class="events__nav events__nav--next"
+          type="button"
+          data-carousel-next
+          aria-label="Evento siguiente"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M8.25 4.5a.75.75 0 0 1 1.28-.53l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L15.44 12 8.19 4.75A.75.75 0 0 1 8.25 4.5Z"
+            />
+          </svg>
+        </button>
+        <div class="carousel-indicators" data-carousel-indicators></div>
+      </div>
+
+      <div class="events__filters">
+        {% for item in tipos_de_evento_mice %}
+        <button type="button">{{ item.name }}</button>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="carousel-indicators" data-carousel-indicators></div>
+  </section>
+
+  <section class="success-events">
+    <header class="success-events__header">
+      <h2>Eventos exitosos</h2>
+    </header>
+    <div class="success-carousel" data-carousel>
+      <button
+        class="success-nav success-nav--prev"
+        type="button"
+        data-carousel-prev
+        aria-label="Carrusel anterior"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M15.75 19.5a.75.75 0 0 1-1.28.53l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L8.56 12l7.25 7.25c.14.14.22.33.22.53Z"
+          />
+        </svg>
+      </button>
+      <div class="success-carousel__viewport" data-carousel-viewport>
+        <div class="success-carousel__track" data-carousel-track>
+          <a
+            class="success-card"
+            data-carousel-item
+            href="eventosExitosoDetalle.html"
+          >
+            <div class="success-card__media" aria-hidden="true">
+              <img
+                src="/{{ directory }}/images/galeria_sofa.jpg"
+                alt="Galeria sofa"
+              />
+            </div>
+            <div class="success-card__body">
+              <h3>FEP</h3>
+              <p>20 - 22 marzo</p>
+            </div>
+          </a>
+          <a
+            class="success-card"
+            data-carousel-item
+            href="eventosExitosoDetalle.html"
+          >
+            <div class="success-card__media" aria-hidden="true">
+              <img
+                src="/{{ directory }}/images/festival_cordillera_2.jpg"
+                alt="Festval cordillera 2"
+              />
+            </div>
+            <div class="success-card__body">
+              <h3>Bogotá Music Fest</h3>
+              <p>5 - 7 abril</p>
+            </div>
+          </a>
+          <a
+            class="success-card"
+            data-carousel-item
+            href="eventosExitosoDetalle.html"
+          >
+            <div class="success-card__media" aria-hidden="true">
+              <img
+                src="/{{ directory }}/images/festival_cordillera.jpg"
+                alt="Festval cordillera"
+              />
+            </div>
+            <div class="success-card__body">
+              <h3>Expo Cultura</h3>
+              <p>15 - 18 mayo</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <button
+        class="success-nav success-nav--next"
+        type="button"
+        data-carousel-next
+        aria-label="Carrusel siguiente"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M8.25 4.5a.75.75 0 0 1 1.28-.53l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L15.44 12 8.19 4.75A.75.75 0 0 1 8.25 4.5Z"
+          />
+        </svg>
+      </button>
+      <div
+        class="carousel-indicators carousel-indicators--light"
+        data-carousel-indicators
+      ></div>
+    </div>
+  </section>
+
+  <section class="allies">
+    <header class="allies__header">
+      <h2>Aliados</h2>
+      <p>
+        Nuestros aliados comparten la visión de fortalecer la industria de
+        eventos en Bogotá, ofreciendo calidad, innovación y confianza en cada
+        servicio.
+      </p>
+    </header>
+    <div class="allies-carousel" data-carousel>
+      <button
+        class="allies-nav allies-nav--prev"
+        type="button"
+        data-carousel-prev
+        aria-label="Aliado anterior"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M15.75 19.5a.75.75 0 0 1-1.28.53l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L8.56 12l7.25 7.25c.14.14.22.33.22.53Z"
+          />
+        </svg>
+      </button>
+      <div class="allies-carousel__viewport" data-carousel-viewport>
+        <div class="allies-carousel__track" data-carousel-track>
+          <article class="ally-card" data-carousel-item>
+            <div class="ally-card__logo" aria-hidden="true">Invest Bogotá</div>
+            <p>Invest Bogotá</p>
+          </article>
+        </div>
+      </div>
+      <button
+        class="allies-nav allies-nav--next"
+        type="button"
+        data-carousel-next
+        aria-label="Aliado siguiente"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M8.25 4.5a.75.75 0 0 1 1.28-.53l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L15.44 12 8.19 4.75A.75.75 0 0 1 8.25 4.5Z"
+          />
+        </svg>
+      </button>
+      <div
+        class="carousel-indicators carousel-indicators--light"
+        data-carousel-indicators
+      ></div>
+    </div>
+  </section>
+</main>

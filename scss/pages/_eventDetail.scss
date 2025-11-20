@@ -1,0 +1,71 @@
+@use "../base/tokens" as *;
+
+.events__successful {
+    background: #fff;
+    border-radius: $radius-intermediate;
+    padding: 1.25rem;
+    &-header {
+        text-align: center;
+    }
+    &-data {
+        background: #fff;
+        border-radius: $radius-intermediate;
+        margin-top: clamp(2.5rem, 6vw, 4rem);
+        display: grid;
+        grid-template-columns: minmax(320px, 0.7fr) minmax(260px, 1.2fr);
+        padding: 1.25rem;
+        h3 {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 500;
+        }
+    }
+    &-details {
+        display: grid;
+        grid-template-columns: minmax(320px, 1.2fr) minmax(260px, 0.7fr);
+    }
+}
+.details__recommended {
+    .events__filters {
+        &.details {
+            margin: 1.25rem 0;
+            & button {
+                background: #fff;
+                color: $blue-light;
+                border: 1px solid rgba($blue-light, 0.5);
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+.highlight-chart {
+    display: flex;
+    align-items: center;
+    img {
+        max-width: 675PX;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .events__successful {
+        &-data {
+            display: flex;
+            flex-direction: column;
+        }
+        &-details {
+            display: flex;
+            flex-direction: column;
+            margin: 1rem 0;
+        }
+        .events__filters {
+            display: flex;
+            button {
+                font-size: 12px;
+                padding: 0.45rem 0.35rem;;
+            }
+        }
+    }
+}
+
+

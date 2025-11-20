@@ -1,0 +1,131 @@
+    <main>
+        <section class="places" id="places">
+            <div class="places__header">
+                <h2>Conoce el lugar ideal para tu evento</h2>
+            </div>
+            <div class="places__filters" role="group" aria-label="Filtrar tipos de lugares">
+                <button class="places-chip places-chip--muted" type="button">
+                    <span class="places-chip__icon" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 1.5H10.875C11.37 1.5 11.7904 1.81531 11.9404 2.25781L13.5 6.75V12.75C13.5 13.1625 13.1625 13.5 12.75 13.5H12C11.5875 13.5 11.25 13.1625 11.25 12.75V12H2.25V12.75C2.25 13.1625 1.9125 13.5 1.5 13.5H0.75C0.3375 13.5 0 13.1625 0 12.75V6.75L1.55957 2.25781C1.71707 1.81531 2.13 1.5 2.625 1.5H4.5V0H9V1.5ZM1.5 7.00488V10.5H12V7.00488L11.918 6.75H1.58984L1.5 7.00488ZM3.375 7.5C3.99632 7.5 4.5 8.00368 4.5 8.625C4.5 9.24632 3.99632 9.75 3.375 9.75C2.75368 9.75 2.25 9.24632 2.25 8.625C2.25 8.00368 2.75368 7.5 3.375 7.5ZM10.125 7.5C10.7463 7.5 11.25 8.00368 11.25 8.625C11.25 9.24632 10.7463 9.75 10.125 9.75C9.50368 9.75 9 9.24632 9 8.625C9 8.00368 9.50368 7.5 10.125 7.5ZM2.10742 5.25H11.3848L10.6045 3H2.88672L2.10742 5.25Z" fill="currentcolor"/>
+                        </svg>
+                    </span>
+                    <span class="places-chip__label">Convencional</span>
+                    <span class="places-chip__close" aria-hidden="true">×</span>
+                </button>
+
+                <button class="places-chip" type="button">
+                    <span class="places-chip__icon" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 1.5H10.875C11.37 1.5 11.7904 1.81531 11.9404 2.25781L13.5 6.75V12.75C13.5 13.1625 13.1625 13.5 12.75 13.5H12C11.5875 13.5 11.25 13.1625 11.25 12.75V12H2.25V12.75C2.25 13.1625 1.9125 13.5 1.5 13.5H0.75C0.3375 13.5 0 13.1625 0 12.75V6.75L1.55957 2.25781C1.71707 1.81531 2.13 1.5 2.625 1.5H4.5V0H9V1.5ZM1.5 7.00488V10.5H12V7.00488L11.918 6.75H1.58984L1.5 7.00488ZM3.375 7.5C3.99632 7.5 4.5 8.00368 4.5 8.625C4.5 9.24632 3.99632 9.75 3.375 9.75C2.75368 9.75 2.25 9.24632 2.25 8.625C2.25 8.00368 2.75368 7.5 3.375 7.5ZM10.125 7.5C10.7463 7.5 11.25 8.00368 11.25 8.625C11.25 9.24632 10.7463 9.75 10.125 9.75C9.50368 9.75 9 9.24632 9 8.625C9 8.00368 9.50368 7.5 10.125 7.5ZM2.10742 5.25H11.3848L10.6045 3H2.88672L2.10742 5.25Z" fill="currentcolor"/>
+                        </svg>
+                    </span>
+                    <span class="places-chip__label">No convencional</span>
+                    <span class="places-chip__close" aria-hidden="true">×</span>
+                </button>
+
+                <button class="places-chip" type="button">
+                    <span class="places-chip__icon" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 1.5H10.875C11.37 1.5 11.7904 1.81531 11.9404 2.25781L13.5 6.75V12.75C13.5 13.1625 13.1625 13.5 12.75 13.5H12C11.5875 13.5 11.25 13.1625 11.25 12.75V12H2.25V12.75C2.25 13.1625 1.9125 13.5 1.5 13.5H0.75C0.3375 13.5 0 13.1625 0 12.75V6.75L1.55957 2.25781C1.71707 1.81531 2.13 1.5 2.625 1.5H4.5V0H9V1.5ZM1.5 7.00488V10.5H12V7.00488L11.918 6.75H1.58984L1.5 7.00488ZM3.375 7.5C3.99632 7.5 4.5 8.00368 4.5 8.625C4.5 9.24632 3.99632 9.75 3.375 9.75C2.75368 9.75 2.25 9.24632 2.25 8.625C2.25 8.00368 2.75368 7.5 3.375 7.5ZM10.125 7.5C10.7463 7.5 11.25 8.00368 11.25 8.625C11.25 9.24632 10.7463 9.75 10.125 9.75C9.50368 9.75 9 9.24632 9 8.625C9 8.00368 9.50368 7.5 10.125 7.5ZM2.10742 5.25H11.3848L10.6045 3H2.88672L2.10742 5.25Z" fill="currentcolor"/>
+                        </svg>
+                    </span>
+                    <span class="places-chip__label">Proveedores</span>
+                    <span class="places-chip__close" aria-hidden="true">×</span>
+                </button>
+
+                <button class="places-chip" type="button">
+                    <span class="places-chip__icon" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 1.5H10.875C11.37 1.5 11.7904 1.81531 11.9404 2.25781L13.5 6.75V12.75C13.5 13.1625 13.1625 13.5 12.75 13.5H12C11.5875 13.5 11.25 13.1625 11.25 12.75V12H2.25V12.75C2.25 13.1625 1.9125 13.5 1.5 13.5H0.75C0.3375 13.5 0 13.1625 0 12.75V6.75L1.55957 2.25781C1.71707 1.81531 2.13 1.5 2.625 1.5H4.5V0H9V1.5ZM1.5 7.00488V10.5H12V7.00488L11.918 6.75H1.58984L1.5 7.00488ZM3.375 7.5C3.99632 7.5 4.5 8.00368 4.5 8.625C4.5 9.24632 3.99632 9.75 3.375 9.75C2.75368 9.75 2.25 9.24632 2.25 8.625C2.25 8.00368 2.75368 7.5 3.375 7.5ZM10.125 7.5C10.7463 7.5 11.25 8.00368 11.25 8.625C11.25 9.24632 10.7463 9.75 10.125 9.75C9.50368 9.75 9 9.24632 9 8.625C9 8.00368 9.50368 7.5 10.125 7.5ZM2.10742 5.25H11.3848L10.6045 3H2.88672L2.10742 5.25Z" fill="#30628C"/>
+                        </svg>
+                    </span>
+                    <span class="places-chip__label">Agencias BTL</span>
+                    <span class="places-chip__close" aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="places__search-card">
+                <div class="places__search-field places__search-field--range">
+                    <span class="places__search-label">Cantidad de personas</span>
+                    <div class="places-range" data-range-control>
+                        <output
+                            class="places-range__bubble"
+                            for="places-capacity"
+                            aria-live="polite"
+                        >
+                            <span data-range-value>0</span>
+                        </output>
+                        <input
+                            type="range"
+                            id="places-capacity"
+                            name="capacity"
+                            min="0"
+                            max="500"
+                            step="10"
+                            value="0"
+                            aria-label="Cantidad de personas"
+                        />
+                    </div>
+                </div>
+
+                <label class="places__search-field">
+                    <span class="places__search-label">Ubicación</span>
+                    <div class="places-input places-input--select">
+                        <span class="places-input__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <circle cx="11" cy="11" r="6" />
+                                <path d="m16.5 16.5 3.5 3.5" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <select name="location" aria-label="Ubicación">
+                            <option value="" selected disabled>Zona</option>
+                            <option value="norte">Zona Norte</option>
+                            <option value="centro">Zona Centro</option>
+                            <option value="occidente">Zona Occidente</option>
+                            <option value="sur">Zona Sur</option>
+                        </select>
+                        <span class="places-input__icon places-input__icon--trailing" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+                </label>
+
+                <label class="places__search-field">
+                    <span class="places__search-label">Fecha</span>
+                    <div class="places-input">
+                        <input type="date" name="date" placeholder="mm/dd/yyyy" />
+                        <span class="places-input__icon places-input__icon--trailing" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+                </label>
+
+                <a class="places__search-submit" type="button" href="filtros.html">
+                    <span class="places__search-submit-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <circle cx="11" cy="11" r="6" />
+                            <path d="m16.5 16.5 3.5 3.5" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    Buscar
+                </a>
+            </div>
+
+            <div class="places__grid" aria-live="polite">
+            
+            {% for item in venues %}
+                <a class="place-card" href="{{item.url}}">
+                    <div class="place-card__media place-card__media--a" aria-hidden="true" style="background-image: url({{item.fields.field_image.0.url}});"></div>
+                    <div class="place-card__body">
+                        <h3 class="place-card__title">{{ item.title }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+            </div>
+        </section>
+    </main>

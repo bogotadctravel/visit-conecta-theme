@@ -1,0 +1,43 @@
+@use "../base/tokens" as *;
+
+.events__body {
+  background-color: #002f4c;
+}
+.events__page {
+  h2 {
+    color: #ffff;
+    font-weight: 400;
+    font-size: 57px;
+    margin: 0;
+  }
+  p {
+    color: #ffff;
+  }
+  .events__filters {
+    color: #ffff;
+  }
+}
+.events__grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: clamp(1rem, 3vw, 1.75rem);
+  .event-card {
+    min-width: 324px;
+    min-height: 324px;
+  }
+}
+@media (max-width: 56rem) {
+  .events__page {
+    h2 {
+      font-size: 32px;
+    }
+  }
+  .events__grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    .event-card {
+      min-width: 150px;
+      min-height: 150px;
+    }
+  }
+}

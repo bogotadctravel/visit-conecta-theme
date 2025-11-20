@@ -1,0 +1,90 @@
+﻿@use "../base/tokens" as *;
+
+.button {
+  border: none;
+  padding: 0.85rem 1.5rem;
+  border-radius: $radius-pill;
+  font-weight: 600;
+  background: $color-primary;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(15, 98, 254, 0.25);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.pill {
+  position: relative;
+  border: 1px solid $color-muted-light;
+  border-radius: $radius-pill;
+  padding: 0.6rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: $color-surface;
+  color: $color-muted;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  min-width: 180px;
+
+  &--light {
+    background: $color-surface;
+  }
+
+  &--ghost {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  select {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.pill--flag {
+  padding-left: 0.9rem;
+  gap: 0.5rem;
+  min-width: 110px;
+}
+
+.pill__label,
+.pill__value {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.pill__icon {
+  display: inline-flex;
+  margin-left: auto;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    color: $color-primary-darker;
+  }
+}
+
+.pill__flag {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+}

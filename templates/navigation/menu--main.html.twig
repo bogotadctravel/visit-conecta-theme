@@ -1,0 +1,5 @@
+<nav class="primary-nav" id="primary-nav" aria-label="Menú principal">
+  {% for item in items %}
+    <a href="{{ item.url }}">{{ item.title }}</a>
+  {% endfor %}
+</nav>

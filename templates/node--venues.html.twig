@@ -1,0 +1,851 @@
+<main>
+  <section class="detail" id="detail">
+    <div class="filtres__results-title">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+        />
+      </svg>
+      <h3>Venue</h3>
+    </div>
+    <div class="detail__header">
+      <div class="detail__content">
+        <h2>{{ node.getTitle() }}</h2>
+
+        {{ content.body }}
+
+        <h4>Disposiciones</h4>
+        <div class="dispositons__chips">
+          <button class="places-chip places-chip--muted" type="button">
+            <span class="places-chip__label">Convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+          <button class="places-chip" type="button">
+            <span class="places-chip__label">No convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+          <button class="places-chip" type="button">
+            <span class="places-chip__label">No convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+          <button class="places-chip places-chip--muted" type="button">
+            <span class="places-chip__label">Convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+          <button class="places-chip" type="button">
+            <span class="places-chip__label">No convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+          <button class="places-chip" type="button">
+            <span class="places-chip__label">No convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+          <button class="places-chip places-chip--muted" type="button">
+            <span class="places-chip__label">Convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+          <button class="places-chip" type="button">
+            <span class="places-chip__label">No convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+          <button class="places-chip" type="button">
+            <span class="places-chip__label">No convencional</span>
+            <span class="places-chip__close" aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
+      <div class="detail__info">
+        <aside class="detail__info-card">
+          <div class="detail__info-block">
+            <p class="detail__info-label">Direcci&oacute;n</p>
+            <p class="detail__info-data">{{node.field_direccion.0.value}}</p>
+          </div>
+          <div class="detail__info-block">
+            <p class="detail__info-label">Contacto</p>
+            <ul class="detail__contact-list">
+              <li class="contact-item">
+                <span class="contact-item__icon" aria-hidden="true">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+                    />
+                  </svg>
+                </span>
+                <div class="contact-item__content">
+                  <span class="contact-item__label">Tel&eacute;fono:</span>
+                  <span
+                    class="contact-item__value"
+                    >{{node.field_telefono.0.value}}</span
+                  >
+                </div>
+              </li>
+              <li class="contact-item">
+                <span class="contact-item__icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M12 21s7.5-4.5 7.5-10.5A7.5 7.5 0 0 0 12 3a7.5 7.5 0 0 0-7.5 7.5C4.5 16.5 12 21 12 21Z"
+                    />
+                    <circle cx="12" cy="10.5" r="2.5" />
+                  </svg>
+                </span>
+                <div class="contact-item__content">
+                  <span class="contact-item__label">Zona:</span>
+                  <span class="contact-item__value">
+                    {% for term in node.field_turzone %}
+                    {{ term.entity.name.value }}
+                    {% endfor %}
+                  </span>
+                </div>
+              </li>
+              <li class="contact-item">
+                <span class="contact-item__icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M4.5 6h15a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 19.5 18h-15A1.5 1.5 0 0 1 3 16.5v-9A1.5 1.5 0 0 1 4.5 6Z"
+                    />
+                    <path d="m4.5 7.5 7.5 5.25L19.5 7.5" />
+                  </svg>
+                </span>
+                <div class="contact-item__content">
+                  <span class="contact-item__label">Correo:</span>
+                  <a
+                    class="contact-item__value link"
+                    href="mailto:{{ node.field_correo.0.value }}"
+                    >{{ node.field_correo.0.value }}</a
+                  >
+                </div>
+              </li>
+              <li class="contact-item">
+                <span class="contact-item__icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="8.5" />
+                    <path
+                      d="M3.5 12h17M12 3.5s4 3.5 4 8.5-4 8.5-4 8.5m0-17s-4 3.5-4 8.5 4 8.5 4 8.5"
+                    />
+                  </svg>
+                </span>
+                <div class="contact-item__content">
+                  <span class="contact-item__label">P&aacute;gina web:</span>
+                  <a
+                    class="contact-item__value link"
+                    href="{{node.field_weblink.0.uri}}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >{{node.field_weblink.0.uri}}</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="info-content__icons">
+            <div class="info__social-icons">
+              <h4>Redes sociales</h4>
+              <div class="social-icons__links">
+                <a
+                  href="{{node.field_profilelink.0.uri}}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <img
+                    src="/{{ directory }}/images/linkedin.svg"
+                    alt="LinkedIn"
+                  />
+                </a>
+                <a
+                  href="{{node.field_profilelink.0.uri}}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <img
+                    src="/{{ directory }}/images/instagram.svg"
+                    alt="Instagram"
+                  />
+                </a>
+                <a
+                  href="{{node.field_profilelink.0.uri}}"
+                  aria-label="YouTube"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/{{ directory }}/images/youtube.svg"
+                    alt="YouTube"
+                  />
+                </a>
+                <a
+                  href="{{node.field_profilelink.0.uri}}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                >
+                  <img
+                    src="/{{ directory }}/images/facebook.svg"
+                    alt="Facebook"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+          <a
+            href="{{node.field_linkreservas.0.uri}}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="detail__cta"
+          >
+            <span class="detail__cta-icon" aria-hidden="true">
+              <svg viewBox="0 0 14 14" fill="none">
+                <path
+                  d="M7 1v12M1 7h12"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span>M&aacute;s informaci&oacute;n</span>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-media" aria-labelledby="detail-media-title">
+    <h2 id="detail-media-title" class="sr-only">Explora el venue</h2>
+    <div class="detail-media__layout">
+      <div class="detail-media__gallery" data-detail-gallery>
+        <div class="gallery-viewer">
+          <button
+            class="gallery-viewer__control gallery-viewer__control--prev"
+            type="button"
+            aria-label="Ver foto anterior"
+            data-gallery-prev
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m15 6-6 6 6 6" />
+            </svg>
+          </button>
+          <figure class="gallery-viewer__media" data-gallery-main>
+            <img
+              src="/{{ directory }}/images/maloka.jpg"
+              alt="Vista exterior del domo"
+              loading="lazy"
+              data-gallery-image
+            />
+            <figcaption data-gallery-caption>
+              La Sala Digital cuenta con tecnolog&iacute;a de vanguardia y
+              sonido envolvente.
+            </figcaption>
+          </figure>
+          <button
+            class="gallery-viewer__control gallery-viewer__control--next"
+            type="button"
+            aria-label="Ver foto siguiente"
+            data-gallery-next
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m9 6 6 6-6 6" />
+            </svg>
+          </button>
+          <button class="gallery-viewer__badge" type="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+              />
+            </svg>
+            <span>Vista 360</span>
+          </button>
+        </div>
+        <div class="gallery-thumbs" data-gallery-thumbs>
+          {% if node.field_picgallery is not empty %}
+          <div class="gallery">
+            {% for image in node.field_picgallery %}
+            <button
+              class="gallery-thumbs__item is-active"
+              type="button"
+              data-gallery-thumb
+              data-image="{{ file_url(image.entity.uri.value) }}"
+              data-caption="{{ image.title }}"
+              data-alt="{{ image.alt }}"
+            >
+              <span class="gallery-thumbs__media">
+                <img
+                  src="{{ file_url(image.entity.uri.value) }}"
+                  alt="{{ image.alt }}"
+                  loading="lazy"
+                />
+              </span>
+              <span class="gallery-thumbs__label">{{ image.alt }}</span>
+            </button>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <aside class="detail-media__sidebar">
+        <div class="media-card">
+          <div class="media-card__header location">
+            <h3>Ubicaci&oacute;n</h3>
+            <button
+              class="media-card__action"
+              type="button"
+              aria-label="Ver mapa ampliado"
+              data-map-trigger
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="media-card__body">
+            <div class="media-card__map">
+              {% if node.field_latlong is defined and node.field_latlong.0 is
+              not empty and node.field_latlong.1 is not empty %} {% set lat =
+              node.field_latlong.0.value %} {% set lng =
+              node.field_latlong.1.value %}
+              <iframe
+                width="100%"
+                height="350"
+                style="border: 0"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q={{ lat }},{{
+                  lng
+                }}&z=15&output=embed"
+              >
+              </iframe>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="media-card media-card--audio">
+          <div class="media-card__header">
+            <div class="media-card__titles">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 10V13M6 6V17M10 3V21M14 8V15M18 5V18M22 10V13"
+                  stroke="black"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <h3>Escucha ahora la reseña en audio</h3>
+              <button
+                class="media-card__action"
+                type="button"
+                aria-label="Abrir opciones"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="5" cy="12" r="1.25" />
+                  <circle cx="12" cy="12" r="1.25" />
+                  <circle cx="19" cy="12" r="1.25" />
+                </svg>
+              </button>
+            </div>
+            <div class="media-card__content">
+              <p>
+                Torem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+              </p>
+            </div>
+          </div>
+          <button class="media-audio__play" type="button">
+            <span class="media-audio__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M10 8.5v7l5-3.5-5-3.5Z" />
+              </svg>
+            </span>
+            <span>Reproducir audio</span>
+          </button>
+        </div>
+      </aside>
+    </div>
+    <div class="map-livebox" hidden data-map-livebox aria-hidden="true">
+      <div class="map-livebox__backdrop" data-map-close></div>
+      <div
+        class="map-livebox__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="map-livebox-title"
+        tabindex="-1"
+      >
+        <header class="map-livebox__header">
+          <div>
+            <p class="map-livebox__eyebrow">Ubicaci&oacute;n</p>
+            <h3 id="map-livebox-title">Maloka, Bogot&aacute;</h3>
+          </div>
+          <button
+            class="map-livebox__close"
+            type="button"
+            aria-label="Cerrar mapa ampliado"
+            data-map-close
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 6l12 12M6 18 18 6" />
+            </svg>
+          </button>
+        </header>
+        <div class="map-livebox__body">
+          <iframe
+            title="Mapa ampliado Maloka"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.812083918412!2d-74.09426549999999!3d4.6593987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b918ef6e7fd%3A0x3c2b6fe445536d05!2sMaloka!5e0!3m2!1ses-419!2sco!4v1700000000000!5m2!1ses-419!2sco"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-rooms" aria-labelledby="detail-rooms-title">
+    <div class="detail-rooms__header">
+      <div>
+        <h2 id="detail-rooms-title">Salones disponibles</h2>
+      </div>
+    </div>
+    <div
+      class="detail-rooms__tabs"
+      role="tablist"
+      aria-label="Tipos de salones"
+    >
+      <button
+        class="rooms-tab is-active"
+        type="button"
+        role="tab"
+        aria-selected="true"
+      >
+        <span class="rooms-tab__icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m4 8 2.5 2.5L12 5" />
+          </svg>
+        </span>
+        <span class="rooms-tab__label">Domo</span>
+      </button>
+      <button class="rooms-tab" type="button" role="tab" aria-selected="false">
+        <span class="rooms-tab__icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m4 8 2.5 2.5L12 5" />
+          </svg>
+        </span>
+        <span class="rooms-tab__label">Aulas multiples</span>
+      </button>
+      <button class="rooms-tab" type="button" role="tab" aria-selected="false">
+        <span class="rooms-tab__icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m4 8 2.5 2.5L12 5" />
+          </svg>
+        </span>
+        <span class="rooms-tab__label">Sala digital</span>
+      </button>
+      <button class="rooms-tab" type="button" role="tab" aria-selected="false">
+        <span class="rooms-tab__icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m4 8 2.5 2.5L12 5" />
+          </svg>
+        </span>
+        <span class="rooms-tab__label">Laboratorio</span>
+      </button>
+      <button class="rooms-tab" type="button" role="tab" aria-selected="false">
+        <span class="rooms-tab__icon" aria-hidden="true">
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m4 8 2.5 2.5L12 5" />
+          </svg>
+        </span>
+        <span class="rooms-tab__label">Hall de cines</span>
+      </button>
+    </div>
+    <article class="room-card" aria-live="polite">
+      <p class="room-card__description">
+        Sala de cine con domo y pantalla gigante. Ideal para lanzamientos
+        inmersivos con sonido envolvente y experiencias sensoriales.
+      </p>
+      <div class="room-card__content">
+        <div class="room-card__meta">
+          <dl class="room-stats">
+            <div class="room-stat">
+              <span class="room-stat__icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 13C14.7614 13 17 10.7614 17 8C17 5.23858 14.7614 3 12 3C9.23858 3 7 5.23858 7 8C7 10.7614 9.23858 13 12 13ZM12 13C14.1217 13 16.1566 13.8429 17.6569 15.3431C19.1571 16.8434 20 18.8783 20 21M12 13C9.87827 13 7.84344 13.8429 6.34315 15.3431C4.84285 16.8434 4 18.8783 4 21"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <div>
+                <dt>Aforo m&iacute;nimo: <strong>10</strong></dt>
+              </div>
+            </div>
+            <div class="room-card__toggle">
+              <span class="room-stat__icon" aria-hidden="true">
+                <svg
+                  width="23"
+                  height="24"
+                  viewBox="0 0 23 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.9784 19L18.9784 12L12.9784 13M4.97841 8L7.97841 5L13.4784 8L11.1184 11.5M4.21841 14.5C3.93625 15.4231 3.92729 16.4081 4.19262 17.3361C4.45796 18.2641 4.98623 19.0955 5.71369 19.73C6.44114 20.3644 7.33667 20.7746 8.29217 20.9113C9.24767 21.0479 10.2223 20.9051 11.0984 20.5M13.7384 17.5C14.0206 16.5769 14.0295 15.5919 13.7642 14.6639C13.4989 13.7359 12.9706 12.9045 12.2431 12.27C11.5157 11.6356 10.6202 11.2254 9.66465 11.0887C8.70915 10.9521 7.73452 11.0949 6.85841 11.5M16.9784 4C16.9784 4.55228 16.5307 5 15.9784 5C15.4261 5 14.9784 4.55228 14.9784 4C14.9784 3.44772 15.4261 3 15.9784 3C16.5307 3 16.9784 3.44772 16.9784 4Z"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="room-card__toggle-label">Accesibilidad</span>
+              <span
+                class="room-toggle is-active"
+                role="switch"
+                aria-checked="true"
+                tabindex="0"
+              >
+                <span class="room-toggle__thumb"></span>
+              </span>
+            </div>
+            <div class="room-stat">
+              <span class="room-stat__icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18 21C18 18.8783 17.1571 16.8434 15.6569 15.3431C14.1566 13.8429 12.1217 13 10 13M10 13C7.87827 13 5.84344 13.8429 4.34315 15.3431C2.84285 16.8434 2 18.8783 2 21M10 13C12.7614 13 15 10.7614 15 8C15 5.23858 12.7614 3 10 3C7.23858 3 5 5.23858 5 8C5 10.7614 7.23858 13 10 13ZM22 20C22 16.63 20 13.5 18 12C18.6574 11.5068 19.1831 10.8591 19.5306 10.1143C19.878 9.36945 20.0365 8.55047 19.992 7.7298C19.9475 6.90913 19.7014 6.11209 19.2755 5.4092C18.8495 4.70631 18.2569 4.11926 17.55 3.7"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <div>
+                <dt>Aforo m&aacute;ximo:<strong>300</strong></dt>
+              </div>
+            </div>
+            <div class="room-stat">
+              <span class="room-stat__icon" aria-hidden="true">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_486_14803)">
+                    <path
+                      d="M14.4998 12.4998L16.4998 10.4998M11.4998 9.4998L13.4998 7.4998M8.4998 6.4998L10.4998 4.4998M17.4998 15.4998L19.4998 13.4998M21.2998 15.2998C21.5235 15.5228 21.7011 15.7877 21.8222 16.0794C21.9433 16.3712 22.0057 16.6839 22.0057 16.9998C22.0057 17.3157 21.9433 17.6284 21.8222 17.9202C21.7011 18.2119 21.5235 18.4768 21.2998 18.6998L18.6998 21.2998C18.4768 21.5235 18.2119 21.7011 17.9202 21.8222C17.6284 21.9433 17.3157 22.0057 16.9998 22.0057C16.6839 22.0057 16.3712 21.9433 16.0794 21.8222C15.7877 21.7011 15.5228 21.5235 15.2998 21.2998L2.6998 8.6998C2.25036 8.24818 1.99805 7.63695 1.99805 6.9998C1.99805 6.36265 2.25036 5.75143 2.6998 5.2998L5.2998 2.6998C5.75143 2.25036 6.36265 1.99805 6.9998 1.99805C7.63695 1.99805 8.24818 2.25036 8.6998 2.6998L21.2998 15.2998Z"
+                      stroke="black"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_486_14803">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </span>
+              <div>
+                <dt>
+                  &Aacute;rea del sal&oacute;n:<strong
+                    >45&nbsp;m<sup>2</sup></strong
+                  >
+                </dt>
+              </div>
+            </div>
+          </dl>
+        </div>
+        <div class="room-card__actions">
+          <div class="room-tags" aria-label="Montajes disponibles">
+            <button class="places-chip places-chip--muted" type="button">
+              <span class="places-chip__label">Tipo escenario</span>
+              <span class="places-chip__close" aria-hidden="true">×</span>
+            </button>
+            <button class="places-chip places-chip--muted" type="button">
+              <span class="places-chip__label">Auditorio tipo A</span>
+              <span class="places-chip__close" aria-hidden="true">×</span>
+            </button>
+            <button class="places-chip places-chip--muted" type="button">
+              <span class="places-chip__label">Tipo herradura</span>
+              <span class="places-chip__close" aria-hidden="true">×</span>
+            </button>
+            <button class="places-chip places-chip--muted" type="button">
+              <span class="places-chip__label">Escuela</span>
+              <span class="places-chip__close" aria-hidden="true">×</span>
+            </button>
+          </div>
+          <button class="room-card__cta" type="button">Reservar</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="venues venues--media">
+    <div class="venues__header filtros">
+      <h2>Más tipos de Venue</h2>
+    </div>
+    <div class="venues-carousel" data-carousel>
+      <button
+        class="venues-nav venues-nav--prev"
+        type="button"
+        data-carousel-prev
+        aria-label="Aliado anterior"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M15.75 19.5a.75.75 0 0 1-1.28.53l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L8.56 12l7.25 7.25c.14.14.22.33.22.53Z"
+          />
+        </svg>
+      </button>
+      <div class="venues-carousel__viewport" data-carousel-viewport>
+        <div class="venues-carousel__track" data-carousel-track>
+          <article
+            class="venue-card venue-card--media"
+            data-carousel-item
+            data-image=""
+          >
+            <div class="venue-card__media">
+              <img
+                src="/{{ directory }}/images/agora_convenciones.jpg"
+                alt="Invest Bogotá"
+                loading="lazy"
+              />
+            </div>
+            <div class="venue-card__body">
+              <p class="venue-card__name">Centro de eventos</p>
+            </div>
+          </article>
+          <article
+            class="venue-card venue-card--media"
+            data-carousel-item
+            data-image=""
+          >
+            <div class="venue-card__media">
+              <img
+                src="/{{ directory }}/images/agora_convenciones.jpg"
+                alt="COTELCO"
+                loading="lazy"
+              />
+            </div>
+            <div class="venue-card__body">
+              <p class="venue-card__name">Recintos feriales</p>
+            </div>
+          </article>
+          <article
+            class="venue-card venue-card--media"
+            data-carousel-item
+            data-image=""
+          >
+            <div class="venue-card__media">
+              <img
+                src="/{{ directory }}/images/agora_convenciones.jpg"
+                alt="Cámara de Comercio"
+                loading="lazy"
+              />
+            </div>
+            <div class="venue-card__body">
+              <p class="venue-card__name">Cámara de Comercio</p>
+            </div>
+          </article>
+          <article
+            class="venue-card venue-card--media"
+            data-carousel-item
+            data-image=""
+          >
+            <div class="venue-card__media">
+              <img
+                src="/{{ directory }}/images/agora_convenciones.jpg"
+                alt="Nombre aliado"
+                loading="lazy"
+              />
+            </div>
+            <div class="venue-card__body">
+              <p class="venue-card__name">Centro de convenciones</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <button
+        class="venues-nav venues-nav--next"
+        type="button"
+        data-carousel-next
+        aria-label="Aliado siguiente"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M8.25 4.5a.75.75 0 0 1 1.28-.53l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L15.44 12 8.19 4.75A.75.75 0 0 1 8.25 4.5Z"
+          />
+        </svg>
+      </button>
+      <div
+        class="carousel-indicators carousel-indicators--light"
+        data-carousel-indicators
+      ></div>
+    </div>
+  </section>
+</main>

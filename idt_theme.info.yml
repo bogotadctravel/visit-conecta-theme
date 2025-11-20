@@ -1,0 +1,16 @@
+name: "IDT Theme"
+type: theme
+description: "Tema personalizado para el sitio."
+core_version_requirement: ^10 || ^11
+base theme: stark
+package: Custom
+
+libraries:
+  - idt_theme/global-styling
+
+regions:
+  header: Header
+  headerTheme: Header Theme
+  content: Content
+  sidebar: Sidebar
+  footer: Footer

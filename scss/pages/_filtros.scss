@@ -1,0 +1,301 @@
+@use "../base/tokens" as *;
+
+.data-tabs {
+    &.filtros {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        @media (max-width: 768px) {
+            width: 100%;
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.filtres {
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(1.5rem, 4vw, 3rem);
+        margin-top: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    &__results {
+        flex: 1 1 auto;
+        margin-top: 1.75rem;
+        &-title{ 
+            display: flex;
+            gap: 1rem;
+            transition: transform 0.25s ease;
+            cursor: pointer;
+            svg {
+                width: 24px;
+            }
+            &:hover {
+                transform: translateX(-6px);
+            }
+        }
+    }
+
+    &__filters {
+        width: 100%;
+    }
+}
+
+@media (min-width: 64rem) {
+    .filtres__content {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .filtres__results {
+        flex: 1 1 65%;
+    }
+
+    .filtres__filters {
+        flex: 0 0 320px;
+        max-width: 360px;
+    }
+}
+
+.places__search-card.filtros {
+    &.filtros {
+        display: flex;
+        flex-direction: column;
+        padding: 3rem 2rem;
+    }
+}
+.places-chip__buttons{
+    &.filtros {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+        width: 100%;
+    }
+}
+
+.places-checkboxes {
+    &.filtros {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 1rem;
+        background: #F7F9FF;
+    }
+}
+
+.places-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    cursor: pointer;
+}
+
+.places-checkbox__label {
+    font-weight: 400;
+    color: $blue-primary;
+    letter-spacing: 0.05em;
+    color: #181C20;
+}
+
+.places-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-left: auto;
+    accent-color: $blue-light;
+}
+
+.places__search-submit {
+    &.filtros{
+        width: 100%;
+    }
+}
+
+.results__grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(1rem, 3vw, 1.75rem);
+}
+
+.result-card {
+    border-radius: 18px;
+    background: $color-surface;
+    box-shadow: 0 14px 30px rgba($color-primary, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba($color-primary, 0.16);
+    }
+}
+
+.result-card__media {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: rgba($blue-light, 0.08);
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 0;
+    }
+}
+
+.result-card__body {
+    padding: 1rem 1.25rem 1.35rem;
+}
+
+.result-card__title {
+    font-size: 1rem;
+    color: $color-primary-dark;
+    margin: 0;
+}
+
+.venues__header {
+    &.filtros {
+        text-align: center;
+        margin-bottom: clamp(1.5rem, 4vw, 3rem);
+    }
+}
+
+.venues-carousel {
+    position: relative;
+    padding: 0 2.5rem;
+}
+
+.venues-carousel__viewport {
+    overflow: hidden;
+}
+
+.venues-carousel__track {
+    display: flex;
+    gap: 0.75rem;
+    scroll-behavior: smooth;
+}
+
+.venues-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: #CFE5FF;
+    color: $color-primary-darker;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.venues-nav--prev {
+    left: 0.25rem;
+}
+
+.venues-nav--next {
+    right: 0.25rem;
+}
+
+.venues--media {
+    .venues-carousel__viewport {
+        overflow: hidden;
+        padding: 0.5rem 0 1rem;
+    }
+
+    .venue-card {
+        cursor: pointer;
+        flex: 0 0 calc((100% - 3.75rem) / 6);
+        // background: rgba($blue-light, 0.12);
+        border-radius: 18px;
+        // padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        text-align: left;
+        // box-shadow: 0 20px 40px rgba($blue-primary, 0.08);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        margin-top: 0.5rem;
+
+        &:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 50px rgba($blue-primary, 0.12);
+        }
+    }
+
+    .venue-card__media {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba($blue-light, 0.2);
+        display: block;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 0;
+        }
+    }
+
+    .venue-card__body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        padding: 0.5rem;
+    }
+
+    .venue-card__name {
+        margin: 0;
+        font-weight: 700;
+        color: $color-primary-dark;
+        font-size: 1rem;
+    }
+
+    .venue-card__tag {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $blue-secondary;
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 768px) {
+    .results__grid{
+        grid-template-columns: repeat(auto-fit, minmax(120px, 3fr));
+    }
+    .venues-carousel {
+        padding: 0 1.25rem;
+    }
+
+    .venues--media .venue-card {
+        flex: 0 0 55%;
+    }
+}
+
+@media (max-width: 540px) {
+    .venues--media .venue-card {
+        flex: 0 0 45%;
+    }
+}
