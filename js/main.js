@@ -411,6 +411,8 @@
 
         tabs.forEach((tab) => {
           tab.addEventListener("click", () => {
+            console.log(tab);
+
             const index = tab.dataset.roomIndex;
 
             // Activar tab
