@@ -420,6 +420,7 @@
             });
 
             // Mostrar card correcto
+            console.log(cards);
             cards.forEach((card) => {
               card.style.display =
                 card.dataset.roomIndex === index ? "block" : "none";
