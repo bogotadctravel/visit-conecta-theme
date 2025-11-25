@@ -1,3 +1,6 @@
+{% set hoy = "now"|date("Y-m-d") %} {% set meses = { 'Jan': 'Ene', 'Feb': 'Feb',
+'Mar': 'Mar', 'Apr': 'Abr', 'May': 'May', 'Jun': 'Jun', 'Jul': 'Jul', 'Aug':
+'Ago', 'Sep': 'Sept', 'Oct': 'Oct', 'Nov': 'Nov', 'Dec': 'Dic' } %}
 <main>
   <div class="search-card__wrapper">
     <form class="search-card" aria-label="Buscador de experiencias">
@@ -265,10 +268,8 @@
                         d="M6.75 3a.75.75 0 0 0 0 1.5H7.5V6h-3A2.25 2.25 0 0 0 2.25 8.25v10.5A2.25 2.25 0 0 0 4.5 21h15a2.25 2.25 0 0 0 2.25-2.25V8.25A2.25 2.25 0 0 0 19.5 6h-3V4.5h.75a.75.75 0 0 0 0-1.5h-3a.75.75 0 0 0 0 1.5h.75V6h-6V4.5h.75a.75.75 0 0 0 0-1.5h-3Zm-1.5 6.75A.75.75 0 0 1 6 9h12a.75.75 0 0 1 .75.75v8.25c0 .414-.336.75-.75.75H6a.75.75 0 0 1-.75-.75Z"
                       />
                     </svg>
-                    {% set meses = { 'Jan': 'Ene', 'Feb': 'Feb', 'Mar': 'Mar',
-                    'Apr': 'Abr', 'May': 'May', 'Jun': 'Jun', 'Jul': 'Jul',
-                    'Aug': 'Ago', 'Sep': 'Sept', 'Oct': 'Oct', 'Nov': 'Nov',
-                    'Dec': 'Dic' } %} {% set raw_inicio =
+
+                    {% set raw_inicio =
                     item.fields.field_fecha_de_inicio.0.value %} {% set raw_fin
                     = item.fields.field_fecha_de_finalizacion.0.value %} {% set
                     mes_en = raw_inicio|date('M') %} {% set mes_es =
@@ -324,7 +325,6 @@
         </button>
         <div class="carousel-indicators" data-carousel-indicators></div>
       </div>
-
       <div class="events__filters">
         {% for item in tipos_de_evento_mice %}
         <button type="button">{{ item.name }}</button>
@@ -358,6 +358,10 @@
       </button>
       <div class="success-carousel__viewport" data-carousel-viewport>
         <div class="success-carousel__track" data-carousel-track>
+          {% for item in eventos %} {% set inicio =
+          item.fields.field_fecha_de_inicio.0.value|date("Y-m-d") %} {% set fin
+          = item.fields.field_fecha_de_finalizacion.0.value|date("Y-m-d") %} {%
+          if fin < hoy %} {# 🔴 Evento pasado #}
           <a
             class="success-card"
             data-carousel-item
@@ -365,47 +369,22 @@
           >
             <div class="success-card__media" aria-hidden="true">
               <img
-                src="/{{ directory }}/images/galeria_sofa.jpg"
-                alt="Galeria sofa"
+                src="{{item.fields.field_mainimg.0.url}}"
+                alt="{{ item.title }}"
               />
             </div>
             <div class="success-card__body">
-              <h3>FEP</h3>
-              <p>20 - 22 marzo</p>
+              <h3>{{ item.title }}</h3>
+              {% set raw_inicio = item.fields.field_fecha_de_inicio.0.value %}
+              {% set raw_fin = item.fields.field_fecha_de_finalizacion.0.value
+              %} {% set mes_en = raw_inicio|date('M') %} {% set mes_es =
+              meses[mes_en] %} {% set dia_inicio = raw_inicio|date('j') %} {%
+              set dia_fin = raw_fin|date('j') %}
+
+              <p>{{ mes_es }} {{ dia_inicio }} - {{ dia_fin }}</p>
             </div>
           </a>
-          <a
-            class="success-card"
-            data-carousel-item
-            href="eventosExitosoDetalle.html"
-          >
-            <div class="success-card__media" aria-hidden="true">
-              <img
-                src="/{{ directory }}/images/festival_cordillera_2.jpg"
-                alt="Festval cordillera 2"
-              />
-            </div>
-            <div class="success-card__body">
-              <h3>Bogotá Music Fest</h3>
-              <p>5 - 7 abril</p>
-            </div>
-          </a>
-          <a
-            class="success-card"
-            data-carousel-item
-            href="eventosExitosoDetalle.html"
-          >
-            <div class="success-card__media" aria-hidden="true">
-              <img
-                src="/{{ directory }}/images/festival_cordillera.jpg"
-                alt="Festval cordillera"
-              />
-            </div>
-            <div class="success-card__body">
-              <h3>Expo Cultura</h3>
-              <p>15 - 18 mayo</p>
-            </div>
-          </a>
+          {% endif %} {% endfor %}
         </div>
       </div>
       <button
