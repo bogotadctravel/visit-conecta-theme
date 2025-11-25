@@ -361,7 +361,7 @@
             </div>
           </div>
         </div>
-        <div class="media-card media-card--audio">
+        <!-- <div class="media-card media-card--audio">
           <div class="media-card__header">
             <div class="media-card__titles">
               <svg
@@ -422,7 +422,7 @@
             </span>
             <span>Reproducir audio</span>
           </button>
-        </div>
+        </div> -->
       </aside>
     </div>
     <div class="map-livebox" hidden data-map-livebox aria-hidden="true">
@@ -726,70 +726,26 @@
       </button>
       <div class="venues-carousel__viewport" data-carousel-viewport>
         <div class="venues-carousel__track" data-carousel-track>
+          {% for item in venues %}
           <article
             class="venue-card venue-card--media"
             data-carousel-item
             data-image=""
           >
-            <div class="venue-card__media">
-              <img
-                src="/{{ directory }}/images/agora_convenciones.jpg"
-                alt="Invest Bogotá"
-                loading="lazy"
-              />
-            </div>
-            <div class="venue-card__body">
-              <p class="venue-card__name">Centro de eventos</p>
-            </div>
+            <a href="{{ item.url }}">
+              <div class="venue-card__media">
+                <img
+                  src="{{item.fields.field_image.0.url}}"
+                  alt="{{ item.title }}"
+                  loading="lazy"
+                />
+              </div>
+              <div class="venue-card__body">
+                <p class="venue-card__name">{{ item.title }}</p>
+              </div>
+            </a>
           </article>
-          <article
-            class="venue-card venue-card--media"
-            data-carousel-item
-            data-image=""
-          >
-            <div class="venue-card__media">
-              <img
-                src="/{{ directory }}/images/agora_convenciones.jpg"
-                alt="COTELCO"
-                loading="lazy"
-              />
-            </div>
-            <div class="venue-card__body">
-              <p class="venue-card__name">Recintos feriales</p>
-            </div>
-          </article>
-          <article
-            class="venue-card venue-card--media"
-            data-carousel-item
-            data-image=""
-          >
-            <div class="venue-card__media">
-              <img
-                src="/{{ directory }}/images/agora_convenciones.jpg"
-                alt="Cámara de Comercio"
-                loading="lazy"
-              />
-            </div>
-            <div class="venue-card__body">
-              <p class="venue-card__name">Cámara de Comercio</p>
-            </div>
-          </article>
-          <article
-            class="venue-card venue-card--media"
-            data-carousel-item
-            data-image=""
-          >
-            <div class="venue-card__media">
-              <img
-                src="/{{ directory }}/images/agora_convenciones.jpg"
-                alt="Nombre aliado"
-                loading="lazy"
-              />
-            </div>
-            <div class="venue-card__body">
-              <p class="venue-card__name">Centro de convenciones</p>
-            </div>
-          </article>
+          {% endfor %}
         </div>
       </div>
       <button
