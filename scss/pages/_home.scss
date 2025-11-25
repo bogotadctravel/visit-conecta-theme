@@ -709,7 +709,7 @@ section {
 }
 
 .ally-card__logo {
-  height: 80px;
+  height: 100%;
   display: grid;
   place-items: center;
   border-radius: 14px;
@@ -719,7 +719,7 @@ section {
   font-size: 1rem;
   img {
     width: 90%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
     border-radius: 0;
   }
