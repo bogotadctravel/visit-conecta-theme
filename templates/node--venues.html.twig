@@ -481,26 +481,6 @@
       role="tablist"
       aria-label="Tipos de salones"
     >
-      <button
-        class="rooms-tab is-active"
-        type="button"
-        role="tab"
-        aria-selected="true"
-      >
-        <span class="rooms-tab__icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="m4 8 2.5 2.5L12 5" />
-          </svg>
-        </span>
-        <span class="rooms-tab__label">Domo</span>
-      </button>
       {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
       <button class="rooms-tab" type="button" role="tab" aria-selected="false">
         <span class="rooms-tab__icon" aria-hidden="true">
