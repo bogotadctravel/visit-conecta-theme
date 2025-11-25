@@ -501,6 +501,8 @@
         </span>
         <span class="rooms-tab__label">Domo</span>
       </button>
+      {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
+      <h3>{{ salon.title }}</h3>
       <button class="rooms-tab" type="button" role="tab" aria-selected="false">
         <span class="rooms-tab__icon" aria-hidden="true">
           <svg
@@ -514,53 +516,9 @@
             <path d="m4 8 2.5 2.5L12 5" />
           </svg>
         </span>
-        <span class="rooms-tab__label">Aulas multiples</span>
+        <span class="rooms-tab__label">{{ salon.title }}</span>
       </button>
-      <button class="rooms-tab" type="button" role="tab" aria-selected="false">
-        <span class="rooms-tab__icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="m4 8 2.5 2.5L12 5" />
-          </svg>
-        </span>
-        <span class="rooms-tab__label">Sala digital</span>
-      </button>
-      <button class="rooms-tab" type="button" role="tab" aria-selected="false">
-        <span class="rooms-tab__icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="m4 8 2.5 2.5L12 5" />
-          </svg>
-        </span>
-        <span class="rooms-tab__label">Laboratorio</span>
-      </button>
-      <button class="rooms-tab" type="button" role="tab" aria-selected="false">
-        <span class="rooms-tab__icon" aria-hidden="true">
-          <svg
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="m4 8 2.5 2.5L12 5" />
-          </svg>
-        </span>
-        <span class="rooms-tab__label">Hall de cines</span>
-      </button>
+      {% endfor %} {% endif %}
     </div>
     <article class="room-card" aria-live="polite">
       <p class="room-card__description">
@@ -772,10 +730,3 @@
     </div>
   </section>
 </main>
-{% if salones_de_venues_mice %}
-  {% for salon in salones_de_venues_mice %}
-    <h3>{{ salon.title }}</h3>
-  {% endfor %}
-{% else %}
-  {# Si no hay salones NO falla #}
-{% endif %}
