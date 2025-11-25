@@ -651,7 +651,7 @@
 
   <section class="venues venues--media">
     <div class="venues__header filtros">
-      <h2>Más tipos de Venue</h2>
+      <h2>Más proveedores</h2>
     </div>
     <div class="venues-carousel" data-carousel>
       <button
@@ -673,7 +673,7 @@
       </button>
       <div class="venues-carousel__viewport" data-carousel-viewport>
         <div class="venues-carousel__track" data-carousel-track>
-          {% for item in venues %}
+          {% for item in proveedores_conecta %}
           <article
             class="venue-card venue-card--media"
             data-carousel-item
@@ -682,7 +682,7 @@
             <a href="{{ item.url }}">
               <div class="venue-card__media">
                 <img
-                  src="{{item.fields.field_image.0.url}}"
+                  src="{{item.fields.field_mainimg.0.url}}"
                   alt="{{ item.title }}"
                   loading="lazy"
                 />
