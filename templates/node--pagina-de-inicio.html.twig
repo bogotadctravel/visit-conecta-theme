@@ -375,13 +375,14 @@
             </div>
             <div class="success-card__body">
               <h3>{{ item.title }}</h3>
-              {% set raw_inicio = item.fields.field_fecha_de_inicio.0.value %}
-              {% set raw_fin = item.fields.field_fecha_de_finalizacion.0.value
-              %} {% set mes_en = raw_inicio|date('M') %} {% set mes_es =
-              meses[mes_en] %} {% set dia_inicio = raw_inicio|date('j') %} {%
-              set dia_fin = raw_fin|date('j') %}
+              {% set raw_inicioFut = item.fields.field_fecha_de_inicio.0.value
+              %} {% set raw_finFut =
+              item.fields.field_fecha_de_finalizacion.0.value %} {% set mes_en =
+              raw_inicioFut|date('M') %} {% set mes_es = meses[mes_en] %} {% set
+              dia_inicioFut = raw_inicioFut|date('j') %} {% set dia_finFut =
+              raw_finFut|date('j') %}
 
-              <p>{{ mes_es }} {{ dia_inicio }} - {{ dia_fin }}</p>
+              <p>{{ mes_es }} {{ dia_inicioFut }} - {{ dia_finFut }}</p>
             </div>
           </a>
           {% endif %} {% endfor %}
