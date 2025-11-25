@@ -72,7 +72,9 @@
         </div>
       </div>
       <div class="events__successful-media">
-      {{node.field_picgallery.0.uri}}
+      {% for item in node.field_picgallery %} 
+      {{dump(item)}}
+      {% endfor %}
         <img src="/{{ directory }}/images/evento_sauron.png" alt="" />
       </div>
       <div class="events__succesful-text">
