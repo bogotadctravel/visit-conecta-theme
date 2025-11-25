@@ -60,8 +60,8 @@
       };
 
       const syncSelectLabel = (selectSelector, labelSelector) => {
-        const select = document.querySelector(selectSelector);
-        const label = document.querySelector(labelSelector);
+        const select = context.querySelector(selectSelector);
+        const label = context.querySelector(labelSelector);
         if (!select || !label) return;
 
         const update = () => {
@@ -125,7 +125,7 @@
         if (indicatorsContainer) {
           indicatorsContainer.innerHTML = "";
           indicatorButtons = originals.map((_, i) => {
-            const btn = document.createElement("button");
+            const btn = context.createElement("button");
             btn.type = "button";
             btn.setAttribute("aria-label", `Ir al elemento ${i + 1}`);
             indicatorsContainer.appendChild(btn);
@@ -282,13 +282,13 @@
       };
 
       const initCarousels = () => {
-        document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+        context.querySelectorAll("[data-carousel]").forEach((carousel) => {
           initInfiniteCarousel(carousel);
         });
       };
 
       const initDetailGallery = () => {
-        const gallery = document.querySelector("[data-detail-gallery]");
+        const gallery = context.querySelector("[data-detail-gallery]");
         if (!gallery) return;
 
         const mainImage = gallery.querySelector("[data-gallery-image]");
@@ -352,8 +352,8 @@
       };
 
       const initMapLivebox = () => {
-        const trigger = document.querySelector("[data-map-trigger]");
-        const livebox = document.querySelector("[data-map-livebox]");
+        const trigger = context.querySelector("[data-map-trigger]");
+        const livebox = context.querySelector("[data-map-livebox]");
         if (!trigger || !livebox) return;
 
         const dialog = livebox.querySelector(".map-livebox__dialog");
@@ -363,7 +363,7 @@
 
         const showLivebox = () => {
           if (!livebox.hidden) return;
-          lastFocusedElement = document.activeElement;
+          lastFocusedElement = context.activeElement;
           livebox.hidden = false;
           livebox.setAttribute("aria-hidden", "false");
           requestAnimationFrame(() => {
@@ -403,8 +403,8 @@
       };
 
       const initDetailRooms = () => {
-        const tabs = document.querySelectorAll(".detail-rooms .rooms-tab");
-        const cards = document.querySelectorAll(".detail-rooms .room-card");
+        const tabs = context.querySelectorAll(".detail-rooms .rooms-tab");
+        const cards = context.querySelectorAll(".detail-rooms .room-card");
         console.log(cards);
 
         if (!tabs.length || !cards.length) return;
@@ -427,10 +427,10 @@
         });
       };
 
-      document.addEventListener("DOMContentLoaded", initDetailRooms);
+      context.addEventListener("DOMContentLoaded", initDetailRooms);
 
       const initRangeBubbles = () => {
-        const controls = document.querySelectorAll("[data-range-control]");
+        const controls = context.querySelectorAll("[data-range-control]");
         if (!controls.length) return;
 
         controls.forEach((control) => {
