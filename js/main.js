@@ -1,28 +1,35 @@
 (function ($, Drupal, drupalSettings) {
   Drupal.behaviors.idtTheme = {
-    attach: function (context, settings) {
-      const topNav = context.querySelector(".top-nav");
-      const toggleButton = context.querySelector(".top-nav__toggle");
-      const mobileMenu = context.querySelector("#mobile-quick-nav");
-      const toggleText = context.querySelector(".top-nav__toggle-text");
+    attach: function (context) {
+      const qs = (selector, scope = context) => scope.querySelector(selector);
 
-      if (topNav && toggleButton && mobileMenu) {
+      /* ------------------------------
+       * TOP NAV
+       * ------------------------------ */
+      once("idt-top-nav", ".top-nav", context).forEach((topNav) => {
+        const toggleButton = qs(".top-nav__toggle", topNav);
+        const mobileMenu = qs("#mobile-quick-nav");
+        const toggleText = qs(".top-nav__toggle-text");
+
+        if (!toggleButton || !mobileMenu) return;
+
         const labels = {
           open: "Cerrar menú principal",
           closed: "Abrir menú principal",
         };
 
-        const setState = (isOpen) => {
-          toggleButton.setAttribute("aria-expanded", String(isOpen));
+        const setState = (open) => {
+          toggleButton.setAttribute("aria-expanded", String(open));
           toggleButton.setAttribute(
             "aria-label",
-            isOpen ? labels.open : labels.closed
+            open ? labels.open : labels.closed
           );
-          if (toggleText) {
-            toggleText.textContent = isOpen ? labels.open : labels.closed;
-          }
-          topNav.classList.toggle("top-nav--menu-open", isOpen);
-          mobileMenu.setAttribute("aria-hidden", isOpen ? "false" : "true");
+
+          if (toggleText)
+            toggleText.textContent = open ? labels.open : labels.closed;
+
+          topNav.classList.toggle("top-nav--menu-open", open);
+          mobileMenu.setAttribute("aria-hidden", open ? "false" : "true");
         };
 
         setState(false);
@@ -33,99 +40,103 @@
           setState(nextState);
         });
 
-        toggleButton.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") {
+        toggleButton.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
             setState(false);
             toggleButton.blur();
           }
         });
-      }
-      const qs = (selector, scope = context) => scope.querySelector(selector);
+      });
 
-      const updateYear = () => {
-        const yearNode = qs("#year");
-        if (yearNode) {
-          yearNode.textContent = new Date().getFullYear();
-        }
-      };
+      /* ------------------------------
+       * UPDATE YEAR
+       * ------------------------------ */
+      once("idt-year", "#year", context).forEach((yearNode) => {
+        yearNode.textContent = new Date().getFullYear();
+      });
 
-      const wireCTA = () => {
-        const button = qs("#cta-primary");
-        if (!button) return;
-
+      /* ------------------------------
+       * CTA BUTTON
+       * ------------------------------ */
+      once("idt-cta", "#cta-primary", context).forEach((button) => {
         button.addEventListener("click", () => {
           button.textContent = "Gracias por tu interes";
           button.disabled = true;
         });
-      };
+      });
 
+      /* ------------------------------
+       * SYNC SELECT LABEL
+       * ------------------------------ */
       const syncSelectLabel = (selectSelector, labelSelector) => {
-        const select = context.querySelector(selectSelector);
-        const label = context.querySelector(labelSelector);
-        if (!select || !label) return;
+        once(`idt-sync-${selectSelector}`, selectSelector, context).forEach(
+          (select) => {
+            const label = qs(labelSelector);
+            if (!label) return;
 
-        const update = () => {
-          const option = select.selectedOptions[0];
-          if (option) {
-            label.textContent = option.textContent.trim();
+            const update = () => {
+              const option = select.selectedOptions[0];
+              if (option) label.textContent = option.textContent.trim();
+            };
+
+            update();
+            select.addEventListener("change", update);
           }
-        };
-
-        update();
-        select.addEventListener("change", update);
+        );
       };
 
-      const wireLanguageSelector = () => {
-        const select = qs('select[name="language"]');
-        const valueNode = qs(".pill--flag .pill__value");
-        const flagNode = qs(".pill--flag .pill__flag");
+      syncSelectLabel('select[name="stopover"]', ".pill--light .pill__label");
+      syncSelectLabel('select[name="language"]', ".pill--flag .pill__value");
 
-        if (!select || !valueNode || !flagNode) {
-          return;
+      /* ------------------------------
+       * LANGUAGE SELECTOR
+       * ------------------------------ */
+      once("idt-language-selector", 'select[name="language"]', context).forEach(
+        (select) => {
+          const valueNode = qs(".pill--flag .pill__value");
+          const flagNode = qs(".pill--flag .pill__flag");
+
+          if (!valueNode || !flagNode) return;
+
+          const flagMap = {
+            en: { className: "fi fi-gb", label: "EN" },
+            es: { className: "fi fi-es", label: "ES" },
+          };
+
+          const update = () => {
+            const config = flagMap[select.value] || flagMap.en;
+            valueNode.textContent = config.label;
+            flagNode.className = `pill__flag ${config.className}`;
+          };
+
+          update();
+          select.addEventListener("change", update);
         }
+      );
 
-        const flagMap = {
-          en: { className: "fi fi-gb", label: "EN" },
-          es: { className: "fi fi-es", label: "ES" },
-        };
-
-        const update = () => {
-          const config = flagMap[select.value] ?? flagMap.en;
-          valueNode.textContent = config.label;
-          flagNode.className = `pill__flag ${config.className}`;
-        };
-
-        update();
-        select.addEventListener("change", update);
-      };
-
-      const initInfiniteCarousel = (carousel) => {
-        if (carousel.dataset.carouselInit === "true") {
-          return;
-        }
-
+      /* ------------------------------
+       * INFINITE CAROUSELS
+       * ------------------------------ */
+      once("idt-carousel", "[data-carousel]", context).forEach((carousel) => {
         const viewport = carousel.querySelector("[data-carousel-viewport]");
         const track = carousel.querySelector("[data-carousel-track]");
         const prevBtn = carousel.querySelector("[data-carousel-prev]");
         const nextBtn = carousel.querySelector("[data-carousel-next]");
 
-        if (!viewport || !track || !prevBtn || !nextBtn) {
-          return;
-        }
+        if (!viewport || !track || !prevBtn || !nextBtn) return;
 
         const originals = [...track.querySelectorAll("[data-carousel-item]")];
-        if (!originals.length) {
-          return;
-        }
+        if (!originals.length) return;
 
         const indicatorsContainer = carousel.querySelector(
           "[data-carousel-indicators]"
         );
         let indicatorButtons = [];
+
         if (indicatorsContainer) {
           indicatorsContainer.innerHTML = "";
           indicatorButtons = originals.map((_, i) => {
-            const btn = context.createElement("button");
+            const btn = document.createElement("button");
             btn.type = "button";
             btn.setAttribute("aria-label", `Ir al elemento ${i + 1}`);
             indicatorsContainer.appendChild(btn);
@@ -154,6 +165,7 @@
                 getComputedStyle(track).gap ||
                 "0"
             ) || 0;
+
           step = first.getBoundingClientRect().width + gap;
         };
 
@@ -163,6 +175,7 @@
         const baseCount = originals.length;
         const minIndex = baseCount;
         const maxIndex = totalItems - baseCount;
+
         let index = minIndex;
         let isAnimating = false;
 
@@ -170,32 +183,36 @@
           if (!indicatorButtons.length) return;
           const relativeIndex =
             (((index - minIndex) % baseCount) + baseCount) % baseCount;
-          indicatorButtons.forEach((btn, idx) => {
+
+          indicatorButtons.forEach((btn, i) => {
             btn.setAttribute(
               "aria-current",
-              idx === relativeIndex ? "true" : "false"
+              i === relativeIndex ? "true" : "false"
             );
           });
         };
 
-        const jumpTo = (position) => {
-          viewport.scrollLeft = position * step;
+        const jumpTo = (n) => {
+          viewport.scrollLeft = n * step;
           updateIndicators();
         };
 
-        const animateTo = (position) => {
+        const animateTo = (n) => {
           if (!step) return;
           isAnimating = true;
-          const target = position * step;
+
+          const target = n * step;
+
           const onScroll = () => {
             if (Math.abs(viewport.scrollLeft - target) < 1) {
               cleanup();
-              finalizePosition();
+              finalize();
             }
           };
 
-          const finalizePosition = () => {
+          const finalize = () => {
             isAnimating = false;
+
             if (index >= maxIndex) {
               index = minIndex;
               jumpTo(index);
@@ -207,63 +224,61 @@
 
           const cleanup = () => {
             viewport.removeEventListener("scroll", onScroll);
-            clearTimeout(timeoutId);
+            clearTimeout(timeout);
           };
 
           viewport.addEventListener("scroll", onScroll);
-          const timeoutId = setTimeout(() => {
+          const timeout = setTimeout(() => {
             cleanup();
-            finalizePosition();
+            finalize();
           }, 500);
 
           viewport.scrollTo({ left: target, behavior: "smooth" });
           updateIndicators();
         };
 
-        const move = (direction) => {
+        const move = (dir) => {
           if (isAnimating) return;
-          index += direction;
+          index += dir;
           animateTo(index);
         };
 
         prevBtn.addEventListener("click", () => move(-1));
         nextBtn.addEventListener("click", () => move(1));
 
-        // touch interactions
-        let touchStartX = 0;
-        let touchDeltaX = 0;
+        // Swipe
+        let startX = 0;
+        let deltaX = 0;
 
-        const onTouchStart = (event) => {
-          if (event.touches.length !== 1) return;
-          touchStartX = event.touches[0].clientX;
-          touchDeltaX = 0;
-        };
+        viewport.addEventListener(
+          "touchstart",
+          (e) => {
+            if (e.touches.length !== 1) return;
+            startX = e.touches[0].clientX;
+            deltaX = 0;
+          },
+          { passive: true }
+        );
 
-        const onTouchMove = (event) => {
-          if (!touchStartX) return;
-          touchDeltaX = event.touches[0].clientX - touchStartX;
-        };
+        viewport.addEventListener(
+          "touchmove",
+          (e) => {
+            deltaX = e.touches[0].clientX - startX;
+          },
+          { passive: true }
+        );
 
-        const onTouchEnd = () => {
-          if (Math.abs(touchDeltaX) > 40) {
-            move(touchDeltaX < 0 ? 1 : -1);
+        viewport.addEventListener("touchend", () => {
+          if (Math.abs(deltaX) > 40) {
+            move(deltaX < 0 ? 1 : -1);
           }
-          touchStartX = 0;
-          touchDeltaX = 0;
-        };
-
-        viewport.addEventListener("touchstart", onTouchStart, {
-          passive: true,
         });
-        viewport.addEventListener("touchmove", onTouchMove, { passive: true });
-        viewport.addEventListener("touchend", onTouchEnd);
-        viewport.addEventListener("touchcancel", onTouchEnd);
 
         if (indicatorButtons.length) {
-          indicatorButtons.forEach((btn, idx) => {
+          indicatorButtons.forEach((btn, i) => {
             btn.addEventListener("click", () => {
               if (isAnimating) return;
-              index = minIndex + idx;
+              index = minIndex + i;
               animateTo(index);
             });
           });
@@ -275,97 +290,92 @@
         };
 
         window.addEventListener("resize", handleResize);
+
         calcStep();
         jumpTo(index);
-        carousel.dataset.carouselInit = "true";
         updateIndicators();
-      };
+      });
 
-      const initCarousels = () => {
-        context.querySelectorAll("[data-carousel]").forEach((carousel) => {
-          initInfiniteCarousel(carousel);
-        });
-      };
+      /* ------------------------------
+       * DETAIL GALLERY
+       * ------------------------------ */
+      once("idt-detail-gallery", "[data-detail-gallery]", context).forEach(
+        (gallery) => {
+          const mainImage = gallery.querySelector("[data-gallery-image]");
+          const captionNode = gallery.querySelector("[data-gallery-caption]");
+          const thumbs = [...gallery.querySelectorAll("[data-gallery-thumb]")];
 
-      const initDetailGallery = () => {
-        const gallery = context.querySelector("[data-detail-gallery]");
-        if (!gallery) return;
+          if (!mainImage || !thumbs.length) return;
 
-        const mainImage = gallery.querySelector("[data-gallery-image]");
-        const captionNode = gallery.querySelector("[data-gallery-caption]");
-        const thumbs = Array.from(
-          gallery.querySelectorAll("[data-gallery-thumb]")
-        );
-        if (!mainImage || !thumbs.length) return;
+          const prevBtn = gallery.querySelector("[data-gallery-prev]");
+          const nextBtn = gallery.querySelector("[data-gallery-next]");
 
-        const prevBtn = gallery.querySelector("[data-gallery-prev]");
-        const nextBtn = gallery.querySelector("[data-gallery-next]");
+          const getLabel = (thumb) => {
+            const label = thumb.querySelector(".gallery-thumbs__label");
+            return label
+              ? label.textContent.trim()
+              : thumb.getAttribute("aria-label") || "";
+          };
 
-        const getLabel = (thumb) => {
-          const label = thumb.querySelector(".gallery-thumbs__label");
-          return label
-            ? label.textContent.trim()
-            : thumb.getAttribute("aria-label") || "";
-        };
+          const applyThumb = (i) => {
+            const target = thumbs[i];
+            if (!target) return;
 
-        const applyThumb = (index) => {
-          const target = thumbs[index];
-          if (!target) return;
-          const { image, caption, alt } = target.dataset;
-          if (image) {
-            mainImage.src = image;
-          }
-          mainImage.alt = alt || getLabel(target);
-          if (captionNode) {
-            captionNode.textContent = caption || getLabel(target);
-          }
-          thumbs.forEach((thumb) =>
-            thumb.classList.toggle("is-active", thumb === target)
+            const { image, caption, alt } = target.dataset;
+
+            if (image) mainImage.src = image;
+            mainImage.alt = alt || getLabel(target);
+
+            if (captionNode)
+              captionNode.textContent = caption || getLabel(target);
+
+            thumbs.forEach((t) =>
+              t.classList.toggle("is-active", t === target)
+            );
+            currentIndex = i;
+          };
+
+          let currentIndex = Math.max(
+            0,
+            thumbs.findIndex((t) => t.classList.contains("is-active"))
           );
-          currentIndex = index;
-        };
 
-        let currentIndex = Math.max(
-          0,
-          thumbs.findIndex((thumb) => thumb.classList.contains("is-active"))
-        );
-        applyThumb(currentIndex);
+          applyThumb(currentIndex);
 
-        thumbs.forEach((thumb, index) => {
-          thumb.addEventListener("click", () => {
-            applyThumb(index);
+          thumbs.forEach((thumb, i) => {
+            thumb.addEventListener("click", () => applyThumb(i));
           });
-        });
 
-        const move = (direction) => {
-          const total = thumbs.length;
-          const nextIndex = (currentIndex + direction + total) % total;
-          applyThumb(nextIndex);
-        };
+          const move = (dir) => {
+            const total = thumbs.length;
+            const next = (currentIndex + dir + total) % total;
+            applyThumb(next);
+          };
 
-        if (prevBtn) {
-          prevBtn.addEventListener("click", () => move(-1));
+          if (prevBtn) prevBtn.addEventListener("click", () => move(-1));
+          if (nextBtn) nextBtn.addEventListener("click", () => move(1));
         }
-        if (nextBtn) {
-          nextBtn.addEventListener("click", () => move(1));
-        }
-      };
+      );
 
-      const initMapLivebox = () => {
-        const trigger = context.querySelector("[data-map-trigger]");
-        const livebox = context.querySelector("[data-map-livebox]");
+      /* ------------------------------
+       * LIVEBOX MAP
+       * ------------------------------ */
+      once("idt-map-livebox", "[data-map-trigger]", context).forEach(() => {
+        const trigger = qs("[data-map-trigger]");
+        const livebox = qs("[data-map-livebox]");
         if (!trigger || !livebox) return;
 
         const dialog = livebox.querySelector(".map-livebox__dialog");
         const closeButtons = livebox.querySelectorAll("[data-map-close]");
-        let lastFocusedElement = null;
-        let hideTimeout = null;
+        let lastFocus = null;
+        let timeout = null;
 
         const showLivebox = () => {
           if (!livebox.hidden) return;
-          lastFocusedElement = context.activeElement;
+          lastFocus = document.activeElement;
           livebox.hidden = false;
           livebox.setAttribute("aria-hidden", "false");
+
           requestAnimationFrame(() => {
             livebox.classList.add("is-open");
             dialog?.focus();
@@ -374,68 +384,58 @@
 
         const hideLivebox = () => {
           if (livebox.hidden) return;
+
           livebox.classList.remove("is-open");
-          if (hideTimeout) {
-            clearTimeout(hideTimeout);
-          }
-          hideTimeout = setTimeout(() => {
+
+          if (timeout) clearTimeout(timeout);
+
+          timeout = setTimeout(() => {
             livebox.hidden = true;
             livebox.setAttribute("aria-hidden", "true");
-            if (
-              lastFocusedElement &&
-              typeof lastFocusedElement.focus === "function"
-            ) {
-              lastFocusedElement.focus();
-            }
+            if (lastFocus?.focus) lastFocus.focus();
           }, 220);
         };
 
         trigger.addEventListener("click", showLivebox);
-        closeButtons.forEach((btn) =>
-          btn.addEventListener("click", hideLivebox)
-        );
+        closeButtons.forEach((b) => b.addEventListener("click", hideLivebox));
 
-        window.addEventListener("keydown", (event) => {
-          if (event.key === "Escape" && !livebox.hidden) {
-            hideLivebox();
-          }
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !livebox.hidden) hideLivebox();
         });
-      };
+      });
 
-      const initDetailRooms = () => {
-        const tabs = context.querySelectorAll(".detail-rooms .rooms-tab");
-        const cards = context.querySelectorAll(".detail-rooms .room-card");
-        console.log(cards);
+      /* ------------------------------
+       * DETAIL ROOMS TABS
+       * ------------------------------ */
+      once("idt-detail-rooms", ".detail-rooms", context).forEach((section) => {
+        const tabs = section.querySelectorAll(".rooms-tab");
+        const cards = section.querySelectorAll(".room-card");
 
         if (!tabs.length || !cards.length) return;
 
         tabs.forEach((tab) => {
           tab.addEventListener("click", () => {
-            console.log(tab);
-
             const index = tab.dataset.roomIndex;
 
-            // Activar tab
             tabs.forEach((btn) => {
-              const isActive = btn === tab;
-              btn.classList.toggle("is-active", isActive);
-              btn.setAttribute("aria-selected", isActive ? "true" : "false");
+              const active = btn === tab;
+              btn.classList.toggle("is-active", active);
+              btn.setAttribute("aria-selected", active ? "true" : "false");
             });
+
             cards.forEach((card) => {
               card.style.display =
                 card.dataset.roomIndex === index ? "block" : "none";
             });
           });
         });
-      };
+      });
 
-      context.addEventListener("DOMContentLoaded", initDetailRooms);
-
-      const initRangeBubbles = () => {
-        const controls = context.querySelectorAll("[data-range-control]");
-        if (!controls.length) return;
-
-        controls.forEach((control) => {
+      /* ------------------------------
+       * RANGE BUBBLES
+       * ------------------------------ */
+      once("idt-range-bubbles", "[data-range-control]", context).forEach(
+        (control) => {
           const input = control.querySelector('input[type="range"]');
           const valueNode = control.querySelector("[data-range-value]");
           if (!input || !valueNode) return;
@@ -443,32 +443,21 @@
           const update = () => {
             const min = Number(input.min) || 0;
             const max = Number(input.max) || 100;
-            const rawValue = Number(input.value) || 0;
-            const percent =
-              max === min ? 0 : ((rawValue - min) / (max - min)) * 100;
-            const clampedPercent = Math.max(0, Math.min(100, percent));
-            valueNode.textContent = rawValue.toLocaleString("es-CO");
-            control.style.setProperty("--range-progress", `${clampedPercent}%`);
+            const val = Number(input.value) || 0;
+
+            const percent = max === min ? 0 : ((val - min) / (max - min)) * 100;
+            const clamped = Math.max(0, Math.min(100, percent));
+
+            valueNode.textContent = val.toLocaleString("es-CO");
+            control.style.setProperty("--range-progress", `${clamped}%`);
           };
 
           input.addEventListener("input", update);
           input.addEventListener("change", update);
-          update();
-        });
-      };
 
-      window.addEventListener("DOMContentLoaded", () => {
-        updateYear();
-        wireCTA();
-        syncSelectLabel('select[name="stopover"]', ".pill--light .pill__label");
-        syncSelectLabel('select[name="language"]', ".pill--flag .pill__value");
-        wireLanguageSelector();
-        initCarousels();
-        initDetailGallery();
-        initMapLivebox();
-        initDetailRooms();
-        initRangeBubbles();
-      });
-    },
+          update();
+        }
+      );
+    }, // end attach
   };
 })(jQuery, Drupal, drupalSettings);
