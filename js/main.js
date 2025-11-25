@@ -404,18 +404,31 @@
 
       const initDetailRooms = () => {
         const tabs = document.querySelectorAll(".detail-rooms .rooms-tab");
-        if (!tabs.length) return;
+        const cards = document.querySelectorAll(".detail-rooms .room-card");
+
+        if (!tabs.length || !cards.length) return;
 
         tabs.forEach((tab) => {
           tab.addEventListener("click", () => {
+            const index = tab.dataset.roomIndex;
+
+            // Activar tab
             tabs.forEach((btn) => {
               const isActive = btn === tab;
               btn.classList.toggle("is-active", isActive);
               btn.setAttribute("aria-selected", isActive ? "true" : "false");
             });
+
+            // Mostrar card correcto
+            cards.forEach((card) => {
+              card.style.display =
+                card.dataset.roomIndex === index ? "block" : "none";
+            });
           });
         });
       };
+
+      document.addEventListener("DOMContentLoaded", initDetailRooms);
 
       const initRangeBubbles = () => {
         const controls = document.querySelectorAll("[data-range-control]");
