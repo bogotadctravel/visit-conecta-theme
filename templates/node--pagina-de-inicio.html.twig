@@ -313,7 +313,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
     </div>
     <div class="carousel-indicators" data-carousel-indicators></div>
   </section>
-
+  {% if pasados is not empty %}
   <section class="success-events">
     <header class="success-events__header">
       <h2>Eventos exitosos</h2>
@@ -389,6 +389,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       ></div>
     </div>
   </section>
+  {% endif %}
 
   <section class="allies">
     <header class="allies__header">
