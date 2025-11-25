@@ -528,7 +528,9 @@
               <div>
                 <dt>
                   Aforo m&iacute;nimo:
-                  <strong>{{ salon.field_aforo_minimo_en_auditorio }}</strong>
+                  <strong
+                    >{{ salon.fields.field_aforo_minimo_en_auditorio.0.value }}</strong
+                  >
                 </dt>
               </div>
             </div>
@@ -581,7 +583,7 @@
               <div>
                 <dt>
                   Aforo m&aacute;ximo:<strong>{{
-                    salon.field_aforo_maximo_en_auditorio
+                    salon.fields.field_aforo_maximo_en_auditorio.0.value
                   }}</strong>
                 </dt>
               </div>
