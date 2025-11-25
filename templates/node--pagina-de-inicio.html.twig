@@ -1,8 +1,12 @@
 {% set hoy = "now"|date("Y-m-d") %} {% set meses = { 'Jan': 'Ene', 'Feb': 'Feb',
 'Mar': 'Mar', 'Apr': 'Abr', 'May': 'May', 'Jun': 'Jun', 'Jul': 'Jul', 'Aug':
 'Ago', 'Sep': 'Sept', 'Oct': 'Oct', 'Nov': 'Nov', 'Dec': 'Dic' } %} {% set hoy =
-"now"|date("Y-m-d") %} {% set pasados = [] %} {% set futuros = [] %} {% for item
-in eventos %} {% set inicio =
+"now"|date("Y-m-d") %} {% set pasados = [] %} {% set futuros = [] %}
+
+{{ dump(pasados) }}
+{{ dump(futuros) }}
+
+{% for item in eventos %} {% set inicio =
 item.fields.field_fecha_de_inicio.0.value|date("Y-m-d") %} {% set fin =
 item.fields.field_fecha_de_finalizacion.0.value|date("Y-m-d") %} {% if fin < hoy
 %} {% set pasados = pasados|merge([item]) %} {% elseif inicio >= hoy %} {% set
