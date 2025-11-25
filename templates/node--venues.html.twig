@@ -772,22 +772,10 @@
     </div>
   </section>
 </main>
-{% for item in salones_de_venues_mice %}
-  <article class="salon-item">
-
-    <h3>
-      <a href="{{ item.url }}">{{ item.title }}</a>
-    </h3>
-
-    {# CAMPO RELACIONADO #}
-    {% if item.fields.field_venue_relacionado is not empty %}
-      {% set related = item.fields.field_venue_relacionado[0] %}
-      
-      <p>
-        Venue relacionado (node ID):
-        {{ related.target_id }}
-      </p>
-    {% endif %}
-
-  </article>
-{% endfor %}
+{% if salones_de_venues_mice %}
+  {% for salon in salones_de_venues_mice %}
+    <h3>{{ salon.title }}</h3>
+  {% endfor %}
+{% else %}
+  {# Si no hay salones NO falla #}
+{% endif %}
