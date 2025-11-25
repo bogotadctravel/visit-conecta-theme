@@ -12,6 +12,7 @@ function idt_theme_preprocess_node(array &$variables) {
   $node = $variables['node'] ?? NULL;
 
   $content_loader = \Drupal::service('idt_theme_support.content_loader');
+  $variables['aliados'] = $content_loader->getNodesByType('aliados');
   $variables['atractivos'] = $content_loader->getNodesByType('atractivos');
   $variables['empresas_prestadoras_de_servicio'] = $content_loader->getNodesByType('empresas_prestadoras_de_servicio');
   $variables['establecimientos'] = $content_loader->getNodesByType('establecimientos');
