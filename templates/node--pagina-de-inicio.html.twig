@@ -127,7 +127,9 @@
             <h3>Agencias</h3>
             <p>Servicios confiables para eventos.</p>
           </div>
-          <a class="portfolio-card__cta" type="button" href="/agencias">ver más +</a>
+          <a class="portfolio-card__cta" type="button" href="/agencias"
+            >ver más +</a
+          >
         </div>
       </article>
     </div>
@@ -459,12 +461,16 @@
       </button>
       <div class="allies-carousel__viewport" data-carousel-viewport>
         <div class="allies-carousel__track" data-carousel-track>
-         {% for item in aliados %}
+          {% for item in aliados %}
           <article class="ally-card" data-carousel-item>
-            <div class="ally-card__logo" aria-hidden="true">Invest Bogotá</div>
-            <p>Invest Bogotá</p>
+            <div class="ally-card__logo" aria-hidden="true">
+              <img
+                src="{{ item.fields.field_logo.0.uri }}"
+                alt="{{ item.title }}"
+              />
+            </div>
           </article>
-         {% endfor %}
+          {% endfor %}
         </div>
       </div>
       <button
