@@ -35,6 +35,8 @@ function idt_theme_preprocess_node(array &$variables) {
 
   // Solo cargar salones si este node es un VENUE
   // Cambia 'venues' por el machine name de tu bundle de venue
+  \Drupal::logger('debug')->notice('Bundle actual: @b', ['@b' => $node->bundle()]);
+
   if ($node->bundle() === 'venues') {
     $venue_id = $node->id();
     $variables['salones_de_venues_mice'] = $content_loader->getSalonesByVenue($venue_id);
