@@ -405,6 +405,7 @@
       const initDetailRooms = () => {
         const tabs = document.querySelectorAll(".detail-rooms .rooms-tab");
         const cards = document.querySelectorAll(".detail-rooms .room-card");
+        console.log(cards);
 
         if (!tabs.length || !cards.length) return;
 
@@ -418,9 +419,6 @@
               btn.classList.toggle("is-active", isActive);
               btn.setAttribute("aria-selected", isActive ? "true" : "false");
             });
-
-            // Mostrar card correcto
-            console.log(cards);
             cards.forEach((card) => {
               card.style.display =
                 card.dataset.roomIndex === index ? "block" : "none";
