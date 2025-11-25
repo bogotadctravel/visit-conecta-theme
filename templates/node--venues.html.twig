@@ -772,3 +772,22 @@
     </div>
   </section>
 </main>
+{% for item in salones_de_venues_mice %}
+  <article class="salon-item">
+
+    <h3>
+      <a href="{{ item.url }}">{{ item.title }}</a>
+    </h3>
+
+    {# CAMPO RELACIONADO #}
+    {% if item.fields.field_venue_relacionado is not empty %}
+      {% set related = item.fields.field_venue_relacionado[0] %}
+      
+      <p>
+        Venue relacionado (node ID):
+        {{ related.target_id }}
+      </p>
+    {% endif %}
+
+  </article>
+{% endfor %}
