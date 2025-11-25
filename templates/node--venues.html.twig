@@ -503,19 +503,21 @@
       <p class="room-card__description">
         {{ salon.field_descripcion.value }}
       </p>
-
+      field_servicios_de_accesibilidad
       <div class="room-card__content">
         <div class="room-card__meta">
           <dl class="room-stats">
             <div class="room-stat">
               <dt>
-                Aforo mínimo: <strong>{{ salon.field_aforo_min }}</strong>
+                Aforo mínimo:
+                <strong>{{ salon.field_aforo_minimo_en_auditorio }}</strong>
               </dt>
             </div>
 
             <div class="room-stat">
               <dt>
-                Aforo máximo: <strong>{{ salon.field_aforo_max }}</strong>
+                Aforo máximo:
+                <strong>{{ salon.field_aforo_maximo_en_auditorio }}</strong>
               </dt>
             </div>
 
