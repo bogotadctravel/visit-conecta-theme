@@ -12,9 +12,11 @@
   </head>
 
   <body {{attributes}}>
+    {% include "@idt_theme/includes/header_conecta.html.twig" %}
     <main id="main-content" class="site-content">
       {{ page.content }}
     </main>
+    {% include "@idt_theme/includes/footer_conecta.html.twig" %}
     <js-bottom-placeholder token="{{ placeholder_token }}">
   </body>
 </html>
