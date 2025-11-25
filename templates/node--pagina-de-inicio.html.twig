@@ -252,7 +252,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
             dia_inicio = raw_inicio|date('j') %} {% set dia_fin =
             raw_fin|date('j') %}
 
-            <a class="event-card" data-carousel-item href="eventos.html">
+            <a class="event-card" data-carousel-item href="{{ item.url }}">
               <div
                 class="event-card__media"
                 aria-hidden="true"
