@@ -464,10 +464,7 @@
           {% for item in aliados %}
           <article class="ally-card" data-carousel-item>
             <div class="ally-card__logo" aria-hidden="true">
-              <img
-                src="{{ item.fields.field_logo.0.url }}"
-                alt="{{ item.title }}"
-              />
+              <img src="{{ item.fields.field_logo }}" alt="{{ item.title }}" />
             </div>
           </article>
           {% endfor %}
