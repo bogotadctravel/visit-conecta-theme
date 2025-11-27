@@ -592,6 +592,61 @@
         });
       });
 
+      // Seleccionar botones una única vez
+      once("gallery-open", ".open-gallery", context).forEach(function (button) {
+
+        const modal = document.getElementById("gallery-modal");
+        const track = document.getElementById("carousel-track");
+
+        let images = [];
+        let index = 0;
+
+        // Abrir modal
+        button.addEventListener("click", function () {
+          images = JSON.parse(button.dataset.gallery);
+          index = 0;
+
+          // Construir el carrusel
+          track.innerHTML = images
+            .map(img => `
+              <div class="carousel__item">
+                <img src="${img.url}" alt="${img.alt}">
+              </div>
+            `)
+            .join("");
+
+          modal.removeAttribute("hidden");
+          updateCarousel();
+        });
+
+        // Navegación (solo se unen una vez globalmente)
+        once("gallery-prev", "[data-prev]", context).forEach(function (prevBtn) {
+          prevBtn.addEventListener("click", function () {
+            index = (index - 1 + images.length) % images.length;
+            updateCarousel();
+          });
+        });
+
+        once("gallery-next", "[data-next]", context).forEach(function (nextBtn) {
+          nextBtn.addEventListener("click", function () {
+            index = (index + 1) % images.length;
+            updateCarousel();
+          });
+        });
+
+        // Cierre del modal
+        once("gallery-close", "[data-close-modal]", context).forEach(function (closeBtn) {
+          closeBtn.addEventListener("click", function () {
+            modal.setAttribute("hidden", true);
+          });
+        });
+
+        function updateCarousel() {
+          track.style.transform = "translateX(-" + (index * 100) + "%)";
+        }
+      });
+
+
 
     }, // end attach
   };

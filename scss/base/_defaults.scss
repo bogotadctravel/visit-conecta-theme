@@ -102,3 +102,63 @@ body.menu-open {
     }
   }
 }
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal__content {
+  position: relative;
+  max-width: 900px;
+  width: 90%;
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel__track {
+  display: flex;
+  transition: transform .3s ease-in-out;
+}
+
+.carousel__item {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel__item img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.carousel__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  background: none;
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+.carousel__nav--prev { left: 10px; }
+.carousel__nav--next { right: 10px; }
+
+.modal__close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  font-size: 2rem;
+  background: none;
+  color: white;
+  border: none;
+}

@@ -262,30 +262,31 @@
       </button>
       {% endfor %} {% endif %}
     </div>
+{% if salones_de_venues_mice %}
+  {% for salon in salones_de_venues_mice %}
+
+    {% set gallery = [] %}
+    {% for img in salon.fields.field_picgallery %}
+      {% set gallery = gallery|merge([{ 
+        url: img.url, 
+        alt: img.alt 
+      }]) %}
+    {% endfor %}
+
+    <button 
+      class="open-gallery"
+      data-gallery='{{ gallery|json_encode|escape }}'
+    >
+      Ver fotos del salón
+    </button>
+
+  {% endfor %}
+{% endif %}
 
     {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
    
     <article class="room-card" aria-live="polite" data-room-index="{{ loop.index0 }}"
       style="{% if not loop.first %}display:none{% endif %}">
-      {% if salones_de_venues_mice %}
-  {% for salon in salones_de_venues_mice %}
-    {% if salon.fields.field_picgallery %}
-      <div class="gallery">
-        {% for img in salon.fields.field_picgallery %}
-          <button 
-            class="gallery__thumb" 
-            data-open-modal 
-            data-gallery="{{ loop.parent.loop.index0 }}" 
-            data-index="{{ loop.index0 }}"
-          >
-            <img src="{{ img.url }}" alt="{{ img.alt }}" loading="lazy">
-          </button>
-        {% endfor %}
-      </div>
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
       <p class="room-card__description">
         Sala de cine con domo y pantalla gigante. Ideal para lanzamientos
         inmersivos con sonido envolvente y experiencias sensoriales.
@@ -421,4 +422,18 @@
       <div class="carousel-indicators carousel-indicators--light" data-carousel-indicators></div>
     </div>
   </section>
-</main>
+</main><div id="gallery-modal" class="modal" hidden>
+  <div class="modal__overlay" data-close-modal></div>
+
+  <div class="modal__content">
+    <button class="modal__close" data-close-modal>✕</button>
+
+    <div class="carousel">
+      <div class="carousel__track" id="carousel-track"></div>
+
+      <button class="carousel__nav carousel__nav--prev" data-prev>‹</button>
+      <button class="carousel__nav carousel__nav--next" data-next>›</button>
+    </div>
+  </div>
+</div>
+
