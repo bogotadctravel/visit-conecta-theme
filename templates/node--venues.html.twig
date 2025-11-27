@@ -599,10 +599,9 @@
         </div>
         <div class="room-card__actions">
           <div class="room-tags" aria-label="Montajes disponibles">
-{% for montaje in salon.fields.field_montajes %}
-  {% set term = drupal_entity('taxonomy_term', montaje.target_id) %}
-  <button class="places-chip places-chip--muted" type="button">
-    <span class="places-chip__label">{{ term.name.value }}</span>
+{% for term in montajes_terms %}
+  <button class="places-chip places-chip--muted">
+    <span class="places-chip__label">{{ term.getName() }}</span>
   </button>
 {% endfor %}
           </div>
