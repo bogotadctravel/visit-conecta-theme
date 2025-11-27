@@ -50,19 +50,11 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       <div class="news-card__bg-image"></div>
     </div>
     {% set last_article = article|last %}
-    {# Usas last_article como normalmente #}
-    <h2>{{ last_article.title }}</h2>
-    <div>{{ last_article.fields.body.processed }}</div>
     <div class="news-card__content">
       <span class="news-card__tag">Noticias</span>
       <div class="news-card__text">
-        <h2>¡Bienvenidos a Bogotá!</h2>
-        <p>
-          Somos el motor económico, administrativo y político del país, un
-          conglomerado de conocimiento e innovación, lleno de gente amable y
-          preparada para recibirlos a todos, a visitantes que llegan por
-          negocios o turistas por placer.
-        </p>
+         <h2>{{ last_article.title }}</h2>
+        {{ last_article.fields.body.raw|raw}}
         <button class="news-card__cta" type="button">
           ver más
           <svg
