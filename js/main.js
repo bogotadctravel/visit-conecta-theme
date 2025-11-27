@@ -592,7 +592,6 @@
         });
       });
 
-      // Seleccionar botones una única vez
       once("gallery-open", ".open-gallery", context).forEach(function (button) {
 
         const modal = document.getElementById("gallery-modal");
@@ -606,7 +605,6 @@
           images = JSON.parse(button.dataset.gallery);
           index = 0;
 
-          // Construir el carrusel
           track.innerHTML = images
             .map(img => `
               <div class="carousel__item">
@@ -619,7 +617,6 @@
           updateCarousel();
         });
 
-        // Navegación (solo se unen una vez globalmente)
         once("gallery-prev", "[data-prev]", context).forEach(function (prevBtn) {
           prevBtn.addEventListener("click", function () {
             index = (index - 1 + images.length) % images.length;
@@ -634,7 +631,6 @@
           });
         });
 
-        // Cierre del modal
         once("gallery-close", "[data-close-modal]", context).forEach(function (closeBtn) {
           closeBtn.addEventListener("click", function () {
             modal.setAttribute("hidden", true);
@@ -645,8 +641,6 @@
           track.style.transform = "translateX(-" + (index * 100) + "%)";
         }
       });
-
-
 
     }, // end attach
   };
