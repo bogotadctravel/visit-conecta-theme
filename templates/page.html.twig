@@ -1,1 +1,18 @@
-  {% include "@idt_theme/includes/header.html.twig" %}
+{# page.html.twig #}
+
+{{ page.top }}
+{{ page.toolbar }}
+
+<header class="site-header">
+  {{ page.header }}
+</header>
+
+<main role="main">
+  {{ page.content }}
+</main>
+
+<footer>
+  {{ page.footer }}
+</footer>
+
+{{ page.page_bottom }}
