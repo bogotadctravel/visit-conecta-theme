@@ -1,5 +1,7 @@
 @use "../base/tokens" as *;
-
+.events-main{
+    padding: 50px;
+}
 .events__successful {
     background: #fff;
     border-radius: $radius-intermediate;

@@ -460,102 +460,139 @@
       /* ------------------------------
  * PLACES FILTER (Drupal behavior)
  * ------------------------------ */
-once("idt-places-filter", "#places", context).forEach((wrapper) => {
-  // Si prefieres usar la clase: once("idt-places-filter", ".places", context)
+      once("idt-places-filter", "#places", context).forEach((wrapper) => {
+        // Si prefieres usar la clase: once("idt-places-filter", ".places", context)
 
-  if (!wrapper) {
-    console.warn("Places filter: no se encontró el contenedor #places en el contexto.");
-    return;
-  }
-
-  const chips = wrapper.querySelectorAll(".places-chip");
-  const range = wrapper.querySelector("[data-range-control] input[type='range']");
-  const rangeValue = wrapper.querySelector("[data-range-value]");
-  const locationSelect = wrapper.querySelector("select[name='location']");
-  const cards = wrapper.querySelectorAll(".place-card");
-
-  // Debug (opcional) — coméntalo si no quieres logs
-  // console.log('places filter init', { chips, range, rangeValue, locationSelect, cards });
-
-  // Estado actual de filtros
-  let filters = {
-    types: [],
-    capacity: 0,
-    location: null,
-  };
-
-  /** RANGO **/
-  if (range && rangeValue) {
-    range.addEventListener("input", (e) => {
-      rangeValue.textContent = e.target.value;
-      filters.capacity = parseInt(e.target.value, 10) || 0;
-      applyFilters();
-    });
-  }
-
-  /** SELECT UBICACIÓN **/
-  if (locationSelect) {
-    locationSelect.addEventListener("change", (e) => {
-      filters.location = e.target.value || null;
-      applyFilters();
-    });
-  }
-
-  /** CHIPS **/
-  if (chips && chips.length) {
-    chips.forEach((chip) => {
-      chip.addEventListener("click", () => {
-        const labelNode = chip.querySelector(".places-chip__label");
-        const label = labelNode ? labelNode.textContent.trim() : null;
-        if (!label) return;
-
-        chip.classList.toggle("places-chip--muted");
-
-        if (filters.types.includes(label)) {
-          filters.types = filters.types.filter((t) => t !== label);
-        } else {
-          filters.types.push(label);
+        if (!wrapper) {
+          console.warn("Places filter: no se encontró el contenedor #places en el contexto.");
+          return;
         }
 
+        const chips = wrapper.querySelectorAll(".places-chip");
+        const range = wrapper.querySelector("[data-range-control] input[type='range']");
+        const rangeValue = wrapper.querySelector("[data-range-value]");
+        const locationSelect = wrapper.querySelector("select[name='location']");
+        const cards = wrapper.querySelectorAll(".place-card");
+
+        // Debug (opcional) — coméntalo si no quieres logs
+        // console.log('places filter init', { chips, range, rangeValue, locationSelect, cards });
+
+        // Estado actual de filtros
+        let filters = {
+          types: [],
+          capacity: 0,
+          location: null,
+        };
+
+        /** RANGO **/
+        if (range && rangeValue) {
+          range.addEventListener("input", (e) => {
+            rangeValue.textContent = e.target.value;
+            filters.capacity = parseInt(e.target.value, 10) || 0;
+            applyFilters();
+          });
+        }
+
+        /** SELECT UBICACIÓN **/
+        if (locationSelect) {
+          locationSelect.addEventListener("change", (e) => {
+            filters.location = e.target.value || null;
+            applyFilters();
+          });
+        }
+
+        /** CHIPS **/
+        if (chips && chips.length) {
+          chips.forEach((chip) => {
+            chip.addEventListener("click", () => {
+              const labelNode = chip.querySelector(".places-chip__label");
+              const label = labelNode ? labelNode.textContent.trim() : null;
+              if (!label) return;
+
+              chip.classList.toggle("places-chip--muted");
+
+              if (filters.types.includes(label)) {
+                filters.types = filters.types.filter((t) => t !== label);
+              } else {
+                filters.types.push(label);
+              }
+
+              applyFilters();
+            });
+          });
+        }
+
+        /** FUNCIÓN DE FILTRO **/
+        function applyFilters() {
+          if (!cards) return;
+
+          cards.forEach((card) => {
+            let visible = true;
+
+            // Tipo (chips)
+            if (filters.types.length > 0) {
+              const titleNode = card.querySelector(".place-card__title");
+              const title = titleNode ? titleNode.textContent.toLowerCase() : "";
+              visible = filters.types.some((t) => title.includes(t.toLowerCase()));
+            }
+
+            // Capacidad
+            const cardCapacity = parseInt(card.dataset.capacity || 0, 10) || 0;
+            if (filters.capacity > 0 && cardCapacity < filters.capacity) {
+              visible = false;
+            }
+
+            // Ubicación
+            const cardLocation = card.dataset.location || null;
+            if (filters.location && cardLocation != filters.location) {
+              visible = false;
+            }
+
+            card.style.display = visible ? "" : "none";
+            // si usas layout grid/flex, "" restablece al default, "none" oculta.
+          });
+        }
+
+        // Si quieres que aplique filtros al inicio (por ej. hay un valor por defecto)
         applyFilters();
       });
-    });
-  }
 
-  /** FUNCIÓN DE FILTRO **/
-  function applyFilters() {
-    if (!cards) return;
 
-    cards.forEach((card) => {
-      let visible = true;
 
-      // Tipo (chips)
-      if (filters.types.length > 0) {
-        const titleNode = card.querySelector(".place-card__title");
-        const title = titleNode ? titleNode.textContent.toLowerCase() : "";
-        visible = filters.types.some((t) => title.includes(t.toLowerCase()));
-      }
+      /* ------------------------------
+       * EVENTS FILTER (NUEVO)
+       * ------------------------------ */
+      once("idt-events-filter", ".events__filters", context).forEach((filtersWrapper) => {
 
-      // Capacidad
-      const cardCapacity = parseInt(card.dataset.capacity || 0, 10) || 0;
-      if (filters.capacity > 0 && cardCapacity < filters.capacity) {
-        visible = false;
-      }
+        const buttons = filtersWrapper.querySelectorAll("button");
+        const cards = context.querySelectorAll(".event-card");
 
-      // Ubicación
-      const cardLocation = card.dataset.location || null;
-      if (filters.location && cardLocation != filters.location) {
-        visible = false;
-      }
+        if (!buttons.length || !cards.length) {
+          console.warn("Events filter: No encontró botones o cards");
+          return;
+        }
 
-      card.style.display = visible ? "" : "none";
-      // si usas layout grid/flex, "" restablece al default, "none" oculta.
-    });
-  }
+        buttons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const tid = btn.dataset.tid;
 
-  // Si quieres que aplique filtros al inicio (por ej. hay un valor por defecto)
-  applyFilters();
-});
+            cards.forEach((card) => {
+              const types = (card.dataset.type || "")
+                .split(",")
+                .map((v) => v.trim());
+
+              if (tid === "all") {
+                // Botón TODOS
+                card.style.display = "";
+              } else if (types.includes(tid)) {
+                card.style.display = "";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+      });
 
 
     }, // end attach

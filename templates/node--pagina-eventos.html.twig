@@ -6,23 +6,23 @@
         <p>¡Desliza y conoce más!</p>
       </div>
       <div class="events__filters">
-        <button type="button">Convenciones</button>
-        <button type="button">Eventos comunitarios</button>
-        <button type="button">Congresos</button>
-        <button type="button">Show musical</button>
-        <button type="button">Seminarios</button>
-        <button type="button">Seminario</button>
-        <button type="button">SMRF</button>
-        <button type="button">Muestra comercial</button>
-        <button type="button">Asamblea</button>
+      <button type="button" data-tid="all">Todos</button>
+
+         {% for item in tipos_de_evento_mice %}
+        <button type="button" data-tid="{{item.tid}}">{{ item.name }}</button>
+        {% endfor %}
+
       </div>
       <div class="events__grid">
         {% for item in eventos|reverse %}
+        {% set categorias = item.fields.field_categoria_de_evento %}
+        {% set categorias_tids = categorias|map(v => v.tid)|join(',') %}
+
         <a
-          class="event-card"
-          data-carousel-item
-          data-event="bog25"
           href="{{ item.url }}"
+          class="event-card"
+           data-type="{{ categorias_tids }}"
+          data-carousel-item
         >
           <div
             class="event-card__media"
