@@ -56,7 +56,7 @@
             <div class="about-slide__content">
               <h3>{{item.title}}</h3>
               {{ dump(item.fields.body) }}
-              {{ item.fields.body.0.value }}
+              {{ item.fields.body.raw|raw }}
               <a class="about-slide__link" href="/venues"
                 >Explora nuestras locaciones</a
               >
