@@ -274,32 +274,32 @@
       }]) %}
     {% endfor %}
 
-   <button 
-  class="open-gallery"
-  data-gallery='{{ salon.fields.field_picgallery|json_encode|escape }}'
->
-  Ver fotos del salón
-</button>
-
+    <button 
+      class="open-gallery"
+      data-gallery='{{ gallery|json_encode }}'
+    >
+      Ver fotos del salón
+    </button>
 
   {% endfor %}
+
   <div id="gallery-modal" class="modal" hidden>
-  <div class="modal__overlay" data-close-modal></div>
+    <div class="modal__overlay" data-close-modal></div>
 
-  <div class="modal__content">
-    <button class="modal__close" data-close-modal>✕</button>
+    <div class="modal__content">
+      <button class="modal__close" data-close-modal>✕</button>
 
-    <div class="carousel">
-      <div class="carousel__track" id="carousel-track"></div>
+      <div class="carousel">
+        <div class="carousel__track" id="carousel-track"></div>
 
-      <button class="carousel__nav carousel__nav--prev" data-prev>‹</button>
-      <button class="carousel__nav carousel__nav--next" data-next>›</button>
+        <button class="carousel__nav carousel__nav--prev" data-prev>‹</button>
+        <button class="carousel__nav carousel__nav--next" data-next>›</button>
+      </div>
     </div>
   </div>
-</div>
-
 
 {% endif %}
+
 
     {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
    

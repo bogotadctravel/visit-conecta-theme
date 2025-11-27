@@ -592,19 +592,45 @@
         });
       });
 
+  const modal = document.getElementById("gallery-modal");
+      const track = document.getElementById("carousel-track");
+
+      let images = [];
+      let index = 0;
+
+      // --- Navegación: solo una vez ---
+      once("gallery-prev", "[data-prev]", context).forEach(function (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          if (!images.length) return;
+          index = (index - 1 + images.length) % images.length;
+          updateCarousel();
+        });
+      });
+
+      once("gallery-next", "[data-next]", context).forEach(function (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          if (!images.length) return;
+          index = (index + 1) % images.length;
+          updateCarousel();
+        });
+      });
+
+      once("gallery-close", "[data-close-modal]", context).forEach(function (closeBtn) {
+        closeBtn.addEventListener("click", function () {
+          modal.setAttribute("hidden", true);
+        });
+      });
+
+
+      // --- Cada botón se procesa UNA VEZ, pero el contenido cambia siempre ---
       once("gallery-open", ".open-gallery", context).forEach(function (button) {
 
-        const modal = document.getElementById("gallery-modal");
-        const track = document.getElementById("carousel-track");
-
-        let images = [];
-        let index = 0;
-
-        // Abrir modal
         button.addEventListener("click", function () {
+          // 1. Cargar imágenes desde el dataset
           images = JSON.parse(button.dataset.gallery);
           index = 0;
 
+          // 2. Render dinámico del carrusel
           track.innerHTML = images
             .map(img => `
               <div class="carousel__item">
@@ -613,35 +639,20 @@
             `)
             .join("");
 
+          // 3. Mostrar modal
           modal.removeAttribute("hidden");
+
+          // 4. Posicionar
           updateCarousel();
         });
 
-        once("gallery-prev", "[data-prev]", context).forEach(function (prevBtn) {
-          prevBtn.addEventListener("click", function () {
-            index = (index - 1 + images.length) % images.length;
-            updateCarousel();
-          });
-        });
-
-        once("gallery-next", "[data-next]", context).forEach(function (nextBtn) {
-          nextBtn.addEventListener("click", function () {
-            index = (index + 1) % images.length;
-            updateCarousel();
-          });
-        });
-
-        once("gallery-close", "[data-close-modal]", context).forEach(function (closeBtn) {
-          closeBtn.addEventListener("click", function () {
-            modal.setAttribute("hidden", true);
-          });
-        });
-
-        function updateCarousel() {
-          track.style.transform = "translateX(-" + (index * 100) + "%)";
-        }
       });
 
+
+      // --- Función de movimiento ---
+      function updateCarousel() {
+        track.style.transform = "translateX(-" + (index * 100) + "%)";
+      }
     }, // end attach
   };
 })(jQuery, Drupal, drupalSettings);
