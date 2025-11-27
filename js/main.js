@@ -458,11 +458,7 @@
           update();
         }
       );
-    }, // end attach
-  };
-})(jQuery, Drupal, drupalSettings);
-(function () {
-    document.addEventListener("DOMContentLoaded", () => {
+       document.addEventListener("DOMContentLoaded", () => {
 
         const chips = document.querySelectorAll(".places-chip");
         const range = document.querySelector("[data-range-control] input[type='range']");
@@ -549,4 +545,6 @@
         }
 
     });
-})();
+    }, // end attach
+  };
+})(jQuery, Drupal, drupalSettings);
