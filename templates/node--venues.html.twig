@@ -599,12 +599,13 @@
         </div>
         <div class="room-card__actions">
           <div class="room-tags" aria-label="Montajes disponibles">
-          {{dump( salon.fields.field_montajes)}}
-           {% for montaje in salon.fields.field_montajes %}
-            <button class="places-chip places-chip--muted" type="button">
-              <span class="places-chip__label">montajes</span>
-            </button>
-            {% endfor %}
+          
+   {% for montaje in salon.fields.field_montajes %}
+  {% set term = drupal_entity('taxonomy_term', montaje.target_id) %}
+  <button class="places-chip places-chip--muted" type="button">
+    <span class="places-chip__label">{{ term.label }}</span>
+  </button>
+{% endfor %}
           </div>
           <a   href="{{node.field_linkreservas.0.uri}}" target="_blank" class="room-card__cta">Reservar</a>
         </div>
