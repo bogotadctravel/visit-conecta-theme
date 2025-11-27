@@ -273,6 +273,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
           dia_inicio = raw_inicio|date('j') %} {% set dia_fin =
           raw_fin|date('j') %}
 
+          {% if item.fields.field_evento_exitoso %}
           <a
             class="success-card"
             data-carousel-item
@@ -291,6 +292,8 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
               <p>{{ mes_es }} {{ dia_inicio }} - {{ dia_fin }}</p>
             </div>
           </a>
+{% endif %}
+
           {% endfor %}
         </div>
       </div>
