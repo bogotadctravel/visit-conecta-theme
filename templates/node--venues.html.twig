@@ -264,8 +264,18 @@
     </div>
 
     {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
+   
     <article class="room-card" aria-live="polite" data-room-index="{{ loop.index0 }}"
       style="{% if not loop.first %}display:none{% endif %}">
+          {{dump(salon)}}
+      {{dump(salon.field_picgallery)}}
+       {% for image in salon.field_picgallery %}
+    <div 
+      data-image="{{ file_url(image.entity.uri.value) }}"
+      data-caption="{{ image.title }}"
+      data-alt="{{ image.alt }}"
+    ></div>
+  {% endfor %}
       <p class="room-card__description">
         Sala de cine con domo y pantalla gigante. Ideal para lanzamientos
         inmersivos con sonido envolvente y experiencias sensoriales.
@@ -360,15 +370,7 @@
         </div>
       </div>
       <a href="{{node.field_linkreservas.0.uri}}" target="_blank" class="room-card__cta">Reservar</a>
-      {{dump(salon)}}
-      {{dump(salon.field_picgallery)}}
-       {% for image in salon.field_picgallery %}
-    <div 
-      data-image="{{ file_url(image.entity.uri.value) }}"
-      data-caption="{{ image.title }}"
-      data-alt="{{ image.alt }}"
-    ></div>
-  {% endfor %}
+   
     </article>
     {% endfor %} {% endif %}
   </section>
