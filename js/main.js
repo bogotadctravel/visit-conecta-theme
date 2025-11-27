@@ -68,25 +68,24 @@
       /* ------------------------------
        * SYNC SELECT LABEL
        * ------------------------------ */
-      const syncSelectLabel = (selectSelector, labelSelector) => {
-        once(`idt-sync-${selectSelector}`, selectSelector, context).forEach(
-          (select) => {
-            const label = qs(labelSelector);
-            if (!label) return;
+      const syncSelectLabel = (key, selectSelector, labelSelector) => {
+        once(key, selectSelector, context).forEach((select) => {
+          const label = qs(labelSelector);
+          if (!label) return;
 
-            const update = () => {
-              const option = select.selectedOptions[0];
-              if (option) label.textContent = option.textContent.trim();
-            };
+          const update = () => {
+            const option = select.selectedOptions[0];
+            if (option) label.textContent = option.textContent.trim();
+          };
 
-            update();
-            select.addEventListener("change", update);
-          }
-        );
+          update();
+          select.addEventListener("change", update);
+        });
       };
 
-      syncSelectLabel('select[name="stopover"]', ".pill--light .pill__label");
-      syncSelectLabel('select[name="language"]', ".pill--flag .pill__value");
+      syncSelectLabel("sync-stopover", 'select[name="stopover"]', ".pill--light .pill__label");
+      syncSelectLabel("sync-language", 'select[name="language"]', ".pill--flag .pill__value");
+
 
       /* ------------------------------
        * LANGUAGE SELECTOR
