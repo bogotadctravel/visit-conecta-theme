@@ -80,7 +80,7 @@
                         </span>
                         <select name="location" aria-label="Ubicación">
                             {% for item in zonas_de_la_ciudad %}
-                            <option value="{{item.tid}}" selected disabled>{{ item.name }}</option>
+                            <option value="{{item.tid}}" >{{ item.name }}</option>
                             {% endfor %}
                         </select>
                         <span class="places-input__icon places-input__icon--trailing" aria-hidden="true">
