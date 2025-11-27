@@ -49,6 +49,10 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
     <div class="news-card__bg" aria-hidden="true">
       <div class="news-card__bg-image"></div>
     </div>
+    {% set last_article = article|last %}
+    {# Usas last_article como normalmente #}
+    <h2>{{ last_article.title }}</h2>
+    <div>{{ last_article.fields.body.processed }}</div>
     <div class="news-card__content">
       <span class="news-card__tag">Noticias</span>
       <div class="news-card__text">
