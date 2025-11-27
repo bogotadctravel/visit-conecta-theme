@@ -144,12 +144,13 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
     </div>
   </section>
 
-  <!-- <section class="why-bogota" id="porque">
+   <section class="why-bogota" id="porque">
     <header class="why-bogota__header">
       <h2>¿Por qué Bogotá?</h2>
     </header>
     <div class="why-bogota__grid">
-      <article class="why-card">
+      {% for item in por_que_bogota %}
+      <a href="" class="why-card">
         <div class="why-card__thumb" aria-hidden="true">
           <img
             src="/{{ directory }}/images/festival_cordillera.jpg"
@@ -157,66 +158,12 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
           />
         </div>
         <div class="why-card__info">
-          <h3>Datos generales</h3>
+          <h3>{{item.title}}</h3>
         </div>
-      </article>
-      <article class="why-card">
-        <div class="why-card__thumb" aria-hidden="true">
-          <img
-            src="/{{ directory }}/images/festival_cordillera.jpg"
-            alt="Festval cordillera"
-          />
-        </div>
-        <div class="why-card__info">
-          <h3>Datos culturales</h3>
-        </div>
-      </article>
-      <article class="why-card">
-        <div class="why-card__thumb" aria-hidden="true">
-          <img
-            src="/{{ directory }}/images/festival_cordillera.jpg"
-            alt="Festval cordillera"
-          />
-        </div>
-        <div class="why-card__info">
-          <h3>Datos educación</h3>
-        </div>
-      </article>
-      <article class="why-card">
-        <div class="why-card__thumb" aria-hidden="true">
-          <img
-            src="/{{ directory }}/images/festival_cordillera.jpg"
-            alt="Festval cordillera"
-          />
-        </div>
-        <div class="why-card__info">
-          <h3>Datos movilidad</h3>
-        </div>
-      </article>
-      <article class="why-card">
-        <div class="why-card__thumb" aria-hidden="true">
-          <img
-            src="/{{ directory }}/images/festival_cordillera.jpg"
-            alt="Festval cordillera"
-          />
-        </div>
-        <div class="why-card__info">
-          <h3>Derrame económico</h3>
-        </div>
-      </article>
-      <article class="why-card">
-        <div class="why-card__thumb" aria-hidden="true">
-          <img
-            src="/{{ directory }}/images/festival_cordillera.jpg"
-            alt="Festval cordillera"
-          />
-        </div>
-        <div class="why-card__info">
-          <h3>Reconocimientos</h3>
-        </div>
-      </article>
+      </a>
+ {% endfor %}
     </div>
-  </section> -->
+  </section>
 
   <section class="events">
     <div class="events__intro">

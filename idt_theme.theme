@@ -26,6 +26,7 @@ function idt_theme_preprocess_node(array &$variables) {
   $variables['empresas_prestadoras_de_servicio'] = $content_loader->getNodesByType('empresas_prestadoras_de_servicio');
   $variables['establecimientos'] = $content_loader->getNodesByType('establecimientos');
   $variables['eventos'] = $content_loader->getNodesByType('eventos');
+  $variables['por_que_bogota'] = $content_loader->getNodesByType('por_que_bogota');
   $variables['experiencias'] = $content_loader->getNodesByType('experiencias');
   $variables['hoteles'] = $content_loader->getNodesByType('hoteles');
   $variables['itinerarios'] = $content_loader->getNodesByType('itinerarios');
