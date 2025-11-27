@@ -37,6 +37,9 @@ function idt_theme_preprocess_node(array &$variables) {
 
   // Solo cargar salones si este node es venue
 // Solo cargar salones si este node es venue
+$file_url_generator = \Drupal::service('file_url_generator');
+
+// Solo cargar salones si este node es venue
 if ($node->bundle() === 'venues') {
 
   $venue_id = $node->id();
@@ -56,12 +59,13 @@ if ($node->bundle() === 'venues') {
 
       foreach ($salon['fields']['field_picgallery'] as $img) {
 
-        // cargar archivo real desde target_id
         $file = $file_storage->load($img['target_id']);
 
         if ($file) {
           $uri = $file->getFileUri();
-          $url = file_create_url($uri);
+
+          // Drupal 10/11 — generar URL
+          $url = $file_url_generator->generateAbsoluteString($uri);
 
           $new_gallery[] = [
             'url'    => $url,
@@ -73,28 +77,25 @@ if ($node->bundle() === 'venues') {
         }
       }
 
-      // reemplazar en fields
       $salon['fields']['field_picgallery'] = $new_gallery;
     }
     // --------------------------------------------
 
 
-    // ---- Lo que ya tenías (montajes) ----
+    // Montajes — lo que ya tenías
     if (!empty($salon['fields']['field_montajes'])) {
-
       $tids = array_column($salon['fields']['field_montajes'], 'target_id');
       $terms = $storage->loadMultiple($tids);
-
       $salon['montajes_names'] = array_map(fn($t) => $t->label(), $terms);
     }
     else {
       $salon['montajes_names'] = [];
     }
-
-  } // end foreach salones
+  }
 
   $variables['salones_de_venues_mice'] = $salones;
 }
+
 
 
   else {
