@@ -36,6 +36,18 @@
               </svg>
             </button>
           </div>
+          
+<div class="gallery-data" style="display:none;">
+  {% for image in node.field_picgallery %}
+    <div 
+      data-gallery-item
+      data-image="{{ file_url(image.entity.uri.value) }}"
+      data-caption="{{ image.title }}"
+      data-alt="{{ image.alt }}"
+    ></div>
+  {% endfor %}
+</div>
+
         </div>
       </div>
       <div class="infomore">
@@ -390,14 +402,3 @@
     </div>
   </section>
 </main>
-
-<div class="gallery-data" style="display:none;">
-  {% for image in node.field_picgallery %}
-    <div 
-      data-gallery-item
-      data-image="{{ file_url(image.entity.uri.value) }}"
-      data-caption="{{ image.title }}"
-      data-alt="{{ image.alt }}"
-    ></div>
-  {% endfor %}
-</div>

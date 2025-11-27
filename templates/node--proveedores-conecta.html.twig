@@ -262,30 +262,18 @@
             </svg>
           </button>
         </div>
-        <div class="gallery-thumbs" data-gallery-thumbs>
-          {% if node.field_picgallery is not empty %}
-          <div class="gallery">
-            {% for image in node.field_picgallery %}
-            <button
-              class="gallery-thumbs__item is-active"
-              type="button"
-              data-gallery-thumb
-              data-image="{{ file_url(image.entity.uri.value) }}"
-              data-caption="{{ image.title }}"
-              data-alt="{{ image.alt }}"
-            >
-              <span class="gallery-thumbs__media">
-                <img
-                  src="{{ file_url(image.entity.uri.value) }}"
-                  alt="{{ image.alt }}"
-                  loading="lazy"
-                />
-              </span>
-            </button>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </div>
+        
+<div class="gallery-data" style="display:none;">
+  {% for image in node.field_picgallery %}
+    <div 
+      data-gallery-item
+      data-image="{{ file_url(image.entity.uri.value) }}"
+      data-caption="{{ image.title }}"
+      data-alt="{{ image.alt }}"
+    ></div>
+  {% endfor %}
+</div>
+
       </div>
       <aside class="detail-media__sidebar">
         <div class="media-card">
