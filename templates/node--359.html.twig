@@ -16,7 +16,7 @@ futuros = futuros|merge([item]) %} {% endif %}
       </div>
       <div class="events__filters">
           <button type="button" data-tid="all">Todos</button>
-         {% for item in tipos_de_evento_mice %}
+         {% for item in tipos_de_evento %}
         <button type="button" data-tid="{{item.tid}}">{{ item.name }}</button>
         {% endfor %}
          {% for item in tipos_de_evento_mice %}
