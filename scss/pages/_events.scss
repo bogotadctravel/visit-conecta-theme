@@ -23,7 +23,7 @@
   margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: clamp(1rem, 3vw, 1.75rem);
+  gap: 15px;
   .event-card {
     min-width: 324px;
     min-height: 324px;

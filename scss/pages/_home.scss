@@ -436,7 +436,7 @@ section {
   font-weight: 600;
   letter-spacing: 0.05em;
   transition: background 0.2s ease, transform 0.2s ease;
-  &:hover {
+  &:hover, &.active{
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
   }

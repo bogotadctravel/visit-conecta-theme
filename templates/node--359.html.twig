@@ -6,7 +6,8 @@ in eventos %} {% set inicio =
 item.fields.field_fecha_de_inicio.0.value|date("Y-m-d") %} {% set fin =
 item.fields.field_fecha_de_finalizacion.0.value|date("Y-m-d") %} {% if fin < hoy
 %} {% set pasados = pasados|merge([item]) %} {% elseif inicio >= hoy %} {% set
-futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
+futuros = futuros|merge([item]) %} {% endif %} 
+{% endfor %}
 <div class="events__body">
   <main class="events-main">
     <section class="events__page" id="events">
@@ -65,8 +66,8 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
                 = raw_inicio|date('M') %} {% set mes_es = meses[mes_en] %} {%
                 set dia_inicio = raw_inicio|date('j') %} {% set dia_fin =
                 raw_fin|date('j') %}
-
-                <span>{{ mes_es }} {{ dia_inicio }} - {{ dia_fin }}</span>
+   {% set anio_inicio = raw_inicio|date('Y') %}
+                <span>{{ mes_es }} {{ dia_inicio }} - {{ dia_fin }} del {{anio_inicio}}</span>
               </span>
               <span class="event-card__meta-item">
                 <svg

@@ -66,8 +66,9 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
                 = raw_inicio|date('M') %} {% set mes_es = meses[mes_en] %} {%
                 set dia_inicio = raw_inicio|date('j') %} {% set dia_fin =
                 raw_fin|date('j') %}
+                  {% set anio_inicio = raw_inicio|date('Y') %}
 
-                <span>{{ mes_es }} {{ dia_inicio }} - {{ dia_fin }}</span>
+                <span>{{ mes_es }} {{ dia_inicio }} - {{ dia_fin }}  del {{anio_inicio}}</span>
               </span>
               <span class="event-card__meta-item">
                 <svg
