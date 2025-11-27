@@ -153,8 +153,8 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       <a href="" class="why-card">
         <div class="why-card__thumb" aria-hidden="true">
           <img
-            src="/{{ directory }}/images/festival_cordillera.jpg"
-            alt="Festval cordillera"
+            src="{{item.fields.field_mainimg.0.url}}"
+            alt="{{item.title}}"
           />
         </div>
         <div class="why-card__info">

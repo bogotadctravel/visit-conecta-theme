@@ -23,80 +23,19 @@
     <div class="about-slider" data-carousel>
       <div class="about-slider__viewport" data-carousel-viewport>
         <div class="about-slider__track" data-carousel-track>
-          <article class="about-slide" data-carousel-item>
-            <img src="/{{ directory }}/images/conecta_infografia.png" alt="" />
-            <div class="about-slide__content">
-              <h3>Ubicación estratégica</h3>
-              <p>
-                Bogotá se destaca por su ubicación estratégica con más de 108
-                conexiones aéreas: 59 internacionales y 48 nacionales a través
-                del Aeropuerto Internacional El Dorado, un hub de conectividad
-                en Colombia y uno de los más importantes de América Latina,
-                reconocido internacionalmente, entre otras distinciones, como el
-                número uno en puntualidad. El Dorado, con sus altos estándares
-                de calidad, innovación tecnológica e infraestructura, ha sido
-                reconocido, en diversas ocasiones, como el aeropuerto líder de
-                Sudamérica. Asimismo, nuestro El Dorado es uno de los
-                aeropuertos más bioseguros, calificado con cinco estrellas por
-                la organización internacional Skytrax. Además, cuenta con la
-                acreditación sanitaria de aeropuertos de ACI (Airports Council
-                International). https://eldorado.aero/servicios/coronavirus
-              </p>
-              <a class="about-slide__link" href="./venue.html"
-                >Explora nuestras locaciones</a
-              >
-            </div>
-          </article>
+        {% for item in por_que_bogota %}
 
           <article class="about-slide" data-carousel-item>
-            <img src="/{{ directory }}/images/conecta_infografia.png" alt="" />
+            <img src="{{item.fields.field_image.0.url}}" alt="{{item.title}}" />
             <div class="about-slide__content">
-              <h3>Ubicación estratégica</h3>
-              <p>
-                Bogotá se destaca por su ubicación estratégica con más de 108
-                conexiones aéreas: 59 internacionales y 48 nacionales a través
-                del Aeropuerto Internacional El Dorado, un hub de conectividad
-                en Colombia y uno de los más importantes de América Latina,
-                reconocido internacionalmente, entre otras distinciones, como el
-                número uno en puntualidad. El Dorado, con sus altos estándares
-                de calidad, innovación tecnológica e infraestructura, ha sido
-                reconocido, en diversas ocasiones, como el aeropuerto líder de
-                Sudamérica. Asimismo, nuestro El Dorado es uno de los
-                aeropuertos más bioseguros, calificado con cinco estrellas por
-                la organización internacional Skytrax. Además, cuenta con la
-                acreditación sanitaria de aeropuertos de ACI (Airports Council
-                International). https://eldorado.aero/servicios/coronavirus
-              </p>
-              <a class="about-slide__link" href="./venue.html"
+              <h3>{{item.title}}</h3>
+              {{item.fields.}}
+              <a class="about-slide__link" href="/venues"
                 >Explora nuestras locaciones</a
               >
             </div>
           </article>
-
-          <article class="about-slide" data-carousel-item>
-            <img src="/{{ directory }}/images/conecta_infografia.png" alt="" />
-            <div class="about-slide__content">
-              <h3>Ubicación estratégica</h3>
-              <p>
-                Bogotá se destaca por su ubicación estratégica con más de 108
-                conexiones aéreas: 59 internacionales y 48 nacionales a través
-                del Aeropuerto Internacional El Dorado, un hub de conectividad
-                en Colombia y uno de los más importantes de América Latina,
-                reconocido internacionalmente, entre otras distinciones, como el
-                número uno en puntualidad. El Dorado, con sus altos estándares
-                de calidad, innovación tecnológica e infraestructura, ha sido
-                reconocido, en diversas ocasiones, como el aeropuerto líder de
-                Sudamérica. Asimismo, nuestro El Dorado es uno de los
-                aeropuertos más bioseguros, calificado con cinco estrellas por
-                la organización internacional Skytrax. Además, cuenta con la
-                acreditación sanitaria de aeropuertos de ACI (Airports Council
-                International). https://eldorado.aero/servicios/coronavirus
-              </p>
-              <a class="about-slide__link" href="./venue.html"
-                >Explora nuestras locaciones</a
-              >
-            </div>
-          </article>
+ {% endfor %}
         </div>
       </div>
 
