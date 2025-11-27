@@ -79,11 +79,9 @@
                             </svg>
                         </span>
                         <select name="location" aria-label="Ubicación">
-                            <option value="" selected disabled>Zona</option>
-                            <option value="norte">Zona Norte</option>
-                            <option value="centro">Zona Centro</option>
-                            <option value="occidente">Zona Occidente</option>
-                            <option value="sur">Zona Sur</option>
+                             {% for item in zonas_de_la_ciudad %}
+                            <option value="{{item.tid}}" selected disabled>{{ item.name }}</option>
+                            {% endfor %}
                         </select>
                         <span class="places-input__icon places-input__icon--trailing" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
