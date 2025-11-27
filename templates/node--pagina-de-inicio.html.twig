@@ -18,9 +18,8 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       <label class="search-card__field">
         <span class="search-card__label">Venue</span>
         <select name="venue">
-          <option value="">Venue</option>
-          <option value="centro">Centro de eventos</option>
-          <option value="hotel">Hoteles</option>
+          <option value="venues">Venue</option>
+          <option value="proveedores">Proveedores</option>
         </select>
       </label>
 
@@ -54,7 +53,9 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       <span class="news-card__tag">Noticias</span>
       <div class="news-card__text">
          <h2>{{ last_article.title }}</h2>
-        {{ last_article.fields.body.raw|raw}}
+         <p>
+           {{ last_article.fields.field_introduccion.0.value}}
+         </p>
         <button class="news-card__cta" type="button">
           ver más
           <svg

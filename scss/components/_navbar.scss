@@ -1,9 +1,15 @@
 ﻿@use "../base/tokens" as *;
 .linkStopover{
-  font-weight: bold;
-  background-color: #ece5f4;
-  padding: 10px;
-  border-radius: 25px;
+    font-weight: bold;
+    background-color: #ece5f4;
+    padding: 10px 30px;
+    border-radius: 25px;
+    color: #0a1a2a;
+    &:hover{
+      color: #ece5f4;
+      background-color: #0a1a2a;
+
+    }
 }
 #block-idt-theme-navegacionprincipal-menu {
   display: none;
