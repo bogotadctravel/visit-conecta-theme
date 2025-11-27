@@ -9,7 +9,7 @@ item.fields.field_fecha_de_finalizacion.0.value|date("Y-m-d") %} {% if fin < hoy
 futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
 <main>
   <div class="search-card__wrapper">
-    <form class="search-card" action="/buscar" method="GET" aria-label="Buscador de experiencias">
+    <form class="search-card" action="/conecta/buscar" method="GET" aria-label="Buscador de experiencias">
       <label class="search-card__field">
         <span class="search-card__label">Descubre</span>
         <input type="text" placeholder="DESCUBRE" name="query" />
