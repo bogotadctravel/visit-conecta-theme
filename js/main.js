@@ -162,8 +162,8 @@
           const gap =
             parseFloat(
               getComputedStyle(track).columnGap ||
-                getComputedStyle(track).gap ||
-                "0"
+              getComputedStyle(track).gap ||
+              "0"
             ) || 0;
 
           step = first.getBoundingClientRect().width + gap;
@@ -458,100 +458,86 @@
           update();
         }
       );
-       document.addEventListener("DOMContentLoaded", () => {
+      /* ------------------------------
+* PLACES FILTER
+* ------------------------------ */
+      once("idt-places-filter", ".places-wrapper", context).forEach((wrapper) => {
 
-        const chips = document.querySelectorAll(".places-chip");
-        const range = document.querySelector("[data-range-control] input[type='range']");
-        const rangeValue = document.querySelector("[data-range-value]");
-        const locationSelect = document.querySelector("select[name='location']");
-        const cards = document.querySelectorAll(".place-card");
-
-        console.log(chips,
-range,
-rangeValue,
-locationSelect,
-cards);
-        
+        const chips = wrapper.querySelectorAll(".places-chip");
+        const range = wrapper.querySelector("[data-range-control] input[type='range']");
+        const rangeValue = wrapper.querySelector("[data-range-value]");
+        const locationSelect = wrapper.querySelector("select[name='location']");
+        const cards = wrapper.querySelectorAll(".place-card");
 
         // Estado actual de filtros
         let filters = {
-            types: [],
-            capacity: 0,
-            location: null,
+          types: [],
+          capacity: 0,
+          location: null,
         };
 
-        /** --------------------------
-         *  RANGO: Cantidad de personas
-         *  -------------------------- */
+        /** RANGO **/
         if (range) {
-            range.addEventListener("input", (e) => {
-                rangeValue.textContent = e.target.value;
-                filters.capacity = parseInt(e.target.value);
-                applyFilters();
-            });
+          range.addEventListener("input", (e) => {
+            rangeValue.textContent = e.target.value;
+            filters.capacity = parseInt(e.target.value);
+            applyFilters();
+          });
         }
 
-        /** --------------------------
-         *  SELECT: Ubicación
-         *  -------------------------- */
+        /** SELECT UBICACIÓN **/
         if (locationSelect) {
-            locationSelect.addEventListener("change", (e) => {
-                filters.location = e.target.value;
-                applyFilters();
-            });
+          locationSelect.addEventListener("change", (e) => {
+            filters.location = e.target.value;
+            applyFilters();
+          });
         }
 
-        /** --------------------------
-         *  CHIPS: Tipos
-         *  -------------------------- */
+        /** CHIPS **/
         chips.forEach(chip => {
-            chip.addEventListener("click", () => {
-                const label = chip.querySelector(".places-chip__label").innerText.trim();
+          chip.addEventListener("click", () => {
+            const label = chip.querySelector(".places-chip__label").innerText.trim();
 
-                chip.classList.toggle("places-chip--muted");
+            chip.classList.toggle("places-chip--muted");
 
-                // Activar / Desactivar en filtros
-                if (filters.types.includes(label)) {
-                    filters.types = filters.types.filter(t => t !== label);
-                } else {
-                    filters.types.push(label);
-                }
+            if (filters.types.includes(label)) {
+              filters.types = filters.types.filter(t => t !== label);
+            } else {
+              filters.types.push(label);
+            }
 
-                applyFilters();
-            });
+            applyFilters();
+          });
         });
 
-        /** --------------------------
-         *  FUNCION FILTRO
-         *  -------------------------- */
+        /** FUNCIÓN DE FILTRO **/
         function applyFilters() {
-            cards.forEach(card => {
-                let visible = true;
+          cards.forEach(card => {
+            let visible = true;
 
-                // 1️⃣ Filtrar por tipo (chip)
-                if (filters.types.length > 0) {
-                    const title = card.querySelector(".place-card__title").innerText.toLowerCase();
-                    visible = filters.types.some(t => title.includes(t.toLowerCase()));
-                }
+            // Tipo
+            if (filters.types.length > 0) {
+              const title = card.querySelector(".place-card__title").innerText.toLowerCase();
+              visible = filters.types.some(t => title.includes(t.toLowerCase()));
+            }
 
-                // 2️⃣ Filtrar por capacidad
-                const cardCapacity = parseInt(card.dataset.capacity || 0);
-                if (filters.capacity > 0 && cardCapacity < filters.capacity) {
-                    visible = false;
-                }
+            // Capacidad
+            const cardCapacity = parseInt(card.dataset.capacity || 0);
+            if (filters.capacity > 0 && cardCapacity < filters.capacity) {
+              visible = false;
+            }
 
-                // 3️⃣ Filtrar por ubicación
-                const cardLocation = card.dataset.location;
-                if (filters.location && cardLocation != filters.location) {
-                    visible = false;
-                }
+            // Ubicación
+            const cardLocation = card.dataset.location;
+            if (filters.location && cardLocation != filters.location) {
+              visible = false;
+            }
 
-                // Mostrar / ocultar
-                card.style.display = visible ? "block" : "none";
-            });
+            card.style.display = visible ? "block" : "none";
+          });
         }
+      });
 
-    });
     }, // end attach
   };
 })(jQuery, Drupal, drupalSettings);
