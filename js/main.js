@@ -572,6 +572,8 @@
 
         const buttons = filtersWrapper.querySelectorAll("button");
         const buttonActive = filtersWrapper.querySelector("button.active");
+        console.log(buttonActive);
+        
         const cards = context.querySelectorAll(".event-card");
 
         if (!buttons.length || !cards.length) {
