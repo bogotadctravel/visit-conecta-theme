@@ -111,4 +111,15 @@ function idt_theme_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'user-logged-in';
   }
 }
+function idt_theme_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Clase general al formulario.
+  $form['#attributes']['class'][] = 'login-custom';
+
+  // Clases a los inputs.
+  $form['name']['#attributes']['class'][] = 'login-input';
+  $form['pass']['#attributes']['class'][] = 'login-input';
+
+  // Clase al botón.
+  $form['actions']['submit']['#attributes']['class'][] = 'login-button';
+}
 
