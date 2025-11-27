@@ -19,72 +19,54 @@
       </p>
     </div>
   </section>
-    <section class="about__data">
+  <section  class="data-tabs" role="tablist" aria-label="Categorías de datos de Bogotá¡">
     <div class="data__header">
       <h2>Nuestros datos</h2>
     </div>
+<div class="data-tabs"
+     role="tablist"
+     aria-label="Categorías de datos de Bogotá¡"
+     data-carousel-indicators="about">
+      {% for item in por_que_bogota %}
 
-    <div
-      class="data-tabs"
-      role="tablist"
-      aria-label="Categorías de datos de Bogotá¡"
-    >
-       {% for item in por_que_bogota %}
-
-      <button
-        class="data-tab"
+  <button class="data-tab"
         type="button"
         role="tab"
         aria-selected="false"
-      >
-        <span class="data-tab__dot" aria-hidden="true"></span>
-        <span class="data-tab__label">{{item.title}}</span>
-      </button>
-      
- {% endfor %}
+        data-carousel-indicator
+        data-carousel-target="about">
+    <span class="data-tab__dot" aria-hidden="true"></span>
+    <span class="data-tab__label">{{item.title}}</span>
+  </button>
+
+      {% endfor %}
     </div>
   </section>
 
   <section class="about__slider" aria-label="Indicadores clave de BogotÃ¡">
-    <div class="about-slider" data-carousel>
+   <div class="about-slider" data-carousel data-carousel-id="about">
       <div class="about-slider__viewport" data-carousel-viewport>
         <div class="about-slider__track" data-carousel-track>
-        {% for item in por_que_bogota %}
+          {% for item in por_que_bogota %}
 
           <article class="about-slide" data-carousel-item>
             <img src="{{item.fields.field_image.0.url}}" alt="{{item.title}}" />
             <div class="about-slide__content">
               <h3>{{item.title}}</h3>
               {{ item.fields.body.raw|raw }}
-              <a class="about-slide__link" href="/venues"
-                >Explora nuestras locaciones</a
-              >
+              <a class="about-slide__link" href="/venues">Explora nuestras locaciones</a>
             </div>
           </article>
- {% endfor %}
+          {% endfor %}
         </div>
       </div>
 
       <div class="about-slider__nav">
-        <button
-          class="about-slider__arrow"
-          type="button"
-          data-carousel-prev
-          aria-label="Anterior"
-        >
+        <button class="about-slider__arrow" type="button" data-carousel-prev aria-label="Anterior">
           &#10094;
         </button>
-        <div
-          class="about-slider__indicators"
-          data-carousel-indicators
-          aria-label="Indicadores"
-        ></div>
-        <button
-          class="about-slider__arrow"
-          type="button"
-          data-carousel-next
-          aria-label="Siguiente"
-        >
+        <div class="about-slider__indicators" data-carousel-indicators aria-label="Indicadores"></div>
+        <button class="about-slider__arrow" type="button" data-carousel-next aria-label="Siguiente">
           &#10095;
         </button>
       </div>
@@ -114,12 +96,8 @@
 
   <section class="about-highlight" aria-label="Historias de impacto">
     <div class="highlight-slider" data-carousel>
-      <button
-        class="highlight-slider__arrow highlight-slider__arrow--prev"
-        type="button"
-        data-carousel-prev
-        aria-label="Anterior"
-      >
+      <button class="highlight-slider__arrow highlight-slider__arrow--prev" type="button" data-carousel-prev
+        aria-label="Anterior">
         &#10094;
       </button>
       <div class="highlight-slider__viewport" data-carousel-viewport>
@@ -163,12 +141,8 @@
           </article>
         </div>
       </div>
-      <button
-        class="highlight-slider__arrow highlight-slider__arrow--next"
-        type="button"
-        data-carousel-next
-        aria-label="Siguiente"
-      >
+      <button class="highlight-slider__arrow highlight-slider__arrow--next" type="button" data-carousel-next
+        aria-label="Siguiente">
         &#10095;
       </button>
     </div>

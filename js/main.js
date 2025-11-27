@@ -130,7 +130,13 @@
         const indicatorsContainer = carousel.querySelector(
           "[data-carousel-indicators]"
         );
-        let indicatorButtons = [];
+        // Identificar a qué carrusel pertenece
+        const carouselId = carousel.getAttribute("data-carousel-id");
+
+        // Obtener únicamente las tabs que apunten a este carrusel
+        let indicatorButtons = [
+          ...document.querySelectorAll(`[data-carousel-indicator][data-carousel-target="${carouselId}"]`)
+        ];
 
         if (indicatorsContainer) {
           indicatorsContainer.innerHTML = "";
@@ -180,14 +186,14 @@
 
         const updateIndicators = () => {
           if (!indicatorButtons.length) return;
+
           const relativeIndex =
             (((index - minIndex) % baseCount) + baseCount) % baseCount;
 
           indicatorButtons.forEach((btn, i) => {
-            btn.setAttribute(
-              "aria-current",
-              i === relativeIndex ? "true" : "false"
-            );
+            const active = i === relativeIndex;
+            btn.setAttribute("aria-selected", active ? "true" : "false");
+            btn.classList.toggle("is-active", active);
           });
         };
 
