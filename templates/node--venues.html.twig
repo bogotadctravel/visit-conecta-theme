@@ -262,44 +262,6 @@
       </button>
       {% endfor %} {% endif %}
     </div>
-{% if salones_de_venues_mice %}
-  {% for salon in salones_de_venues_mice %}
-
-    {% set gallery = [] %}
-
-    {% for img in salon.fields.field_picgallery %}
-      {% set gallery = gallery|merge([{ 
-        url: img.url, 
-        alt: img.alt 
-      }]) %}
-    {% endfor %}
-
-    <button 
-      class="open-gallery"
-      data-gallery='{{ gallery|json_encode }}'
-    >
-      Ver fotos del salón
-    </button>
-
-  {% endfor %}
-
-  <div id="gallery-modal" class="modal" hidden>
-    <div class="modal__overlay" data-close-modal></div>
-
-    <div class="modal__content">
-      <button class="modal__close" data-close-modal>✕</button>
-
-      <div class="carousel">
-        <div class="carousel__track" id="carousel-track"></div>
-
-        <button class="carousel__nav carousel__nav--prev" data-prev>‹</button>
-        <button class="carousel__nav carousel__nav--next" data-next>›</button>
-      </div>
-    </div>
-  </div>
-
-{% endif %}
-
 
     {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
    
