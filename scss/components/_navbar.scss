@@ -1,4 +1,10 @@
 ﻿@use "../base/tokens" as *;
+.linkStopover{
+  font-weight: bold;
+  background-color: #ece5f4;
+  padding: 10px;
+  border-radius: 25px;
+}
 #block-idt-theme-navegacionprincipal-menu {
   display: none;
 }
