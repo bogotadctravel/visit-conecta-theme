@@ -267,9 +267,8 @@
    
     <article class="room-card" aria-live="polite" data-room-index="{{ loop.index0 }}"
       style="{% if not loop.first %}display:none{% endif %}">
-          {{dump(salon)}}
-      {{dump(salon.field_picgallery)}}
-       {% for image in salon.field_picgallery %}
+      {{dump(salon.fields.field_picgallery)}}
+       {% for image in salon.fields.field_picgallery %}
     <div 
       data-image="{{ file_url(image.entity.uri.value) }}"
       data-caption="{{ image.title }}"
