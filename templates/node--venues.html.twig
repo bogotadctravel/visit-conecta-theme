@@ -360,6 +360,13 @@
         </div>
       </div>
       <a href="{{node.field_linkreservas.0.uri}}" target="_blank" class="room-card__cta">Reservar</a>
+       {% for image in salon.field_picgallery %}
+    <div 
+      data-image="{{ file_url(image.entity.uri.value) }}"
+      data-caption="{{ image.title }}"
+      data-alt="{{ image.alt }}"
+    ></div>
+  {% endfor %}
     </article>
     {% endfor %} {% endif %}
   </section>
