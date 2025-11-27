@@ -466,6 +466,13 @@
         const locationSelect = document.querySelector("select[name='location']");
         const cards = document.querySelectorAll(".place-card");
 
+        console.log(chips,
+range,
+rangeValue,
+locationSelect,
+cards);
+        
+
         // Estado actual de filtros
         let filters = {
             types: [],
