@@ -11,10 +11,17 @@
     <js-placeholder token="{{ placeholder_token }}">
   </head>
 
-  <body {{attributes}}>
-    <main id="main-content" class="site-content">
-      {{ page.content }}
-    </main>
-    <js-bottom-placeholder token="{{ placeholder_token }}">
-  </body>
+  <body{{ attributes }}>
+  {{ page.top }}
+  {{ page.toolbar }}
+  {{ page.page_top }}
+
+  <main id="main-content" class="site-content">
+    {{ page.content }}
+  </main>
+
+  {{ page.page_bottom }}
+  <js-bottom-placeholder token="{{ placeholder_token }}">
+</body>
+
 </html>
