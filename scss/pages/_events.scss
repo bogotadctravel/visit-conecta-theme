@@ -4,11 +4,13 @@
   background-color: #002f4c;
 }
 .events__page {
+  padding: 0;
   h2 {
-    color: #ffff;
+     color: #fff;
     font-weight: 400;
     font-size: 57px;
     margin: 0;
+    line-height: 53px;
   }
   p {
     color: #ffff;
@@ -25,6 +27,7 @@
   .event-card {
     min-width: 324px;
     min-height: 324px;
+    max-width: 100%;
   }
 }
 @media (max-width: 56rem) {
@@ -37,6 +40,7 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     .event-card {
       min-width: 150px;
+      max-width: 100%;
       min-height: 150px;
     }
   }
