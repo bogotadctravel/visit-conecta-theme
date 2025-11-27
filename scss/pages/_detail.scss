@@ -701,7 +701,6 @@
   font-weight: 700;
   color: $color-text;
 }
-
 .room-card__toggle {
   display: flex;
   align-items: center;
@@ -713,33 +712,46 @@
   color: $color-text;
 }
 
-.room-toggle {
-  width: 54px;
-  height: 28px;
-  border-radius: 999px;
-  background: #c7cdd8;
+/* --- Nuevo estilo CHECK --- */
+
+.check-wrapper {
   position: relative;
-  display: inline-flex;
+  cursor: pointer;
+  display: flex;
   align-items: center;
-  padding: 2px;
-  transition: background 0.2s ease;
 }
 
-.room-toggle.is-active {
-  background: $blue-light;
+.check-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.room-toggle__thumb {
+.check-box {
   width: 24px;
   height: 24px;
-  border-radius: 50%;
-  background: #fff;
-  transform: translateX(0);
-  transition: transform 0.2s ease;
+  border: 2px solid #3766a9;
+  border-radius: 6px;
+  display: inline-block;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  position: relative;
 }
 
-.room-toggle.is-active .room-toggle__thumb {
-  transform: translateX(26px);
+.check-input:checked + .check-box {
+  background-color: #3766a9;
+  border-color: #3766a9;
+}
+
+.check-input:checked + .check-box::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 6px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .room-card__actions {
