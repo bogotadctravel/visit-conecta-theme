@@ -571,9 +571,6 @@
       once("idt-events-filter", ".events__filters", context).forEach((filtersWrapper) => {
 
         const buttons = filtersWrapper.querySelectorAll("button");
-        const buttonActive = filtersWrapper.querySelector("button.active");
-        console.log(buttonActive);
-        
         const cards = context.querySelectorAll(".event-card");
 
         if (!buttons.length || !cards.length) {
@@ -583,6 +580,8 @@
 
         buttons.forEach((btn) => {
           btn.addEventListener("click", () => {
+            const buttonActive = filtersWrapper.querySelector("button.active");
+        console.log(buttonActive);
             if(buttonActive){
               buttonActive.classList.remove('active');
             }
