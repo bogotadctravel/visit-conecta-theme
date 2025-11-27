@@ -19,6 +19,32 @@
       </p>
     </div>
   </section>
+    <section class="about__data">
+    <div class="data__header">
+      <h2>Nuestros datos</h2>
+    </div>
+
+    <div
+      class="data-tabs"
+      role="tablist"
+      aria-label="Categorías de datos de Bogotá¡"
+    >
+       {% for item in por_que_bogota %}
+
+      <button
+        class="data-tab data-tab--active"
+        type="button"
+        role="tab"
+        aria-selected="false"
+      >
+        <span class="data-tab__dot" aria-hidden="true"></span>
+        <span class="data-tab__label">{{item.title}}</span>
+      </button>
+      
+ {% endfor %}
+    </div>
+  </section>
+
   <section class="about__slider" aria-label="Indicadores clave de BogotÃ¡">
     <div class="about-slider" data-carousel>
       <div class="about-slider__viewport" data-carousel-viewport>
@@ -64,45 +90,6 @@
       </div>
     </div>
   </section>
-
-  <section class="about__data">
-    <div class="data__header">
-      <h2>Nuestros datos</h2>
-    </div>
-
-    <div
-      class="data-tabs"
-      role="tablist"
-      aria-label="Categorías de datos de Bogotá¡"
-    >
-      <button
-        class="data-tab data-tab--active"
-        type="button"
-        role="tab"
-        aria-selected="true"
-      >
-        <span class="data-tab__dot" aria-hidden="true"></span>
-        <span class="data-tab__label">Datos culturales</span>
-      </button>
-      <button class="data-tab" type="button" role="tab" aria-selected="false">
-        <span class="data-tab__dot" aria-hidden="true"></span>
-        <span class="data-tab__label">Datos educación</span>
-      </button>
-      <button class="data-tab" type="button" role="tab" aria-selected="false">
-        <span class="data-tab__dot" aria-hidden="true"></span>
-        <span class="data-tab__label">Datos movilidad</span>
-      </button>
-      <button class="data-tab" type="button" role="tab" aria-selected="false">
-        <span class="data-tab__dot" aria-hidden="true"></span>
-        <span class="data-tab__label">Derrame económico</span>
-      </button>
-      <button class="data-tab" type="button" role="tab" aria-selected="false">
-        <span class="data-tab__dot" aria-hidden="true"></span>
-        <span class="data-tab__label">Reconocimientos</span>
-      </button>
-    </div>
-  </section>
-
   <!-- <section class="news-card" style="--news-card-image: url('../assets/images/rock_al_parque.jpg');">
             <div class="news-card__bg" aria-hidden="true">
                 <div class="news-card__bg-image"></div>
