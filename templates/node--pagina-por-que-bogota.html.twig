@@ -19,10 +19,12 @@
       </p>
     </div>
   </section>
-  <section  class="data-tabs" role="tablist" aria-label="Categorías de datos de Bogotá¡">
+      <section class="about__data"> <div class="data__header"> <h2>Nuestros datos</h2> </div> <div class="data-tabs" role="tablist" aria-label="Categorías de datos de Bogotá¡"> {% for item in por_que_bogota %} <button class="data-tab" type="button" role="tab" aria-selected="false"> <span class="data-tab__dot" aria-hidden="true"></span> <span class="data-tab__label">{{item.title}}</span> </button> {% endfor %} </div> </section>
+  <section  class="data-tabs about__data" role="tablist" aria-label="Categorías de datos de Bogotá¡">
     <div class="data__header">
       <h2>Nuestros datos</h2>
     </div>
+
 <div class="data-tabs"
      role="tablist"
      aria-label="Categorías de datos de Bogotá¡"
