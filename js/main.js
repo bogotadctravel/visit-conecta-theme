@@ -310,8 +310,7 @@
           const captionNode = gallery.querySelector("[data-gallery-caption]");
           const thumbs = [...gallery.querySelectorAll("[data-gallery-thumb]")];
 
-          if (!mainImage || !thumbs.length) return;
-
+          if (!mainImage) return;
           const prevBtn = gallery.querySelector("[data-gallery-prev]");
           const nextBtn = gallery.querySelector("[data-gallery-next]");
 
