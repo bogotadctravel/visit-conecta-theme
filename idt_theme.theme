@@ -36,35 +36,31 @@ function idt_theme_preprocess_node(array &$variables) {
   $variables['venues'] = $content_loader->getNodesByType('venues');
 
   // Solo cargar salones si este node es venue
-  if ($node->bundle() === 'venues') {
+ if ($node->bundle() === 'venues') {
 
-    $venue_id = $node->id();
-    $variables['salones_de_venues_mice'] = $content_loader->getSalonesByVenue($venue_id);
+  $venue_id = $node->id();
+  $salones = $content_loader->getSalonesByVenue($venue_id);
 
-    // ======================
-    //  CARGAR MONTAJES PARA EL VENUE
-    // ======================
+  $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
 
-    if ($node->hasField('field_montajes') && !$node->get('field_montajes')->isEmpty()) {
+  foreach ($salones as &$salon) {
+    if (!empty($salon['fields']['field_montajes'])) {
 
-      $tids = array_column($node->get('field_montajes')->getValue(), 'target_id');
+      $tids = array_column($salon['fields']['field_montajes'], 'target_id');
+      $terms = $storage->loadMultiple($tids);
 
-      // Cargar los términos
-      $terms = \Drupal::entityTypeManager()
-        ->getStorage('taxonomy_term')
-        ->loadMultiple($tids);
-
-      // Nombres (para Twig)
-      $variables['montajes_names'] = array_map(fn($t) => $t->getName(), $terms);
-
-      // Entidades completas si las necesitas
-      $variables['montajes_terms'] = $terms;
+      // Agregar nombres directamente en el salón
+      $salon['montajes_names'] = array_map(fn($t) => $t->label(), $terms);
     }
     else {
-      $variables['montajes_names'] = [];
-      $variables['montajes_terms'] = [];
+      $salon['montajes_names'] = [];
     }
   }
+
+  // Reemplazar la variable enviada al Twig
+  $variables['salones_de_venues_mice'] = $salones;
+}
+
   else {
     $variables['salones_de_venues_mice'] = [];
     $variables['montajes_names'] = [];

@@ -599,11 +599,16 @@
         </div>
         <div class="room-card__actions">
           <div class="room-tags" aria-label="Montajes disponibles">
-          {{dump(montajes_terms)}}
-{% for term in montajes_terms %}
-  <button class="places-chip places-chip--muted">
-    <span class="places-chip__label">{{ term.getName() }}</span>
-  </button>
+{% for salon in salones_de_venues_mice %}
+  <div class="salon">
+
+    {% for name in salon.montajes_names %}
+      <button class="places-chip places-chip--muted">
+        <span class="places-chip__label">{{ name }}</span>
+      </button>
+    {% endfor %}
+
+  </div>
 {% endfor %}
           </div>
           <a   href="{{node.field_linkreservas.0.uri}}" target="_blank" class="room-card__cta">Reservar</a>
