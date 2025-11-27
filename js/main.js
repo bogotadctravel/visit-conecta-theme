@@ -458,89 +458,105 @@
         }
       );
       /* ------------------------------
-      * PLACES FILTER
-      * ------------------------------ */
-      once("idt-places-filter", ".places-wrapper", context).forEach((wrapper) => {
+ * PLACES FILTER (Drupal behavior)
+ * ------------------------------ */
+once("idt-places-filter", "#places", context).forEach((wrapper) => {
+  // Si prefieres usar la clase: once("idt-places-filter", ".places", context)
 
-        const chips = wrapper.querySelectorAll(".places-chip");
-        const range = wrapper.querySelector("[data-range-control] input[type='range']");
-        const rangeValue = wrapper.querySelector("[data-range-value]");
-        const locationSelect = wrapper.querySelector("select[name='location']");
-        const cards = wrapper.querySelectorAll(".place-card");
-console.log(chips,
-range,
-rangeValue,
-locationSelect,
-cards);
+  if (!wrapper) {
+    console.warn("Places filter: no se encontró el contenedor #places en el contexto.");
+    return;
+  }
 
-        // Estado actual de filtros
-        let filters = {
-          types: [],
-          capacity: 0,
-          location: null,
-        };
+  const chips = wrapper.querySelectorAll(".places-chip");
+  const range = wrapper.querySelector("[data-range-control] input[type='range']");
+  const rangeValue = wrapper.querySelector("[data-range-value]");
+  const locationSelect = wrapper.querySelector("select[name='location']");
+  const cards = wrapper.querySelectorAll(".place-card");
 
-        /** RANGO **/
-        if (range) {
-          range.addEventListener("input", (e) => {
-            rangeValue.textContent = e.target.value;
-            filters.capacity = parseInt(e.target.value);
-            applyFilters();
-          });
+  // Debug (opcional) — coméntalo si no quieres logs
+  // console.log('places filter init', { chips, range, rangeValue, locationSelect, cards });
+
+  // Estado actual de filtros
+  let filters = {
+    types: [],
+    capacity: 0,
+    location: null,
+  };
+
+  /** RANGO **/
+  if (range && rangeValue) {
+    range.addEventListener("input", (e) => {
+      rangeValue.textContent = e.target.value;
+      filters.capacity = parseInt(e.target.value, 10) || 0;
+      applyFilters();
+    });
+  }
+
+  /** SELECT UBICACIÓN **/
+  if (locationSelect) {
+    locationSelect.addEventListener("change", (e) => {
+      filters.location = e.target.value || null;
+      applyFilters();
+    });
+  }
+
+  /** CHIPS **/
+  if (chips && chips.length) {
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const labelNode = chip.querySelector(".places-chip__label");
+        const label = labelNode ? labelNode.textContent.trim() : null;
+        if (!label) return;
+
+        chip.classList.toggle("places-chip--muted");
+
+        if (filters.types.includes(label)) {
+          filters.types = filters.types.filter((t) => t !== label);
+        } else {
+          filters.types.push(label);
         }
 
-        /** SELECT UBICACIÓN **/
-        if (locationSelect) {
-          locationSelect.addEventListener("change", (e) => {
-            filters.location = e.target.value;
-            applyFilters();
-          });
-        }
-
-        /** CHIPS **/
-        chips.forEach(chip => {
-          chip.addEventListener("click", () => {
-            const label = chip.querySelector(".places-chip__label").innerText.trim();
-
-            chip.classList.toggle("places-chip--muted");
-
-            if (filters.types.includes(label)) {
-              filters.types = filters.types.filter(t => t !== label);
-            } else {
-              filters.types.push(label);
-            }
-
-            applyFilters();
-          });
-        });
-
-        /** FUNCIÓN DE FILTRO **/
-        function applyFilters() {
-          cards.forEach(card => {
-            let visible = true;
-
-            // Tipo
-            if (filters.types.length > 0) {
-              const title = card.querySelector(".place-card__title").innerText.toLowerCase();
-              visible = filters.types.some(t => title.includes(t.toLowerCase()));
-            }
-
-            // Capacidad
-            const cardCapacity = parseInt(card.dataset.capacity || 0);
-            if (filters.capacity > 0 && cardCapacity < filters.capacity) {
-              visible = false;
-            }
-
-            // Ubicación
-            const cardLocation = card.dataset.location;
-            if (filters.location && cardLocation != filters.location) {
-              visible = false;
-            }
-
-            card.style.display = visible ? "block" : "none";
-          });
-        }
+        applyFilters();
       });
+    });
+  }
+
+  /** FUNCIÓN DE FILTRO **/
+  function applyFilters() {
+    if (!cards) return;
+
+    cards.forEach((card) => {
+      let visible = true;
+
+      // Tipo (chips)
+      if (filters.types.length > 0) {
+        const titleNode = card.querySelector(".place-card__title");
+        const title = titleNode ? titleNode.textContent.toLowerCase() : "";
+        visible = filters.types.some((t) => title.includes(t.toLowerCase()));
+      }
+
+      // Capacidad
+      const cardCapacity = parseInt(card.dataset.capacity || 0, 10) || 0;
+      if (filters.capacity > 0 && cardCapacity < filters.capacity) {
+        visible = false;
+      }
+
+      // Ubicación
+      const cardLocation = card.dataset.location || null;
+      if (filters.location && cardLocation != filters.location) {
+        visible = false;
+      }
+
+      card.style.display = visible ? "" : "none";
+      // si usas layout grid/flex, "" restablece al default, "none" oculta.
+    });
+  }
+
+  // Si quieres que aplique filtros al inicio (por ej. hay un valor por defecto)
+  applyFilters();
+});
+
 
     }, // end attach
   };
