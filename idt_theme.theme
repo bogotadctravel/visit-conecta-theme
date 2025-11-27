@@ -36,30 +36,66 @@ function idt_theme_preprocess_node(array &$variables) {
   $variables['venues'] = $content_loader->getNodesByType('venues');
 
   // Solo cargar salones si este node es venue
- if ($node->bundle() === 'venues') {
+// Solo cargar salones si este node es venue
+if ($node->bundle() === 'venues') {
 
   $venue_id = $node->id();
   $salones = $content_loader->getSalonesByVenue($venue_id);
 
   $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $file_storage = \Drupal::entityTypeManager()->getStorage('file');
 
   foreach ($salones as &$salon) {
+
+    // --------------------------------------------
+    // 1) AGREGAR URL A LAS IMÁGENES DEL SALÓN
+    // --------------------------------------------
+    if (!empty($salon['fields']['field_picgallery'])) {
+
+      $new_gallery = [];
+
+      foreach ($salon['fields']['field_picgallery'] as $img) {
+
+        // cargar archivo real desde target_id
+        $file = $file_storage->load($img['target_id']);
+
+        if ($file) {
+          $uri = $file->getFileUri();
+          $url = file_create_url($uri);
+
+          $new_gallery[] = [
+            'url'    => $url,
+            'alt'    => $img['alt'] ?? '',
+            'title'  => $img['title'] ?? '',
+            'width'  => $img['width'] ?? '',
+            'height' => $img['height'] ?? '',
+          ];
+        }
+      }
+
+      // reemplazar en fields
+      $salon['fields']['field_picgallery'] = $new_gallery;
+    }
+    // --------------------------------------------
+
+
+    // ---- Lo que ya tenías (montajes) ----
     if (!empty($salon['fields']['field_montajes'])) {
 
       $tids = array_column($salon['fields']['field_montajes'], 'target_id');
       $terms = $storage->loadMultiple($tids);
 
-      // Agregar nombres directamente en el salón
       $salon['montajes_names'] = array_map(fn($t) => $t->label(), $terms);
     }
     else {
       $salon['montajes_names'] = [];
     }
-  }
 
-  // Reemplazar la variable enviada al Twig
+  } // end foreach salones
+
   $variables['salones_de_venues_mice'] = $salones;
 }
+
 
   else {
     $variables['salones_de_venues_mice'] = [];
