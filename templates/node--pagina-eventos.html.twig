@@ -6,8 +6,7 @@
         <p>¡Desliza y conoce más!</p>
       </div>
       <div class="events__filters">
-      <button type="button" data-tid="all">Todos</button>
-
+          <button type="button" data-tid="all">Todos</button>
          {% for item in tipos_de_evento_mice %}
         <button type="button" data-tid="{{item.tid}}">{{ item.name }}</button>
         {% endfor %}
@@ -16,6 +15,8 @@
       <div class="events__grid">
         {% for item in eventos|reverse %}
         {% set categorias = item.fields.field_categoria_de_evento %}
+        {{dump(item.fields)}}
+        {{dump(categorias)}}
         {% set categorias_tids = categorias|map(v => v.tid)|join(',') %}
 
         <a
