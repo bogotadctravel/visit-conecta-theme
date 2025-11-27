@@ -310,56 +310,43 @@
           const captionNode = gallery.querySelector("[data-gallery-caption]");
           const thumbs = [...gallery.querySelectorAll("[data-gallery-thumb]")];
 
-          if (!mainImage) return;
+          // NUEVO: obtener imágenes cuando no hay thumbs
+          let items = thumbs;
+
+          if (thumbs.length === 0) {
+            items = [...gallery.querySelectorAll("[data-gallery-item]")];
+          }
+
+          if (!mainImage || items.length === 0) return;
+
           const prevBtn = gallery.querySelector("[data-gallery-prev]");
           const nextBtn = gallery.querySelector("[data-gallery-next]");
 
-          const getLabel = (thumb) => {
-            const label = thumb.querySelector(".gallery-thumbs__label");
-            return label
-              ? label.textContent.trim()
-              : thumb.getAttribute("aria-label") || "";
-          };
+          let currentIndex = 0;
 
-          const applyThumb = (i) => {
-            const target = thumbs[i];
-            if (!target) return;
-
+          const apply = (i) => {
+            const target = items[i];
             const { image, caption, alt } = target.dataset;
 
             if (image) mainImage.src = image;
-            mainImage.alt = alt || getLabel(target);
-
-            if (captionNode)
-              captionNode.textContent = caption || getLabel(target);
-
-            thumbs.forEach((t) =>
-              t.classList.toggle("is-active", t === target)
-            );
+            if (alt) mainImage.alt = alt;
+            if (captionNode) captionNode.textContent = caption || "";
             currentIndex = i;
           };
 
-          let currentIndex = Math.max(
-            0,
-            thumbs.findIndex((t) => t.classList.contains("is-active"))
-          );
-
-          applyThumb(currentIndex);
-
-          thumbs.forEach((thumb, i) => {
-            thumb.addEventListener("click", () => applyThumb(i));
-          });
+          apply(0);
 
           const move = (dir) => {
-            const total = thumbs.length;
+            const total = items.length;
             const next = (currentIndex + dir + total) % total;
-            applyThumb(next);
+            apply(next);
           };
 
           if (prevBtn) prevBtn.addEventListener("click", () => move(-1));
           if (nextBtn) nextBtn.addEventListener("click", () => move(1));
         }
       );
+
 
       /* ------------------------------
        * LIVEBOX MAP
@@ -580,8 +567,8 @@
         buttons.forEach((btn) => {
           btn.addEventListener("click", () => {
             const buttonActive = filtersWrapper.querySelector("button.active");
-        console.log(buttonActive);
-            if(buttonActive){
+            console.log(buttonActive);
+            if (buttonActive) {
               buttonActive.classList.remove('active');
             }
             btn.classList.add('active')
