@@ -118,8 +118,7 @@
             
             {% for item in venues %}
                 <a class="place-card" href="{{item.url}}"    data-capacity="{{ item.fields.field_aforo_maximo_en_auditorio }}"
-
-   data-type="{{ item.fields.field_tipo_de_venue }}">
+>
                     <div class="place-card__media place-card__media--a" aria-hidden="true" style="background-image: url({{item.fields.field_image.0.url}});"></div>
                     <div class="place-card__body">
                         <h3 class="place-card__title">{{ item.title }}</h3>
