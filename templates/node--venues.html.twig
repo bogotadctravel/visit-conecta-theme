@@ -266,6 +266,7 @@
   {% for salon in salones_de_venues_mice %}
 
     {% set gallery = [] %}
+    {{dump(salon.fields.field_picgallery)}}
     {% for img in salon.fields.field_picgallery %}
       {% set gallery = gallery|merge([{ 
         url: img.url, 
