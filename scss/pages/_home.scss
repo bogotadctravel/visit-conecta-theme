@@ -311,6 +311,7 @@ section {
 
 .events__track {
   display: flex;
+  gap: 20px;
   scroll-behavior: smooth;
 }
 
@@ -335,7 +336,7 @@ section {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    150deg,
+    0deg,
     rgba(4, 18, 48, 0.9) 0%,
     rgba(4, 18, 48, 0.25) 75%
   );
