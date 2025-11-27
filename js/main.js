@@ -467,6 +467,11 @@
         const rangeValue = wrapper.querySelector("[data-range-value]");
         const locationSelect = wrapper.querySelector("select[name='location']");
         const cards = wrapper.querySelectorAll(".place-card");
+console.log(chips,
+range,
+rangeValue,
+locationSelect,
+cards);
 
         // Estado actual de filtros
         let filters = {
