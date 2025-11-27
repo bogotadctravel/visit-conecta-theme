@@ -1,3 +1,12 @@
+{% set hoy = "now"|date("Y-m-d") %} {% set meses = { 'Jan': 'Ene', 'Feb': 'Feb',
+'Mar': 'Mar', 'Apr': 'Abr', 'May': 'May', 'Jun': 'Jun', 'Jul': 'Jul', 'Aug':
+'Ago', 'Sep': 'Sept', 'Oct': 'Oct', 'Nov': 'Nov', 'Dec': 'Dic' } %} {% set hoy =
+"now"|date("Y-m-d") %} {% set pasados = [] %} {% set futuros = [] %} {% for item
+in eventos %} {% set inicio =
+item.fields.field_fecha_de_inicio.0.value|date("Y-m-d") %} {% set fin =
+item.fields.field_fecha_de_finalizacion.0.value|date("Y-m-d") %} {% if fin < hoy
+%} {% set pasados = pasados|merge([item]) %} {% elseif inicio >= hoy %} {% set
+futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
 <div class="events__body">
   <main class="events-main">
     <section class="events__page" id="events">
@@ -16,7 +25,7 @@
 
       </div>
       <div class="events__grid">
-        {% for item in eventos|reverse %}
+        {% for item in futuros|reverse %}
         {% set categorias = item.fields.field_categoria_de_evento %}
         {% set categorias_tids = categorias|map(v => v.tid)|join(',') %}
 

@@ -25,7 +25,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
 
       </div>
       <div class="events__grid">
-        {% for item in futuros|reverse %}
+        {% for item in pasados|reverse %}
         {% set categorias = item.fields.field_categoria_de_evento %}
         {% set categorias_tids = categorias|map(v => v.tid)|join(',') %}
 
