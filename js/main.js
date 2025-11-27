@@ -459,8 +459,8 @@
         }
       );
       /* ------------------------------
-* PLACES FILTER
-* ------------------------------ */
+      * PLACES FILTER
+      * ------------------------------ */
       once("idt-places-filter", ".places-wrapper", context).forEach((wrapper) => {
 
         const chips = wrapper.querySelectorAll(".places-chip");
