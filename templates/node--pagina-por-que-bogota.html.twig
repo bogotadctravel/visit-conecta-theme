@@ -55,7 +55,6 @@
             <img src="{{item.fields.field_image.0.url}}" alt="{{item.title}}" />
             <div class="about-slide__content">
               <h3>{{item.title}}</h3>
-              {{ dump(item.fields.body) }}
               {{ item.fields.body.raw|raw }}
               <a class="about-slide__link" href="/venues"
                 >Explora nuestras locaciones</a
