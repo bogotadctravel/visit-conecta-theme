@@ -105,55 +105,6 @@
             </span>
             <span class="top-nav__mobile-text">Eventos</span>
           </a>
-
-          <button
-            class="top-nav__mobile-meta"
-            type="button"
-            role="menuitem"
-            style="--mobile-index: 4"
-          >
-            <span class="top-nav__mobile-meta-stack">
-              <span class="top-nav__mobile-icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                >
-                  <path d="M12 5v14M5 12h14" stroke-linecap="round" />
-                </svg>
-              </span>
-              <span class="top-nav__mobile-meta-label">Stopover</span>
-              <span class="top-nav__mobile-meta-description">
-                Experiencias
-                <span class="top-nav__mobile-meta-value" aria-hidden="true"
-                  >▾</span
-                >
-              </span>
-            </span>
-          </button>
-
-          <button
-            class="top-nav__mobile-meta"
-            type="button"
-            role="menuitem"
-            style="--mobile-index: 5"
-          >
-            <span
-              class="top-nav__mobile-meta-flag fi fi-gb"
-              aria-hidden="true"
-            ></span>
-            <span class="top-nav__mobile-meta-stack">
-              <span class="top-nav__mobile-meta-label">EN</span>
-              <span class="top-nav__mobile-meta-description">
-                Lenguaje
-                <span class="top-nav__mobile-meta-value" aria-hidden="true"
-                  >▾</span
-                >
-              </span>
-            </span>
-          </button>
         </div>
       </nav>
 
@@ -162,55 +113,7 @@
       </a>
 
       {% if page.headerTheme is defined %}{{ page.headerTheme }}{% endif %}
-
-      <form class="top-nav__controls" aria-label="Preferencias de navegación">
-        <label class="pill pill--light pill--select">
-          <span class="pill__label">Stopover</span>
-          <select name="stopover" aria-label="Seleccionar tipo de experiencia">
-            <option value="stopover">Stopover</option>
-            <option value="experiencias">Experiencias</option>
-            <option value="paquetes">Paquetes</option>
-          </select>
-          <span class="pill__icon" aria-hidden="true">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </label>
-
-        <label class="pill pill--light pill--flag pill--select">
-          <span class="pill__flag fi fi-gb" aria-hidden="true"></span>
-          <span class="pill__label sr-only">Idioma</span>
-          <select name="language" aria-label="Seleccionar idioma">
-            <option value="en">EN</option>
-            <option value="es">ES</option>
-          </select>
-          <span class="pill__value" aria-hidden="true">EN</span>
-          <span class="pill__icon" aria-hidden="true">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </label>
-      </form>
+      <a href="" class="linkStopover">Stopover</a>
     </div>
 
     <div class="hero__content">
