@@ -90,6 +90,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
 {% endif %}
 
 {% if node.field_imagen_proveedores.0.entity is defined %}
+{{dump(node.field_imagen_proveedores.0.entity.uri.value)}}
   <img 
     src="{{ file_url_generator.generateAbsoluteString(node.field_imagen_proveedores.0.entity.uri.value) }}" 
     alt="{{ node.field_imagen_proveedores.0.alt }}"
