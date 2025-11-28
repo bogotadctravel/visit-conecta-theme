@@ -82,8 +82,8 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       <article class="portfolio-card">
         <div class="portfolio-card__media">
           <div class="portfolio-card__image" data-image="venues">
-          {{dump(node.field_imagen_venues.0.values)}}
-          {{dump(node.field_imagen_proveedores.0.values)}}
+          {{dump(node.field_imagen_venues.0)}}
+          {{dump(node.field_imagen_proveedores.0)}}
             <img
               src=""
               alt="Imagen agencias"
