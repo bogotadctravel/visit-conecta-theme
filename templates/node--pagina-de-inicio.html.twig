@@ -82,24 +82,13 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       <article class="portfolio-card">
         <div class="portfolio-card__media">
           <div class="portfolio-card__image" data-image="venues">
-      {% if node.field_imagen_venues.0.entity is defined %}
+
+              {% if node.field_imagen_venues.0.entity is defined %}
   <img 
     src="{{ file_url(node.field_imagen_venues.0.entity.uri.value )}}" 
     alt="{{ node.field_imagen_venues.0.alt }}"
   >
 {% endif %}
-
-{% if node.field_imagen_proveedores.0.entity is defined %}
-  <img 
-    src="{{file_url(node.field_imagen_proveedores.0.entity.uri.value)}}" 
-    alt="{{ node.field_imagen_proveedores.0.alt }}"
-  >
-{% endif %}
-
-            <img
-              src=""
-              alt="Imagen agencias"
-            />
           </div>
         </div>
         <div class="portfolio-card__body">
@@ -116,10 +105,12 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       <article class="portfolio-card">
         <div class="portfolio-card__media">
           <div class="portfolio-card__image" data-image="proveedores">
-            <img
-              src=""
-              alt="Imagen proveedores"
-            />
+           {% if node.field_imagen_proveedores.0.entity is defined %}
+  <img 
+    src="{{file_url(node.field_imagen_proveedores.0.entity.uri.value)}}" 
+    alt="{{ node.field_imagen_proveedores.0.alt }}"
+  >
+{% endif %}
           </div>
         </div>
         <div class="portfolio-card__body">
