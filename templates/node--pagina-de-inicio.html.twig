@@ -82,8 +82,11 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
       <article class="portfolio-card">
         <div class="portfolio-card__media">
           <div class="portfolio-card__image" data-image="venues">
+            {% set urlVenues = file_url(node.field_imagen_venues.uri.value) %}
+            {% set urlProveedores = file_url(node.field_imagen_proveedores.uri.value) %}
+          {{}}
             <img
-              src="/{{ directory }}/images/agora_convenciones.jpg"
+              src="{{urlVenues}}"
               alt="Imagen agencias"
             />
           </div>
@@ -91,7 +94,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
         <div class="portfolio-card__body">
           <div class="portfolio-card__text">
             <h3>Venues</h3>
-            <p>Espacios ideales para tu evento.</p>
+            {{node.field_texto_venues.0.value|raw}}
           </div>
           <a class="portfolio-card__cta" type="button" href="/venues"
             >ver más +</a
@@ -103,7 +106,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
         <div class="portfolio-card__media">
           <div class="portfolio-card__image" data-image="proveedores">
             <img
-              src="/{{ directory }}/images/grupo.jpg"
+              src="{{urlProveedores}}"
               alt="Imagen proveedores"
             />
           </div>
@@ -111,7 +114,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
         <div class="portfolio-card__body">
           <div class="portfolio-card__text">
             <h3>Proveedores</h3>
-            <p>Servicios confiables para eventos.</p>
+            {{node.field_texto_proveedores.0.value|raw}}
           </div>
           <a class="portfolio-card__cta" type="button" href="/proveedores"
             >ver más +</a
