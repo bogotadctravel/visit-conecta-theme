@@ -24,6 +24,10 @@
 
 .about__slider {
   padding: 0;
+  @media only screen and (max-width: 1023px){
+    padding: 0 20px;
+      
+  }
 }
 
 .about-slider {
@@ -286,6 +290,9 @@
   margin-top: clamp(2.5rem, 6vw, 4rem);
   display: grid;
   grid-template-columns: minmax(320px, 1.2fr) minmax(260px, 0.7fr);
+  @media only screen and (max-width: 1023px){
+      padding: 0 20px;
+  }
 }
 
 .highlight-slider {
