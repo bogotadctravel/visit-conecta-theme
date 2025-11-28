@@ -84,15 +84,14 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
           <div class="portfolio-card__image" data-image="venues">
       {% if node.field_imagen_venues.0.entity is defined %}
   <img 
-    src="{{ file_url_generator.generateAbsoluteString(node.field_imagen_venues.0.entity.uri.value) }}" 
+    src="{{ node.field_imagen_venues.0.entity.uri.value }}" 
     alt="{{ node.field_imagen_venues.0.alt }}"
   >
 {% endif %}
 
 {% if node.field_imagen_proveedores.0.entity is defined %}
-{{dump(node.field_imagen_proveedores.0.entity.uri.value)}}
   <img 
-    src="{{ file_url_generator.generateAbsoluteString(node.field_imagen_proveedores.0.entity.uri.value) }}" 
+    src="{{node.field_imagen_proveedores.0.entity.uri.value}}" 
     alt="{{ node.field_imagen_proveedores.0.alt }}"
   >
 {% endif %}
