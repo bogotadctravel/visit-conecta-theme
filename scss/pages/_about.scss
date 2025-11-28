@@ -299,10 +299,6 @@
   border-radius: $radius-card;
   padding: clamp(1.5rem, 4vw, 3rem);
   padding-inline: 6rem;
-    @media only screen and (max-width: 1023px){
-      padding: 0 20px;
-  }
-
 }
 
 .highlight__image {
@@ -449,6 +445,9 @@
 
   .highlight-slider {
     padding: 0;
+        @media only screen and (max-width: 1023px){
+      padding: 0 20px;
+  }
   }
 
   .highlight__image {
