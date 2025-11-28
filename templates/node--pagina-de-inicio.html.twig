@@ -144,8 +144,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
 
   <section class="events">
     <div class="events__intro">
-      <h2>Conoce los próximos eventos en Bogotá</h2>
-      <p>¡Desliza y conoce más!</p>
+   {{node.field_textos_seccion_eventos.0.value|raw}}
     </div>
 
     <div class="events__panel">
@@ -325,11 +324,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
   <section class="allies" id="allies">
     <header class="allies__header">
       <h2>Aliados</h2>
-      <p>
-        Nuestros aliados comparten la visión de fortalecer la industria de
-        eventos en Bogotá, ofreciendo calidad, innovación y confianza en cada
-        servicio.
-      </p>
+    {{node.field_texto_aliados.0.value|raw}}
     </header>
     <div class="allies-carousel" data-carousel>
       <button
