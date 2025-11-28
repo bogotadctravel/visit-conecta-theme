@@ -1,6 +1,10 @@
 @use "../base/tokens" as *;
 .events-main{
     padding: 50px;
+    @media only screen and (max-width: 1023px){
+        padding: 20px;
+        
+    }
 }
 .events__successful {
     background: #fff;
