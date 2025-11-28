@@ -42,10 +42,11 @@ textarea {
 section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 0;
+  padding: 3rem 20px;
 
-  @media screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1023px) {
     padding: 3rem 20px;
+
   }
 }
 
@@ -84,14 +85,17 @@ body.menu-open {
       margin: 0 auto;
       gap: 15px;
       padding: 50px 20px;
-      li{
-        	transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-          &:hover{
-            opacity: .8;
-          }
-          img{
-            height: 216px;
-          }
+
+      li {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+        &:hover {
+          opacity: .8;
+        }
+
+        img {
+          height: 216px;
+        }
       }
 
       .views-field.views-field-title {
@@ -102,10 +106,11 @@ body.menu-open {
     }
   }
 }
+
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.75);
+  background: rgba(0, 0, 0, .75);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,8 +155,13 @@ body.menu-open {
   cursor: pointer;
 }
 
-.carousel__nav--prev { left: 10px; }
-.carousel__nav--next { right: 10px; }
+.carousel__nav--prev {
+  left: 10px;
+}
+
+.carousel__nav--next {
+  right: 10px;
+}
 
 .modal__close {
   position: absolute;

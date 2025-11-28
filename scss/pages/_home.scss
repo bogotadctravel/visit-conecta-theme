@@ -781,7 +781,7 @@ section {
 .news-card {
   --news-card-image: url("../images/parque_novios.jpg");
   position: relative;
-  height: 400px;
+  min-height: 400px;
   border-radius: $radius-card;
   overflow: hidden;
   margin: 30px auto 0;
