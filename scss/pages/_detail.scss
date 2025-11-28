@@ -235,7 +235,7 @@
 
 .gallery-viewer__media img {
   width: 100%;
-  height: clamp(260px, 45vw, 420px);
+  height: clamp(350px,45vw,420px);
   display: block;
   object-fit: cover;
 }

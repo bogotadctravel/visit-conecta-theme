@@ -218,6 +218,9 @@
 
 .about__data {
   margin-top: clamp(2.5rem, 6vw, 4rem);
+  @media only screen and (max-width: 1023px){
+      margin: 0 auto;
+  }
 }
 
 .data-tabs {
