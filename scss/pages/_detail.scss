@@ -572,9 +572,7 @@
   background: #ffffff;
   border-radius: 999px;
   border: 1px solid #d7d1ec;
-  max-height: 40px;
   font-size: 14px;
-  height: 40px;
 }
 
 .rooms-tab {
@@ -597,7 +595,7 @@
   background: #dbe1ff;
   color: $blue-secondary;
   box-shadow: 0 8px 16px rgba(22, 41, 92, 0.12);
-  max-height: 40px;
+  padding: 5px;
 }
 
 .rooms-tab__icon {
