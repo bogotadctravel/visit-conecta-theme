@@ -465,6 +465,7 @@
         const rangeValue = wrapper.querySelector("[data-range-value]");
         const locationSelect = wrapper.querySelector("select[name='location']");
         const cards = wrapper.querySelectorAll(".place-card");
+        const typeSelect = wrapper.querySelector("select[name='type']");
 
         // Debug (opcional) — coméntalo si no quieres logs
         // console.log('places filter init', { chips, range, rangeValue, locationSelect, cards });
@@ -474,8 +475,15 @@
           types: [],
           capacity: 0,
           location: null,
+          type: null, // ← NUEVO
         };
-
+        /** SELECT TIPO DE VENUE **/
+        if (typeSelect) {
+          typeSelect.addEventListener("change", (e) => {
+            filters.type = e.target.value || null;
+            applyFilters();
+          });
+        }
         /** RANGO **/
         if (range && rangeValue) {
           range.addEventListener("input", (e) => {
@@ -521,7 +529,7 @@
           cards.forEach((card) => {
             let visible = true;
 
-            // Tipo (chips)
+            // Chips — tipo por texto
             if (filters.types.length > 0) {
               const titleNode = card.querySelector(".place-card__title");
               const title = titleNode ? titleNode.textContent.toLowerCase() : "";
@@ -540,10 +548,16 @@
               visible = false;
             }
 
+            // Tipo de venue (nuevo)
+            const cardType = card.dataset.type || null;
+            if (filters.type && filters.type !== cardType) {
+              visible = false;
+            }
+
             card.style.display = visible ? "" : "none";
-            // si usas layout grid/flex, "" restablece al default, "none" oculta.
           });
         }
+
 
         // Si quieres que aplique filtros al inicio (por ej. hay un valor por defecto)
         applyFilters();
@@ -592,7 +606,7 @@
         });
       });
 
-  const modal = document.getElementById("gallery-modal");
+      const modal = document.getElementById("gallery-modal");
       const track = document.getElementById("carousel-track");
 
       let images = [];
