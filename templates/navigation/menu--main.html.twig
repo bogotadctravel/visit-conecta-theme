@@ -1,4 +1,7 @@
-<nav class="primary-nav" id="primary-nav" aria-label="Menú principal">
+<nav>
+  {% if items is empty %}
+    <p>NO HAY ITEMS PARA ESTE USUARIO</p>
+  {% endif %}
   {% for item in items %}
     <a href="{{ item.url }}">{{ item.title }}</a>
   {% endfor %}
