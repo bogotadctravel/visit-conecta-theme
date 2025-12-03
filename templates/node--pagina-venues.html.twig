@@ -48,6 +48,27 @@
                         </span>
                     </div>
                 </label>
+                <label class="places__search-field">
+                    <span class="places__search-label">Tipo de venue</span>
+                    <div class="places-input places-input--select">
+                        <span class="places-input__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <circle cx="11" cy="11" r="6" />
+                                <path d="m16.5 16.5 3.5 3.5" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <select name="type" aria-label="Tipo de venue">
+                             {% for item in tipo_de_venue %}
+                            <option value="{{item.tid}}">{{ item.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="places-input__icon places-input__icon--trailing" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+                </label>
             </div>
 
             <div class="places__grid" aria-live="polite">
