@@ -56,7 +56,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
          <p>
            {{ last_article.fields.field_introduccion.0.value}}
          </p>
-        <button class="news-card__cta" type="button">
+        <a href="{{last_article.url}}" class="news-card__cta">
           ver más
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
               d="M4.5 12a.75.75 0 0 1 .75-.75h12.19l-3.72-3.72a.75.75 0 0 1 1.06-1.06l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 0 1-1.06-1.06l3.72-3.72H5.25A.75.75 0 0 1 4.5 12Z"
             />
           </svg>
-        </button>
+        </a>
       </div>
     </div>
   </section>
