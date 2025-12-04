@@ -5,7 +5,7 @@
             </div>
             <div class="places__search-card">
                 <label class="places__search-field">
-                    <span class="places__search-label">Ubicación</span>
+                    <span class="places__search-label">Tipo de servicio</span>
                     <div class="places-input places-input--select">
                         <span class="places-input__icon" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -13,7 +13,7 @@
                                 <path d="m16.5 16.5 3.5 3.5" stroke-linecap="round" />
                             </svg>
                         </span>
-                        <select name="location" aria-label="Ubicación">
+                        <select name="type" aria-label="Tipo de servicio">
                             {% for item in tipos_de_proveedor_mice %}
                             <option value="{{item.tid}}" >{{ item.name }}</option>
                             {% endfor %}
