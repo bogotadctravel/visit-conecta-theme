@@ -41,14 +41,14 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
     </form>
   </div>
 
+    {% set last_article = article|last %}
   <section
     class="news-card"
-    style="--news-card-image: url('/{{ directory }}/images/parque_novios.jpg')"
+    style="--news-card-image: url('{{last_article.fields.field_cover.0.url}}')"
   >
     <div class="news-card__bg" aria-hidden="true">
       <div class="news-card__bg-image"></div>
     </div>
-    {% set last_article = article|last %}
     <div class="news-card__content">
       <span class="news-card__tag">Noticias</span>
       <div class="news-card__text">
@@ -237,11 +237,11 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
         </button>
         <div class="carousel-indicators" data-carousel-indicators></div>
       </div>
-      <div class="events__filters">
+      {# <div class="events__filters">
         {% for item in tipos_de_evento_mice %}
         <button type="button">{{ item.name }}</button>
         {% endfor %}
-      </div>
+      </div> #}
     </div>
     <div class="carousel-indicators" data-carousel-indicators></div>
   </section>
