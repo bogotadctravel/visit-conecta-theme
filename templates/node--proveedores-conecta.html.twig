@@ -15,7 +15,7 @@
         {{ content.body }}
         <div class="detail-media__gallery" data-detail-gallery>
           <div class="gallery-viewer">
-            {% if total_salones > 1 %}
+            {% if total_galeria > 1 %}
             <button class="gallery-viewer__control gallery-viewer__control--prev" type="button"
               aria-label="Ver foto anterior" data-gallery-prev>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -24,13 +24,15 @@
               </svg>
             </button>
             {% endif %}
+            {% if total_galeria > 0 %}
             <figure class="gallery-viewer__media" data-gallery-main>
               <img src="" alt="Vista exterior del domo" loading="lazy" data-gallery-image />
               <figcaption data-gallery-caption>
 
               </figcaption>
             </figure>
-            {% if total_salones > 1 %}
+            {% endif %}
+            {% if total_galeria > 1 %}
             <button class="gallery-viewer__control gallery-viewer__control--next" type="button"
               aria-label="Ver foto siguiente" data-gallery-next>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -250,124 +252,9 @@
       </div>
     </div>
   </section>
-
-  <section class="detail-rooms" aria-labelledby="detail-rooms-title">
-    <div class="detail-rooms__header">
-      <h2 id="detail-rooms-title">Salones disponibles</h2>
-    </div>
-
-    <div class="detail-rooms__tabs" role="tablist" aria-label="Tipos de salones">
-      {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
-      <button class="rooms-tab {% if loop.first %}is-active{% endif %}" type="button" role="tab"
-        aria-selected="{{ loop.first ? 'true' : 'false' }}" data-room-index="{{ loop.index0 }}">
-        <span class="rooms-tab__label">{{ salon.title }}</span>
-      </button>
-      {% endfor %} {% endif %}
-    </div>
-
-    {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
-
-    <article class="room-card" aria-live="polite" data-room-index="{{ loop.index0 }}"
-      style="{% if not loop.first %}display:none{% endif %}">
-      <!-- <p class="room-card__description">
-        Sala de cine con domo y pantalla gigante. Ideal para lanzamientos
-        inmersivos con sonido envolvente y experiencias sensoriales.
-      </p> -->
-      <div class="room-card__content">
-        <div class="room-card__meta">
-          <dl class="room-stats">
-            <div class="room-stat">
-              <span class="room-stat__icon" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M12 13C14.7614 13 17 10.7614 17 8C17 5.23858 14.7614 3 12 3C9.23858 3 7 5.23858 7 8C7 10.7614 9.23858 13 12 13ZM12 13C14.1217 13 16.1566 13.8429 17.6569 15.3431C19.1571 16.8434 20 18.8783 20 21M12 13C9.87827 13 7.84344 13.8429 6.34315 15.3431C4.84285 16.8434 4 18.8783 4 21"
-                    stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
-              <div>
-                <dt>
-                  Aforo m&iacute;nimo:
-                  <strong>{{ salon.fields.field_aforo_minimo_en_auditorio.0.value }}</strong>
-                </dt>
-              </div>
-            </div>
-            <div class="room-card__toggle">
-              <span class="room-stat__icon" aria-hidden="true">
-                <!-- Tu SVG -->
-                <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M17.9784 19L18.9784 12L12.9784 13M4.97841 8L7.97841 5L13.4784 8L11.1184 11.5M4.21841 14.5C3.93625 15.4231 3.92729 16.4081 4.19262 17.3361C4.45796 18.2641 4.98623 19.0955 5.71369 19.73C6.44114 20.3644 7.33667 20.7746 8.29217 20.9113C9.24767 21.0479 10.2223 20.9051 11.0984 20.5M13.7384 17.5C14.0206 16.5769 14.0295 15.5919 13.7642 14.6639C13.4989 13.7359 12.9706 12.9045 12.2431 12.27C11.5157 11.6356 10.6202 11.2254 9.66465 11.0887C8.70915 10.9521 7.73452 11.0949 6.85841 11.5M16.9784 4C16.9784 4.55228 16.5307 5 15.9784 5C15.4261 5 14.9784 4.55228 14.9784 4C14.9784 3.44772 15.4261 3 15.9784 3C16.5307 3 16.9784 3.44772 16.9784 4Z"
-                    stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
-
-              <label class="room-card__toggle-label" for="acc-check">Accesibilidad</label>
-
-              <label class="check-wrapper">
-                <input type="checkbox" id="acc-check" class="check-input" checked />
-                <span class="check-box"></span>
-              </label>
-            </div>
-
-            <div class="room-stat">
-              <span class="room-stat__icon" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M18 21C18 18.8783 17.1571 16.8434 15.6569 15.3431C14.1566 13.8429 12.1217 13 10 13M10 13C7.87827 13 5.84344 13.8429 4.34315 15.3431C2.84285 16.8434 2 18.8783 2 21M10 13C12.7614 13 15 10.7614 15 8C15 5.23858 12.7614 3 10 3C7.23858 3 5 5.23858 5 8C5 10.7614 7.23858 13 10 13ZM22 20C22 16.63 20 13.5 18 12C18.6574 11.5068 19.1831 10.8591 19.5306 10.1143C19.878 9.36945 20.0365 8.55047 19.992 7.7298C19.9475 6.90913 19.7014 6.11209 19.2755 5.4092C18.8495 4.70631 18.2569 4.11926 17.55 3.7"
-                    stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
-              <div>
-                <dt>
-                  Aforo m&aacute;ximo:<strong>{{
-                    salon.fields.field_aforo_maximo_en_auditorio.0.value
-                    }}</strong>
-                </dt>
-              </div>
-            </div>
-            <!-- <div class="room-stat">
-              <span class="room-stat__icon" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clip-path="url(#clip0_486_14803)">
-                    <path
-                      d="M14.4998 12.4998L16.4998 10.4998M11.4998 9.4998L13.4998 7.4998M8.4998 6.4998L10.4998 4.4998M17.4998 15.4998L19.4998 13.4998M21.2998 15.2998C21.5235 15.5228 21.7011 15.7877 21.8222 16.0794C21.9433 16.3712 22.0057 16.6839 22.0057 16.9998C22.0057 17.3157 21.9433 17.6284 21.8222 17.9202C21.7011 18.2119 21.5235 18.4768 21.2998 18.6998L18.6998 21.2998C18.4768 21.5235 18.2119 21.7011 17.9202 21.8222C17.6284 21.9433 17.3157 22.0057 16.9998 22.0057C16.6839 22.0057 16.3712 21.9433 16.0794 21.8222C15.7877 21.7011 15.5228 21.5235 15.2998 21.2998L2.6998 8.6998C2.25036 8.24818 1.99805 7.63695 1.99805 6.9998C1.99805 6.36265 2.25036 5.75143 2.6998 5.2998L5.2998 2.6998C5.75143 2.25036 6.36265 1.99805 6.9998 1.99805C7.63695 1.99805 8.24818 2.25036 8.6998 2.6998L21.2998 15.2998Z"
-                      stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_486_14803">
-                      <rect width="24" height="24" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </span>
-              <div>
-                <dt>
-                  &Aacute;rea del sal&oacute;n:<strong>45&nbsp;m<sup>2</sup></strong>
-                </dt>
-              </div>
-            </div> -->
-          </dl>
-        </div>
-        <div class="room-card__actions">
-          <div class="room-tags" aria-label="Montajes disponibles">
-
-            {% for name in salon.montajes_names %}
-            <button class="places-chip places-chip--muted">
-              <span class="places-chip__label">{{ name }}</span>
-            </button>
-            {% endfor %}
-
-          </div>
-        </div>
-      </div>
-
-    </article>
-    {% endfor %} {% endif %}
-  </section>
-
   <section class="venues venues--media">
     <div class="venues__header filtros">
-      <h2>Conoce otros venues</h2>
+      <h2>Más proveedores</h2>
     </div>
     <div class="venues-carousel" data-carousel>
       <button class="venues-nav venues-nav--prev" type="button" data-carousel-prev aria-label="Aliado anterior">
