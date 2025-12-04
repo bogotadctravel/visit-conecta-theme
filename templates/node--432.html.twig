@@ -4,29 +4,6 @@
                 <h2>Conoce el lugar ideal para tu evento</h2>
             </div>
             <div class="places__search-card">
-                <div class="places__search-field places__search-field--range">
-                    <span class="places__search-label">Aforo máximo en auditorio</span>
-                    <div class="places-range" data-range-control>
-                        <output
-                            class="places-range__bubble"
-                            for="places-capacity"
-                            aria-live="polite"
-                        >
-                            <span data-range-value>0</span>
-                        </output>
-                        <input
-                            type="range"
-                            id="places-capacity"
-                            name="capacity"
-                            min="0"
-                            max="500"
-                            step="10"
-                            value="0"
-                            aria-label="Aforo máximo en auditorio"
-                        />
-                    </div>
-                </div>
-
                 <label class="places__search-field">
                     <span class="places__search-label">Ubicación</span>
                     <div class="places-input places-input--select">
@@ -37,7 +14,7 @@
                             </svg>
                         </span>
                         <select name="location" aria-label="Ubicación">
-                            {% for item in zonas_de_la_ciudad %}
+                            {% for item in tipos_de_proveedor_mice %}
                             <option value="{{item.tid}}" >{{ item.name }}</option>
                             {% endfor %}
                         </select>
@@ -51,9 +28,8 @@
             </div>
 
             <div class="places__grid" aria-live="polite">
-            
             {% for item in proveedores_conecta %}
-                <a class="place-card" href="{{item.url}}">
+                <a class="place-card" href="{{item.url}}" data-type="{{ item.fields.field_criterios_de_busqueda_prov.0.target_id  }}">
                     <div class="place-card__media place-card__media--a" aria-hidden="true" style="background-image: url({{item.fields.field_mainimg.0.url}});"></div>
                     <div class="place-card__body">
                         <h3 class="place-card__title">{{ item.title }}</h3>

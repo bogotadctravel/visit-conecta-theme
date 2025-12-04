@@ -19,7 +19,7 @@
                             id="places-capacity"
                             name="capacity"
                             min="0"
-                            max="5000"
+                            max="10000"
                             step="10"
                             value="0"
                             aria-label="Aforo máximo en auditorio"
@@ -76,7 +76,8 @@
             {% for item in venues %}
                 <a class="place-card" href="{{item.url}}"    data-capacity="{{ item.fields.field_aforo_maximo_en_auditorio.0.value }}"
    data-location="{{ item.fields.field_turzone.0.target_id }}"
-   data-type="{{ item.fields.field_tipo_de_venue.0.target_id  }}">
+   data-type="{{ item.fields.field_tipo_de_venue.0.target_id  }}"
+   >
 
                     <div class="place-card__media place-card__media--a" aria-hidden="true" style="background-image: url({{item.fields.field_image.0.url}});"></div>
                     <div class="place-card__body">
