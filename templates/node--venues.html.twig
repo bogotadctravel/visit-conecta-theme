@@ -125,25 +125,38 @@
             <div class="info-content__icons">
               <div class="info__social-icons">
                 <h4>Redes sociales</h4>
-                <div class="social-icons__links">
-                  {% set redes = [
-                  {'icon': 'linkedin', 'label': 'LinkedIn'},
-                  {'icon': 'instagram', 'label': 'Instagram'},
-                  {'icon': 'youtube', 'label': 'YouTube'},
-                  {'icon': 'facebook', 'label': 'Facebook'}
-                  ] %}
+                    <div class="social-icons__links">
 
-                  {% for r in redes %}
-                  {% set idx = loop.index0 %}
-                  {% if node.field_profilelink[idx] is defined and node.field_profilelink[idx].uri is not empty %}
-                  <a href="{{ node.field_profilelink[idx].uri }}" target="_blank" rel="noopener noreferrer"
-                    aria-label="{{ r.label }}">
-                    <img src="/{{ directory }}/images/{{ r.icon }}.svg" alt="{{ r.label }}" />
-                  </a>
-                  {% endif %}
-                  {% endfor %}
+  {% set redes = {
+    'linkedin.com':   { 'icon': 'linkedin',  'label': 'LinkedIn' },
+    'instagram.com':  { 'icon': 'instagram', 'label': 'Instagram' },
+    'youtube.com':    { 'icon': 'youtube',   'label': 'YouTube' },
+    'facebook.com':   { 'icon': 'facebook',  'label': 'Facebook' }
+  } %}
 
-                </div>
+  {% for link in node.field_profilelink %}
+    {% if link.uri is not empty %}
+      {% set host = link.uri|split('/')|slice(2,1)|first %}
+      {% set match = false %}
+
+      {# Recorrer redes configuradas #}
+      {% for domain, info in redes %}
+    {% if host contains domain %}
+          {% set match = info %}
+        {% endif %}
+      {% endfor %}
+
+      {# Si hizo match, mostrar icono #}
+      {% if match %}
+        <a href="{{ link.uri }}" target="_blank" rel="noopener noreferrer"
+          aria-label="{{ match.label }}">
+          <img src="/{{ directory }}/images/{{ match.icon }}.svg" alt="{{ match.label }}">
+        </a>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+</div>
               </div>
             </div>
             <a href="{{node.field_linkreservas.0.uri}}" target="_blank" rel="noopener noreferrer" class="detail__cta">
