@@ -141,7 +141,8 @@
 
       {# Recorrer redes configuradas #}
       {% for domain, info in redes %}
-    {% if host contains domain %}
+{% if domain in host %}
+
           {% set match = info %}
         {% endif %}
       {% endfor %}
