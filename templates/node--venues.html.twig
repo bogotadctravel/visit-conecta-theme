@@ -371,8 +371,10 @@
 
           </div>
         </div>
+            {% set total_galeria_salones = salon.fields.field_picgallery|length %}
          <div class="detail-media__gallery" data-detail-gallery>
           <div class="gallery-viewer">
+           {% if total_galeria_salones > 1 %}
             <button class="gallery-viewer__control gallery-viewer__control--prev" type="button"
               aria-label="Ver foto anterior" data-gallery-prev>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -380,12 +382,14 @@
                 <path d="m15 6-6 6 6 6" />
               </svg>
             </button>
+            {% endif %}
             <figure class="gallery-viewer__media" data-gallery-main>
               <img src="" alt="Vista exterior del domo" loading="lazy" data-gallery-image />
               <figcaption data-gallery-caption>
 
               </figcaption>
             </figure>
+              {% if total_galeria_salones > 1 %}
             <button class="gallery-viewer__control gallery-viewer__control--next" type="button"
               aria-label="Ver foto siguiente" data-gallery-next>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -393,6 +397,7 @@
                 <path d="m9 6 6 6-6 6" />
               </svg>
             </button>
+  {% endif %}
           </div>
           <div class="gallery-data" style="display:none;">
         
