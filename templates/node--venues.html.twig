@@ -280,7 +280,7 @@
     </div>
 
     {% if salones_de_venues_mice %} {% for salon in salones_de_venues_mice %}
-
+  {{dump(salon)}}
     <article class="room-card" aria-live="polite" data-room-index="{{ loop.index0 }}"
       style="{% if not loop.first %}display:none{% endif %}">
       <!-- <p class="room-card__description">
@@ -396,7 +396,7 @@
             </button>
           </div>
           <div class="gallery-data" style="display:none;">
-          {{dump(salon)}}
+        
             {% for image in salon.field_picgallery %}
             <div data-gallery-item data-image="{{ file_url(image.entity.uri.value) }}" data-caption="{{ image.title }}"
               data-alt="{{ image.alt }}"></div>
