@@ -42,9 +42,10 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
   </div>
 
     {% set last_article = article|last %}
+    
   <section
     class="news-card"
-    style="--news-card-image: url('{{last_article.fields.field_cover.0.url}}')"
+    style="--news-card-image: url('{{ file_url(last_article.fields.field_cover.0.entity.uri.value )}}')"
   >
     <div class="news-card__bg" aria-hidden="true">
       <div class="news-card__bg-image"></div>
