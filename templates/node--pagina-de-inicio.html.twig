@@ -42,6 +42,7 @@ futuros = futuros|merge([item]) %} {% endif %} {% endfor %}
   </div>
 
     {% set last_article = article|last %}
+    {{dump(last_article.fields.field_cover)}}
     
   <section
     class="news-card"
