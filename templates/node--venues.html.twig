@@ -396,7 +396,7 @@
             </button>
           </div>
           <div class="gallery-data" style="display:none;">
-          {{dump(salon.field_picgallery)}}
+          {{dump(salon)}}
             {% for image in salon.field_picgallery %}
             <div data-gallery-item data-image="{{ file_url(image.entity.uri.value) }}" data-caption="{{ image.title }}"
               data-alt="{{ image.alt }}"></div>
